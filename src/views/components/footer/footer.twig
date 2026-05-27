@@ -1,24 +1,5 @@
-<footer class="store-footer zod-footer">
+<footer class="store-footer zod-footer zod-footer--refined">
   <div class="zod-footer__glow-line" aria-hidden="true"></div>
-
-  <div class="zod-footer__features container" aria-label="ZOD footer features">
-    <div class="zod-footer-feature-card">
-      <span class="zod-footer-feature-card__icon"><i class="sicon-credit-card"></i></span>
-      <strong>مدى وفيزا وخيارات دفع آمنة</strong>
-    </div>
-    <div class="zod-footer-feature-card">
-      <span class="zod-footer-feature-card__icon"><i class="sicon-shield-check"></i></span>
-      <strong>ضمان وسياسات واضحة</strong>
-    </div>
-    <div class="zod-footer-feature-card">
-      <span class="zod-footer-feature-card__icon"><i class="sicon-customer-service"></i></span>
-      <strong>دعم فني قبل وبعد الشراء</strong>
-    </div>
-    <div class="zod-footer-feature-card">
-      <span class="zod-footer-feature-card__icon"><i class="sicon-shipping-fast"></i></span>
-      <strong>تجهيز وشحن سريع</strong>
-    </div>
-  </div>
 
   <div aria-label="footer" class="store-footer__inner zod-footer__inner">
     <div class="container zod-footer__grid">
@@ -38,33 +19,10 @@
           <p class="zod-footer__description">حلول احترافية للإنتركوم والكاميرات والشبكات وأنظمة التحكم.</p>
         {% endif %}
 
-        <div class="zod-footer__social zod-footer__social--desktop">
-          <salla-social></salla-social>
-        </div>
-
-        <div class="zod-footer__badges">
-          <salla-trust-badges dark></salla-trust-badges>
-          {% if store.settings.tax.number %}
-            <div class="zod-footer__tax">
-              {% if store.settings.tax.certificate %}
-                <a class="load-img-onclick" data-modal-id="modal-value-tax" href="#/" alt="{{ store.settings.tax.number }}">
-                  <img width="40" height="50" src="{{'images/tax.png' | cdn(70,70)}}" loading="lazy" alt="value added tax">
-                </a>
-              {% endif %}
-              <div>
-                <p>{{ trans('common.elements.tax_number') }}</p>
-                <b>{{ store.settings.tax.number }}</b>
-              </div>
-            </div>
-
-            {% if store.settings.tax.certificate %}
-              <salla-modal sub-title-first sub-title="{{ trans('common.elements.tax_number') }}" modal-title="{{ store.settings.tax.number }}" id="modal-value-tax">
-                <div class="flex justify-center max-w-full">
-                  <img class="w-full" loading="lazy" data-src="{{ store.settings.tax.certificate }}" alt="{{ store.settings.tax.number }}"/>
-                </div>
-              </salla-modal>
-            {% endif %}
-          {% endif %}
+        <div class="zod-footer__mini-trust" aria-label="ZOD trust highlights">
+          <span>دفع آمن</span>
+          <span>ضمان واضح</span>
+          <span>دعم فني</span>
         </div>
       </section>
 
@@ -75,22 +33,55 @@
         </div>
       </details>
 
-      <details class="zod-footer__section" open>
+      <details class="zod-footer__section zod-footer__categories" open>
+        <summary>خدمة العملاء</summary>
+        <div class="zod-footer__section-content">
+          <ul class="zod-footer__clean-list">
+            <li><a href="{{ link('pages/الشحن-والتوصيل') }}">الشحن والتوصيل</a></li>
+            <li><a href="{{ link('pages/الاستبدال-والاسترجاع') }}">الاستبدال والاسترجاع</a></li>
+            <li><a href="{{ link('pages/سياسة-الخصوصية') }}">سياسة الخصوصية</a></li>
+            <li><a href="{{ link('pages/الشروط-والأحكام') }}">الشروط والأحكام</a></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="zod-footer__section zod-footer__contact" open>
         <summary>تواصل معنا</summary>
         <div class="zod-footer__section-content">
+          <p class="zod-footer__section-subtitle">خدمة العملاء والدعم الفني</p>
           <salla-contacts></salla-contacts>
-          <div class="zod-footer__social zod-footer__social--mobile">
+          <div class="zod-footer__social">
             <salla-social></salla-social>
           </div>
         </div>
       </details>
+    </div>
 
-      <details class="zod-footer__section zod-footer__apps" open>
-        <summary>تحميل تطبيق الجوال</summary>
-        <div class="zod-footer__section-content zod-footer__apps-card">
-          <salla-apps-icons></salla-apps-icons>
-        </div>
-      </details>
+    <div class="container zod-footer__meta-row">
+      <div class="zod-footer__badges">
+        <salla-trust-badges dark></salla-trust-badges>
+        {% if store.settings.tax.number %}
+          <div class="zod-footer__tax">
+            {% if store.settings.tax.certificate %}
+              <a class="load-img-onclick" data-modal-id="modal-value-tax" href="#/" alt="{{ store.settings.tax.number }}">
+                <img width="40" height="50" src="{{'images/tax.png' | cdn(70,70)}}" loading="lazy" alt="value added tax">
+              </a>
+            {% endif %}
+            <div>
+              <p>{{ trans('common.elements.tax_number') }}</p>
+              <b>{{ store.settings.tax.number }}</b>
+            </div>
+          </div>
+
+          {% if store.settings.tax.certificate %}
+            <salla-modal sub-title-first sub-title="{{ trans('common.elements.tax_number') }}" modal-title="{{ store.settings.tax.number }}" id="modal-value-tax">
+              <div class="flex justify-center max-w-full">
+                <img class="w-full" loading="lazy" data-src="{{ store.settings.tax.certificate }}" alt="{{ store.settings.tax.number }}"/>
+              </div>
+            </salla-modal>
+          {% endif %}
+        {% endif %}
+      </div>
     </div>
   </div>
 

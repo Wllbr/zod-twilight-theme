@@ -1390,3 +1390,243 @@ body.theme-raed .zod-footer .store-footer__inner,
     justify-content: center;
   }
 }
+
+/* Footer V7 refinement: cleaner luxury layout, no bulky feature/app sections */
+body.theme-raed.footer-is-light .zod-footer--refined,
+body.theme-raed .zod-footer--refined,
+.zod-footer--refined {
+  background: #040404 !important;
+  color: #ffffff !important;
+}
+
+.zod-footer--refined .zod-footer__inner {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 45, 45, 0.055), transparent 22rem),
+    linear-gradient(180deg, #050505 0%, #09090b 58%, #040404 100%) !important;
+  padding: clamp(34px, 5vw, 62px) 0 26px !important;
+}
+
+.zod-footer--refined .zod-footer__glow-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 45, 45, 0.72), transparent);
+  box-shadow: 0 0 12px rgba(255, 45, 45, 0.32);
+}
+
+.zod-footer--refined .zod-footer__grid {
+  grid-template-columns: minmax(280px, 1.35fr) minmax(170px, .75fr) minmax(190px, .85fr) minmax(230px, 1fr);
+  gap: clamp(24px, 4.2vw, 54px);
+  padding-block: 0;
+}
+
+.zod-footer--refined .zod-footer__brand,
+.zod-footer--refined .zod-footer__section,
+.zod-footer--refined .zod-footer__apps-card {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  border-radius: 0 !important;
+}
+
+.zod-footer--refined .zod-footer__brand {
+  padding: 0 !important;
+}
+
+.zod-footer--refined .zod-footer__brand-link {
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.zod-footer--refined .zod-footer__brand-link img {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 0 10px rgba(255, 45, 45, 0.18));
+}
+
+.zod-footer--refined .zod-footer__brand-link h3,
+.zod-footer--refined .zod-footer__section summary,
+.zod-footer--refined h3,
+.zod-footer--refined h4 {
+  border-inline-start: 0 !important;
+  padding-inline-start: 0 !important;
+  margin: 0 0 14px !important;
+  color: #ffffff !important;
+  font-size: 1.02rem !important;
+  letter-spacing: 0 !important;
+  font-weight: 900 !important;
+}
+
+.zod-footer--refined .zod-footer__section summary::before,
+.zod-footer--refined .zod-footer__brand-link h3::after {
+  content: '';
+  display: block;
+  width: 34px;
+  height: 2px;
+  margin-top: 9px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff3b3b, rgba(255, 59, 59, 0));
+  box-shadow: 0 0 8px rgba(255, 45, 45, 0.24);
+}
+
+.zod-footer--refined .zod-footer__description,
+.zod-footer--refined .zod-footer__description p,
+.zod-footer--refined .zod-footer__section-subtitle {
+  color: #a6a6b0 !important;
+  font-size: .94rem;
+  line-height: 1.85;
+  margin: 0;
+}
+
+.zod-footer__mini-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.zod-footer__mini-trust span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #d7d7dd;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.zod-footer--refined .zod-footer__section {
+  overflow: visible;
+}
+
+.zod-footer--refined .zod-footer__section summary {
+  padding: 0 !important;
+  cursor: default;
+}
+
+.zod-footer--refined .zod-footer__section-content {
+  padding: 0 !important;
+}
+
+.zod-footer__clean-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.zod-footer--refined a,
+.zod-footer--refined salla-menu a,
+.zod-footer--refined .s-contacts-list a,
+.zod-footer__clean-list a {
+  color: #aaaab4 !important;
+  font-size: .94rem;
+  text-decoration: none !important;
+}
+
+.zod-footer--refined a:hover,
+.zod-footer--refined salla-menu a:hover,
+.zod-footer--refined .s-contacts-list a:hover,
+.zod-footer__clean-list a:hover {
+  color: #ff3b3b !important;
+  transform: translateX(-2px);
+}
+
+.zod-footer--refined .zod-footer__social {
+  margin-top: 16px;
+}
+
+.zod-footer--refined .zod-footer__social .social-link,
+.zod-footer--refined salla-social::part(link) {
+  width: 36px !important;
+  height: 36px !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
+}
+
+.zod-footer--refined .zod-footer__social .social-link:hover,
+.zod-footer--refined salla-social::part(link):hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 45, 45, .28) !important;
+  box-shadow: 0 0 12px rgba(255, 45, 45, .12) !important;
+}
+
+.zod-footer--refined .zod-footer__meta-row {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+.zod-footer--refined .zod-footer__badges {
+  margin-top: 0;
+  gap: 12px;
+}
+
+.zod-footer--refined .zod-footer__tax {
+  padding: 9px 11px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.025);
+  border-color: rgba(255,255,255,.07);
+}
+
+.zod-footer--refined .zod-footer__bottom {
+  background: #020202 !important;
+  border-top: 1px solid rgba(255,45,45,.18);
+  box-shadow: inset 0 1px 0 rgba(255,45,45,.08);
+}
+
+.zod-footer--refined .zod-footer__bottom-inner {
+  min-height: 64px;
+  padding-block: 14px;
+}
+
+@media (max-width: 1024px) {
+  .zod-footer--refined .zod-footer__grid {
+    grid-template-columns: 1.1fr .9fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .zod-footer--refined .zod-footer__inner {
+    padding-block: 30px 20px !important;
+  }
+
+  .zod-footer--refined .zod-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .zod-footer--refined .zod-footer__brand {
+    padding-bottom: 18px !important;
+    border-bottom: 1px solid rgba(255,255,255,.07) !important;
+  }
+
+  .zod-footer--refined .zod-footer__section {
+    padding: 0 0 14px;
+    border-bottom: 1px solid rgba(255,255,255,.07) !important;
+  }
+
+  .zod-footer--refined .zod-footer__section summary {
+    position: relative;
+    cursor: pointer;
+    padding: 0 !important;
+  }
+
+  .zod-footer--refined .zod-footer__section summary::after {
+    inset-inline-end: 0;
+    color: #ff3b3b;
+    opacity: .85;
+  }
+
+  .zod-footer--refined .zod-footer__section[open] .zod-footer__section-content {
+    padding-top: 12px !important;
+  }
+
+  .zod-footer--refined .zod-footer__bottom-inner {
+    min-height: 58px;
+  }
+}

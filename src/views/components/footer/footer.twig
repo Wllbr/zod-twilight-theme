@@ -1,8 +1,8 @@
-<footer class="store-footer zod-footer zod-footer--refined">
+<footer class="store-footer zod-footer zod-footer--refined zod-footer--no-accordion">
   <div class="zod-footer__glow-line" aria-hidden="true"></div>
 
   <div aria-label="footer" class="store-footer__inner zod-footer__inner">
-    <div class="container zod-footer__grid">
+    <div class="container zod-footer__grid zod-footer__grid--three">
       <section class="zod-footer__brand">
         <a href="{{ link('/') }}" class="zod-footer__brand-link" aria-label="{{ store.name }}">
           {% if store.logo %}
@@ -26,35 +26,22 @@
         </div>
       </section>
 
-      <details class="zod-footer__section" open>
-        <summary>روابط مهمة</summary>
+      <section class="zod-footer__section">
+        <h3>روابط مهمة</h3>
         <div class="zod-footer__section-content">
           <salla-menu source="footer" with-cookie-preferences></salla-menu>
         </div>
-      </details>
+      </section>
 
-      <details class="zod-footer__section zod-footer__categories" open>
-        <summary>خدمة العملاء</summary>
+      <section class="zod-footer__section zod-footer__contact">
+        <h3>تواصل معنا</h3>
         <div class="zod-footer__section-content">
-          <ul class="zod-footer__clean-list">
-            <li><a href="{{ link('pages/الشحن-والتوصيل') }}">الشحن والتوصيل</a></li>
-            <li><a href="{{ link('pages/الاستبدال-والاسترجاع') }}">الاستبدال والاسترجاع</a></li>
-            <li><a href="{{ link('pages/سياسة-الخصوصية') }}">سياسة الخصوصية</a></li>
-            <li><a href="{{ link('pages/الشروط-والأحكام') }}">الشروط والأحكام</a></li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="zod-footer__section zod-footer__contact" open>
-        <summary>تواصل معنا</summary>
-        <div class="zod-footer__section-content">
-          <p class="zod-footer__section-subtitle">خدمة العملاء والدعم الفني</p>
           <salla-contacts></salla-contacts>
           <div class="zod-footer__social">
             <salla-social></salla-social>
           </div>
         </div>
-      </details>
+      </section>
     </div>
 
     <div class="container zod-footer__meta-row">

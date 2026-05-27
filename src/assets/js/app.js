@@ -154,14 +154,21 @@ isElementLoaded(selector){
 
   initiateMobileMenu() {
     // The new ZOD drawer is fully managed by NavigationMenu (main-menu.js).
-    // We only fall back to mmenu-light if the legacy #mobile-menu element is
-    // present AND the new drawer element is NOT present.
-    const zodDrawer = document.getElementById('zod-mobile-drawer');
-    if (zodDrawer) {
-      // New drawer is active — nothing to do here.
+    // The drawer's document-level click listeners are registered in main-menu.js
+    // connectedCallback, so they work regardless of timing.
+    // We skip the legacy mmenu-light initialization entirely — the new drawer
+    // handles everything.
+    //
+    // If the new custom element is present in the DOM, we know the new system
+    // is active. The drawer open/close is handled by document-level listeners
+    // in NavigationMenu._registerGlobalListeners().
+    const customMenu = document.querySelector('custom-main-menu');
+    if (customMenu) {
+      // New system is active — do nothing here.
       return;
     }
 
+    // Fallback: legacy mmenu-light for themes without custom-main-menu
     this.isElementLoaded('#mobile-menu').then((menu) => {
       const mobileMenu = new MobileMenu(menu, '(max-width: 1024px)');
 

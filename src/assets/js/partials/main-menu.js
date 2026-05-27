@@ -11,6 +11,11 @@ class NavigationMenu extends HTMLElement {
                 <span class="header-skel-item header-skel-item--menu" style="width:80px"></span>
             </div>`;
 
+        // IMPORTANT: Register the global click handler immediately on connect,
+        // BEFORE the async API call. This ensures the hamburger button works
+        // as soon as the drawer is rendered, regardless of app.js timing.
+        this._registerGlobalListeners();
+
         salla.onReady()
             .then(() => salla.lang.onLoaded())
             .then(() => {
@@ -29,6 +34,74 @@ class NavigationMenu extends HTMLElement {
                     this.initMobileAccordion();
                 }).catch((error) => salla.logger.error('salla-menu::Error fetching menus', error));
             });
+    }
+
+    /**
+    * Register document-level listeners immediately so the hamburger trigger
+    * works as soon as the drawer DOM exists — no dependency on app.js timing.
+    */
+    _registerGlobalListeners() {
+        // Only register once
+        if (NavigationMenu._listenersRegistered) return;
+        NavigationMenu._listenersRegistered = true;
+
+        const self = this;
+
+        // Hamburger trigger — open drawer
+        document.addEventListener('click', function(e) {
+            const trigger = e.target.closest("a[href='#mobile-menu']") || e.target.closest('.zod-header__mobile-menu');
+            if (trigger) {
+                e.preventDefault();
+                e.stopPropagation();
+                const drawer = document.getElementById('zod-mobile-drawer');
+                if (drawer) {
+                    drawer.classList.add('is-open');
+                    document.body.classList.add('zod-drawer-open', 'menu-opened');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        }, true); // Use capture phase to intercept before other handlers
+
+        // Close button
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('#zod-drawer-close') || e.target.closest('.zod-mobile-drawer__close')) {
+                e.preventDefault();
+                NavigationMenu._closeDrawer();
+            }
+        });
+
+        // Overlay click
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('#zod-drawer-overlay') || (e.target.classList && e.target.classList.contains('zod-mobile-drawer__overlay'))) {
+                NavigationMenu._closeDrawer();
+            }
+        });
+
+        // Legacy close buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.close-mobile-menu')) {
+                NavigationMenu._closeDrawer();
+            }
+        });
+
+        // Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const drawer = document.getElementById('zod-mobile-drawer');
+                if (drawer && drawer.classList.contains('is-open')) {
+                    NavigationMenu._closeDrawer();
+                }
+            }
+        });
+    }
+
+    static _closeDrawer() {
+        const drawer = document.getElementById('zod-mobile-drawer');
+        if (drawer) {
+            drawer.classList.remove('is-open');
+            document.body.classList.remove('zod-drawer-open', 'menu-opened');
+            document.body.style.overflow = '';
+        }
     }
 
     /** 
@@ -61,7 +134,7 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Get the mobile menu — accordion-style, no mmenu dependency
+    * Get the mobile menu — accordion-style
     * @param {Object} menu
     * @param {String} displayAllText
     * @param {Number} depth
@@ -135,7 +208,7 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Get the menus — mobile items only in mobile nav, desktop items only in desktop nav
+    * Get the menus split for mobile and desktop
     * @returns {Object} { mobileHtml, desktopHtml }
     */
     getMenusSplit() {
@@ -168,16 +241,13 @@ class NavigationMenu extends HTMLElement {
     * Initialize responsive menu functionality
     */
     initializeResponsiveMenu() {
-        if (window.innerWidth < 1024) return; // Only for desktop
+        if (window.innerWidth < 1024) return;
 
         const mainMenu = this.querySelector('.zod-desktop-menu');
         if (!mainMenu) return;
 
-        // Check if more menu is enabled from global window variable set in master.twig
         const isMoreMenuEnabled = window.enable_more_menu;
-        if (!isMoreMenuEnabled) {
-            return;
-        }
+        if (!isMoreMenuEnabled) return;
 
         this.checkMenuOverflow();
 
@@ -350,70 +420,10 @@ class NavigationMenu extends HTMLElement {
 
         <!-- Legacy close button for compatibility -->
         <button class="btn--close-sm close-mobile-menu sicon-cancel hidden"></button>`;
-
-        // Wire up drawer open/close after render
-        this._initDrawerControls();
-    }
-
-    /**
-    * Initialize drawer open/close controls
-    */
-    _initDrawerControls() {
-        const drawer = this.querySelector('#zod-mobile-drawer');
-        const overlay = this.querySelector('#zod-drawer-overlay');
-        const closeBtn = this.querySelector('#zod-drawer-close');
-
-        if (!drawer) return;
-
-        // Close on overlay click
-        if (overlay) {
-            overlay.addEventListener('click', () => this._closeDrawer());
-        }
-
-        // Close on close button click
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => this._closeDrawer());
-        }
-
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
-                this._closeDrawer();
-            }
-        });
-
-        // Wire the hamburger trigger (a[href='#mobile-menu'])
-        document.addEventListener('click', (e) => {
-            const trigger = e.target.closest("a[href='#mobile-menu']");
-            if (trigger) {
-                e.preventDefault();
-                this._openDrawer();
-            }
-        });
-
-        // Wire legacy .close-mobile-menu buttons
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.close-mobile-menu')) {
-                this._closeDrawer();
-            }
-        });
-    }
-
-    _openDrawer() {
-        const drawer = this.querySelector('#zod-mobile-drawer');
-        if (!drawer) return;
-        drawer.classList.add('is-open');
-        document.body.classList.add('zod-drawer-open', 'menu-opened');
-        document.body.style.overflow = 'hidden';
-    }
-
-    _closeDrawer() {
-        const drawer = this.querySelector('#zod-mobile-drawer');
-        if (!drawer) return;
-        drawer.classList.remove('is-open');
-        document.body.classList.remove('zod-drawer-open', 'menu-opened');
-        document.body.style.overflow = '';
     }
 }
+
+// Static flag to prevent duplicate listener registration
+NavigationMenu._listenersRegistered = false;
 
 customElements.define('custom-main-menu', NavigationMenu);

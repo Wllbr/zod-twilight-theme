@@ -1294,25 +1294,25 @@
           "item_label": "تصنيف",
           "value": [
             {
-              "items.icon": "sicon-video",
+              "items.image": null,
               "items.title": "كاميرات المراقبة",
               "items.text": "أنظمة رؤية ومراقبة احترافية",
               "items.url": "/"
             },
             {
-              "items.icon": "sicon-phone-call",
+              "items.image": null,
               "items.title": "أنظمة الإنتركوم",
               "items.text": "حلول اتصال وتحكم للمباني",
               "items.url": "/"
             },
             {
-              "items.icon": "sicon-router",
+              "items.image": null,
               "items.title": "الشبكات",
               "items.text": "أجهزة وربط وتجهيزات تقنية",
               "items.url": "/"
             },
             {
-              "items.icon": "sicon-shield",
+              "items.image": null,
               "items.title": "التحكم بالدخول",
               "items.text": "حماية وإدارة دخول ذكية",
               "items.url": "/"
@@ -1321,13 +1321,18 @@
           "fields": [
             {
               "type": "string",
-              "icon": "sicon-format-text-alt",
-              "label": "الأيقونة",
-              "id": "items.icon",
-              "value": "sicon-store2",
+              "icon": "sicon-image",
+              "label": "صورة الأيقونة",
+              "id": "items.image",
+              "value": null,
               "required": false,
-              "format": "icon",
-              "description": null
+              "format": "image",
+              "placeholder": null,
+              "description": "* المقاس المقترح: 96×96 بكسل أو SVG مربع. ستظهر كأيقونة صغيرة داخل البطاقة.",
+              "settings": {
+                "width": 96,
+                "height": 96
+              }
             },
             {
               "type": "string",
@@ -1538,6 +1543,50 @@
         },
         {
           "type": "string",
+          "icon": "sicon-image",
+          "label": "صورة البانر",
+          "id": "image",
+          "value": null,
+          "required": false,
+          "format": "image",
+          "placeholder": null,
+          "description": "* المقاس المقترح: 1200×420 بكسل. يمكن استخدام Cover لملء المساحة أو Contain لإظهار الصورة كاملة.",
+          "settings": {
+            "width": 1200,
+            "height": 420
+          }
+        },
+        {
+          "id": "image_fit",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "طريقة عرض الصورة",
+          "labelHTML": null,
+          "icon": "sicon-keyboard_arrow_down",
+          "selected": [
+            {
+              "label": "تغطية المساحة Cover",
+              "value": "cover",
+              "key": "dd1d1d44-fa46-4f50-9005-22465d8f5d09"
+            }
+          ],
+          "options": [
+            {
+              "label": "تغطية المساحة Cover",
+              "value": "cover",
+              "key": "6eb94a32-a4af-4c68-92de-83689ab47c7b"
+            },
+            {
+              "label": "إظهار الصورة كاملة Contain",
+              "value": "contain",
+              "key": "b96b8aac-c418-463c-b15f-6a06e39f1b03"
+            }
+          ],
+          "source": "Manual",
+          "required": false
+        },
+        {
+          "type": "string",
           "icon": "sicon-format-text-alt",
           "label": "نص الزر",
           "multilanguage": true,
@@ -1584,32 +1633,37 @@
           "item_label": "عنصر ثقة",
           "value": [
             {
-              "items.icon": "sicon-credit-card",
+              "items.image": null,
               "items.text": "مدى وفيزا وخيارات دفع آمنة"
             },
             {
-              "items.icon": "sicon-shield-check",
+              "items.image": null,
               "items.text": "ضمان وسياسات واضحة"
             },
             {
-              "items.icon": "sicon-customer-service",
+              "items.image": null,
               "items.text": "دعم فني قبل وبعد الشراء"
             },
             {
-              "items.icon": "sicon-shipping-fast",
+              "items.image": null,
               "items.text": "تجهيز وشحن سريع"
             }
           ],
           "fields": [
             {
               "type": "string",
-              "icon": "sicon-format-text-alt",
-              "label": "الأيقونة",
-              "id": "items.icon",
-              "value": "sicon-shield-check",
+              "icon": "sicon-image",
+              "label": "صورة الأيقونة",
+              "id": "items.image",
+              "value": null,
               "required": false,
-              "format": "icon",
-              "description": null
+              "format": "image",
+              "placeholder": null,
+              "description": "* المقاس المقترح: 80×80 بكسل أو SVG مربع. ستظهر كأيقونة صغيرة بجانب النص.",
+              "settings": {
+                "width": 80,
+                "height": 80
+              }
             },
             {
               "type": "string",
@@ -1624,6 +1678,234 @@
               "placeholder": null,
               "minLength": 0,
               "maxLength": 120
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "23909426-c16d-4975-8ce4-a5b1941e918d",
+      "title": {
+        "en": "ZOD Product Slider With Category Variants",
+        "ar": "سلايدر منتجات زد مع خيارات التصنيف"
+      },
+      "icon": "sicon-layout-grid-rearrange",
+      "path": "home.zod-product-slider-variants",
+      "image": "https://cdn.salla.network/images/themes/raed/preview-images/products-slider.png?v=1.1",
+      "fields": [
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "عنوان السلايدر",
+          "multilanguage": true,
+          "id": "title",
+          "value": "تسوق حسب التصنيف",
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 120
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "الوصف أسفل العنوان",
+          "multilanguage": true,
+          "id": "description",
+          "value": "اختر تصنيفاً رئيسياً واعرض تحته خيارات فرعية مثل مراوح الشفط السقفية والجدارية.",
+          "required": false,
+          "format": "textarea",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 500
+        },
+        {
+          "type": "number",
+          "icon": "sicon-list",
+          "label": "عدد المنتجات المعروضة",
+          "id": "limit",
+          "value": 8,
+          "required": false,
+          "format": "number",
+          "minimum": 4,
+          "maximum": 24
+        },
+        {
+          "id": "groups",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 8,
+          "item_label": "مجموعة منتجات",
+          "value": [
+            {
+              "groups.name": "مراوح الشفط",
+              "groups.description": "اختر النوع المناسب من مراوح الشفط حسب مكان التركيب.",
+              "groups.source_type": "categories",
+              "groups.source_value": null,
+              "groups.children": [
+                {
+                  "groups.children.name": "مروحة شفط سقفية",
+                  "groups.children.url": "/"
+                },
+                {
+                  "groups.children.name": "مروحة شفط جدارية",
+                  "groups.children.url": "/"
+                },
+                {
+                  "groups.children.name": "مروحة شفط مخفية",
+                  "groups.children.url": "/"
+                }
+              ]
+            }
+          ],
+          "fields": [
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "اسم المشروع أو المجموعة",
+              "multilanguage": true,
+              "id": "groups.name",
+              "value": null,
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 120
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "وصف قصير",
+              "multilanguage": true,
+              "id": "groups.description",
+              "value": null,
+              "required": false,
+              "format": "textarea",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 500
+            },
+            {
+              "id": "groups.source_type",
+              "type": "items",
+              "format": "dropdown-list",
+              "label": "نوع مصدر المنتجات",
+              "labelHTML": null,
+              "icon": "sicon-keyboard_arrow_down",
+              "selected": [
+                {
+                  "label": "تصنيف",
+                  "value": "categories",
+                  "key": "306ff891-6e7c-4c5b-83cf-96c158971862"
+                }
+              ],
+              "options": [
+                {
+                  "label": "تصنيف",
+                  "value": "categories",
+                  "key": "04c7949c-b1b1-4477-a003-08202fee5d1e"
+                },
+                {
+                  "label": "ماركة تجارية",
+                  "value": "brands",
+                  "key": "237f77cc-558d-47f5-a420-d03ec1136bfe"
+                },
+                {
+                  "label": "أحدث المنتجات",
+                  "value": "latest_products",
+                  "key": "178a866f-7a01-4367-ad93-015c805948d9"
+                },
+                {
+                  "label": "الأكثر مبيعاً",
+                  "value": "most_sales",
+                  "key": "e709256a-7eb9-4bba-8586-711e06fe58da"
+                },
+                {
+                  "label": "منتجات مختارة",
+                  "value": "selected_products",
+                  "key": "770122e9-00b3-488e-89c4-a8f08a169360"
+                }
+              ],
+              "source": "Manual",
+              "required": false
+            },
+            {
+              "type": "items",
+              "icon": "sicon-link",
+              "label": "اختر التصنيف أو البراند أو المنتجات",
+              "id": "groups.source_value",
+              "value": null,
+              "description": "اختر التصنيف أو البراند أو مجموعة المنتجات التي سيتم عرضها في هذا السلايدر.",
+              "required": false,
+              "format": "variable-list",
+              "searchable": true,
+              "source": "custom",
+              "sources": [
+                {
+                  "label": "تصنيف",
+                  "key": "categories",
+                  "value": "categories"
+                },
+                {
+                  "label": "ماركة تجارية",
+                  "key": "brands",
+                  "value": "brands"
+                },
+                {
+                  "label": "منتجات مختارة",
+                  "key": "products",
+                  "value": "products"
+                },
+                {
+                  "label": "منتجات مع وسم",
+                  "key": "products_tags",
+                  "value": "products_tags"
+                }
+              ]
+            },
+            {
+              "id": "groups.children",
+              "type": "collection",
+              "format": "collection",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 10,
+              "item_label": "خيار فرعي",
+              "value": [],
+              "fields": [
+                {
+                  "type": "string",
+                  "icon": "sicon-format-text-alt",
+                  "label": "اسم الخيار الفرعي",
+                  "multilanguage": true,
+                  "id": "groups.children.name",
+                  "value": null,
+                  "required": false,
+                  "format": "text",
+                  "description": null,
+                  "placeholder": null,
+                  "minLength": 0,
+                  "maxLength": 120
+                },
+                {
+                  "type": "string",
+                  "icon": "sicon-link",
+                  "label": "رابط الخيار الفرعي",
+                  "id": "groups.children.url",
+                  "value": "/",
+                  "required": false,
+                  "format": "url",
+                  "inputType": "url",
+                  "description": null,
+                  "placeholder": "https://example.com"
+                }
+              ]
             }
           ]
         }

@@ -4,7 +4,7 @@
 | component.title          | string   | Section title
 | component.description    | string   | Section description
 | component.items          | object[] | Category/link cards from twilight.json
-| component.items[].icon   | string   | Salla icon class
+| component.items[].image  | string   | Uploaded icon image, recommended 96×96 px
 | component.items[].title  | string   | Card title
 | component.items[].text   | string   | Card description
 | component.items[].url    | string   | Destination URL
@@ -22,7 +22,13 @@
       {% for item in component.items %}
         {% if item.title %}
           <a class="zod-glass-card" href="{{ item.url ?: '#' }}">
-            <i class="{{ item.icon ?: 'sicon-store2' }}"></i>
+            <span class="zod-image-icon">
+              {% if item.image %}
+                <img src="{{ item.image }}" width="48" height="48" alt="{{ item.title }}" loading="lazy">
+              {% else %}
+                <span class="zod-image-icon__placeholder"></span>
+              {% endif %}
+            </span>
             <h3>{{ item.title }}</h3>
             {% if item.text %}<p>{{ item.text }}</p>{% endif %}
           </a>

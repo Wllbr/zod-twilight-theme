@@ -1,0 +1,54 @@
+{#
+| Variable                           | Type     | Description
+|------------------------------------|----------|--------------------------------------------
+| component.title                    | string   | Section title
+| component.description              | string   | Section description
+| component.groups                   | object[] | Product groups configured by the merchant
+| component.groups[].name            | string   | Group or project name
+| component.groups[].description     | string   | Group description
+| component.groups[].source_type     | string   | categories, brands, latest_products, most_sales, or selected_products
+| component.groups[].source_value    | mixed    | Selected category/brand/products source value
+| component.groups[].children        | object[] | Child variant/category options
+| component.groups[].children[].name | string   | Child option label
+| component.groups[].children[].url  | string   | Child option URL
+| component.limit                    | int      | Products limit
+#}
+<section class="s-block zod-section zod-product-slider" id="zod-product-slider-{{ position }}">
+  <div class="container">
+    <div class="s-block__title">
+      <div class="right-side">
+        <h2>{{ component.title ?: 'منتجات حسب التصنيف' }}</h2>
+        {% if component.description %}<p class="zod-product-slider__description">{{ component.description }}</p>{% endif %}
+      </div>
+    </div>
+
+    {% for group in component.groups %}
+      {% set group_id = 'zod-product-slider-' ~ position ~ '-' ~ loop.index %}
+      <div class="zod-product-slider__panel" id="{{ group_id }}">
+        <div class="s-block__title">
+          <div class="right-side">
+            <h3>{{ group.name ?: 'مجموعة منتجات' }}</h3>
+            {% if group.description %}<p>{{ group.description }}</p>{% endif %}
+          </div>
+        </div>
+
+        {% if group.children|length %}
+          <div class="zod-product-slider__tabs hide-scroll">
+            {% for child in group.children %}
+              {% if child.name %}
+                <a href="{{ child.url ?: '#' }}" class="{{ loop.first ? 'is-active' : '' }}">{{ child.name }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <salla-products-list
+          source="{{ group.source_type ?: 'categories' }}"
+          source-value="{{ group.source_value|json_encode }}"
+          limit="{{ component.limit ?: 8 }}"
+          class="vertical-products zod-product-slider__list">
+        </salla-products-list>
+      </div>
+    {% endfor %}
+  </div>
+</section>

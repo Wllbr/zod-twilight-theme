@@ -4,21 +4,31 @@
 | component.eyebrow         | string  | Small label
 | component.title           | string  | Promo title
 | component.description     | string  | Promo copy
+| component.image           | string  | Optional banner image, recommended 1200×420 px
+| component.image_fit       | string  | cover or contain
 | component.button_text     | string  | CTA label
 | component.button_url      | string  | CTA URL
 #}
 <section class="s-block zod-section zod-promo-banner" id="zod-promo-{{ position }}">
   <div class="container">
-    <div class="zod-promo">
-      {% if component.eyebrow %}<div class="zod-eyebrow">{{ component.eyebrow }}</div>{% endif %}
-      <h2 class="zod-gradient-text">{{ component.title ?: 'عروض حمراء على حلول التقنية' }}</h2>
-      {% if component.description %}
-        <p>{{ component.description }}</p>
-      {% else %}
-        <p>استخدم هذا البانر لإبراز العروض، الباقات، خدمات التركيب، أو الاستشارات الفنية داخل الصفحة الرئيسية.</p>
-      {% endif %}
-      {% if component.button_text and component.button_url %}
-        <a href="{{ component.button_url }}" class="zod-button">{{ component.button_text }}</a>
+    <div class="zod-promo {{ component.image ? 'zod-promo--with-image' : '' }}">
+      <div class="zod-promo__content">
+        {% if component.eyebrow %}<div class="zod-eyebrow">{{ component.eyebrow }}</div>{% endif %}
+        <h2 class="zod-gradient-text">{{ component.title ?: 'عروض حمراء على حلول التقنية' }}</h2>
+        {% if component.description %}
+          <p>{{ component.description }}</p>
+        {% else %}
+          <p>استخدم هذا البانر لإبراز العروض، الباقات، خدمات التركيب، أو الاستشارات الفنية داخل الصفحة الرئيسية.</p>
+        {% endif %}
+        {% if component.button_text and component.button_url %}
+          <a href="{{ component.button_url }}" class="zod-button">{{ component.button_text }}</a>
+        {% endif %}
+      </div>
+
+      {% if component.image %}
+        <div class="zod-promo__image">
+          <img src="{{ component.image }}" alt="{{ component.title ?: 'ZOD offer banner' }}" loading="lazy" style="object-fit: {{ component.image_fit ?: 'cover' }};">
+        </div>
       {% endif %}
     </div>
   </div>

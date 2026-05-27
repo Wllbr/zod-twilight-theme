@@ -55,4 +55,33 @@ export default function initZodInteractions() {
       });
     });
   });
+
+  const footerSections = Array.from(document.querySelectorAll('.zod-footer__section'));
+  const syncFooterAccordion = () => {
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+    footerSections.forEach((section, index) => {
+      if (isMobile) {
+        if (!section.dataset.mobileInitialized) {
+          section.open = index === 0;
+          section.dataset.mobileInitialized = 'true';
+        }
+      } else {
+        section.open = true;
+        delete section.dataset.mobileInitialized;
+      }
+    });
+  };
+
+  if (footerSections.length) {
+    syncFooterAccordion();
+    window.addEventListener('resize', syncFooterAccordion, { passive: true });
+    footerSections.forEach((section) => {
+      section.addEventListener('toggle', () => {
+        if (!window.matchMedia('(max-width: 640px)').matches || !section.open) return;
+        footerSections.forEach((other) => {
+          if (other !== section) other.open = false;
+        });
+      });
+    });
+  }
 }

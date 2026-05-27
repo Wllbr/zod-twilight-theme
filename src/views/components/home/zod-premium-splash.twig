@@ -1,0 +1,87 @@
+{#
+| Variable                      | Type    | Description
+|-------------------------------|---------|--------------------------------------------
+| component.enabled             | bool    | Enable or disable splash screen
+| component.show_once           | bool    | Show once per session
+| component.style               | string  | Animation style
+| component.logo                | string  | Logo/image URL
+| component.background_image    | string  | Optional background image
+| component.background_color    | string  | Background color
+| component.gradient            | string  | Optional CSS gradient
+| component.welcome_text        | string  | Welcome headline
+| component.loading_text        | string  | Loading text
+| component.duration            | number  | Auto close duration in ms
+| component.show_skip           | bool    | Show skip button
+| component.show_progress       | bool    | Show loading progress bar
+#}
+{% set splash_id = 'zod-premium-splash-' ~ position %}
+{% set enabled = component.enabled is same as(false) ? false : true %}
+{% if enabled %}
+  <section
+    id="{{ splash_id }}"
+    class="zod-premium-splash zod-premium-splash--{{ component.style ?: 'neon_glow' }}"
+    data-show-once="{{ component.show_once ? 'true' : 'false' }}"
+    data-duration="{{ component.duration ?: 2200 }}"
+    data-storage-key="zod-premium-splash-shown-{{ theme.id ?: 'theme' }}"
+    style="--zod-splash-bg: {{ component.background_color ?: '#000000' }}; --zod-splash-gradient: {{ component.gradient ?: 'radial-gradient(circle at center, rgba(239,68,68,.24), transparent 34rem)' }};">
+    {% if component.background_image %}
+      <img class="zod-premium-splash__background" src="{{ component.background_image }}" alt="" loading="eager">
+    {% endif %}
+
+    <div class="zod-premium-splash__particles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="zod-premium-splash__panel" role="status" aria-live="polite">
+      {% if component.logo %}
+        <img class="zod-premium-splash__logo" src="{{ component.logo }}" alt="{{ store.name }}" loading="eager">
+      {% elseif store.logo %}
+        <img class="zod-premium-splash__logo" src="{{ store.logo }}" alt="{{ store.name }}" loading="eager">
+      {% endif %}
+
+      {% if component.welcome_text %}
+        <h2>{{ component.welcome_text }}</h2>
+      {% else %}
+        <h2>{{ store.name }}</h2>
+      {% endif %}
+
+      {% if component.loading_text %}
+        <p>{{ component.loading_text }}</p>
+      {% endif %}
+
+      {% if component.show_progress is not same as(false) %}
+        <div class="zod-premium-splash__progress" aria-hidden="true"><span></span></div>
+      {% endif %}
+
+      {% if component.show_skip %}
+        <button type="button" class="zod-premium-splash__skip">تخطي</button>
+      {% endif %}
+    </div>
+  </section>
+
+  <script>
+    (() => {
+      const splash = document.getElementById('{{ splash_id }}');
+      if (!splash) return;
+      const key = splash.dataset.storageKey;
+      const showOnce = splash.dataset.showOnce === 'true';
+      const duration = parseInt(splash.dataset.duration || '2200', 10);
+      const close = () => {
+        splash.classList.add('is-leaving');
+        window.setTimeout(() => splash.remove(), 650);
+        if (showOnce) sessionStorage.setItem(key, '1');
+      };
+      if (showOnce && sessionStorage.getItem(key) === '1') {
+        splash.remove();
+        return;
+      }
+      document.documentElement.classList.add('zod-splash-active');
+      window.setTimeout(() => splash.classList.add('is-ready'), 80);
+      window.setTimeout(close, Math.max(900, duration));
+      splash.querySelector('.zod-premium-splash__skip')?.addEventListener('click', close);
+      splash.addEventListener('transitionend', () => {
+        if (splash.classList.contains('is-leaving')) document.documentElement.classList.remove('zod-splash-active');
+      });
+    })();
+  </script>
+{% endif %}

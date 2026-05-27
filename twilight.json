@@ -272,6 +272,214 @@
   ],
   "components": [
     {
+      "key": "68ff0e11-1431-4442-918c-aa960d84f556",
+      "title": {
+        "en": "Premium Splash Screen",
+        "ar": "شاشة افتتاحية فاخرة"
+      },
+      "icon": "sicon-flash",
+      "path": "home.zod-premium-splash",
+      "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png?v=1.1",
+      "fields": [
+        {
+          "type": "boolean",
+          "icon": "sicon-toggle-off",
+          "label": "تفعيل الشاشة الافتتاحية",
+          "description": null,
+          "id": "enabled",
+          "format": "switch",
+          "required": false,
+          "value": true,
+          "selected": true
+        },
+        {
+          "type": "boolean",
+          "icon": "sicon-toggle-off",
+          "label": "إظهار مرة واحدة في الجلسة",
+          "description": "إذا تم تفعيلها لن تظهر الشاشة مرة أخرى حتى يفتح العميل جلسة جديدة.",
+          "id": "show_once",
+          "format": "switch",
+          "required": false,
+          "value": true,
+          "selected": true
+        },
+        {
+          "id": "style",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "نمط الحركة",
+          "labelHTML": null,
+          "icon": "sicon-keyboard_arrow_down",
+          "selected": [
+            {
+              "label": "Neon Glow",
+              "value": "neon_glow",
+              "key": "0e5268a6-2dd8-4f33-981f-6f523f7454cc"
+            }
+          ],
+          "options": [
+            {
+              "label": "Logo Fade In",
+              "value": "logo_fade",
+              "key": "4d2e309f-049f-4f6b-9817-274fed90b6e8"
+            },
+            {
+              "label": "Cinematic Reveal",
+              "value": "cinematic",
+              "key": "a3246d2b-6d81-4aa6-aebe-d03e0d618831"
+            },
+            {
+              "label": "Modern Minimal",
+              "value": "minimal",
+              "key": "2fd60b2e-aa75-45b8-9d41-e83fb3c3257e"
+            },
+            {
+              "label": "Particle Animation",
+              "value": "particles",
+              "key": "e086a04d-8a52-43a8-a844-7f2031b46057"
+            },
+            {
+              "label": "Liquid / Wave",
+              "value": "wave",
+              "key": "50b1c5b7-ef1c-434d-89b0-2aa87abbb7ec"
+            },
+            {
+              "label": "Neon Glow",
+              "value": "neon_glow",
+              "key": "5d597273-86d5-46d9-bab7-9a94d1a79c96"
+            },
+            {
+              "label": "Sliding Panels",
+              "value": "sliding_panels",
+              "key": "47d7f3e5-790c-4bda-a462-8ea7b28ba43b"
+            },
+            {
+              "label": "Arabic Luxury",
+              "value": "arabic_luxury",
+              "key": "cca12ab8-3cbc-42bd-9263-2dbe7eeba7f9"
+            }
+          ],
+          "source": "Manual",
+          "required": false,
+          "description": null
+        },
+        {
+          "type": "string",
+          "icon": "sicon-image",
+          "label": "شعار أو صورة الشاشة",
+          "id": "logo",
+          "value": null,
+          "required": false,
+          "format": "image",
+          "placeholder": null,
+          "description": "* المقاس المقترح: 300×300 بكسل أو SVG/PNG شفاف.",
+          "settings": {
+            "width": 300,
+            "height": 300
+          }
+        },
+        {
+          "type": "string",
+          "icon": "sicon-image",
+          "label": "صورة خلفية اختيارية",
+          "id": "background_image",
+          "value": null,
+          "required": false,
+          "format": "image",
+          "placeholder": null,
+          "description": "* المقاس المقترح: 1920×1080 بكسل، استخدم صورة مضغوطة.",
+          "settings": {
+            "width": 1920,
+            "height": 1080
+          }
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "لون الخلفية",
+          "id": "background_color",
+          "value": "#000000",
+          "required": false,
+          "format": "color",
+          "description": null,
+          "placeholder": null
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "خلفية متدرجة CSS",
+          "id": "gradient",
+          "value": "radial-gradient(circle at center, rgba(239,68,68,.24), transparent 34rem)",
+          "required": false,
+          "format": "text",
+          "description": "اختياري: اكتب CSS gradient صالحاً.",
+          "placeholder": null
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "نص الترحيب",
+          "multilanguage": true,
+          "id": "welcome_text",
+          "value": "مرحباً بكم في زد",
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 140
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "نص التحميل",
+          "multilanguage": true,
+          "id": "loading_text",
+          "value": "نجهز لك تجربة تسوق فاخرة",
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 140
+        },
+        {
+          "type": "number",
+          "icon": "sicon-list",
+          "label": "مدة العرض قبل الإغلاق بالمللي ثانية",
+          "id": "duration",
+          "value": 2200,
+          "required": false,
+          "format": "number",
+          "minimum": 900,
+          "maximum": 8000,
+          "description": null
+        },
+        {
+          "type": "boolean",
+          "icon": "sicon-toggle-off",
+          "label": "إظهار زر تخطي",
+          "description": null,
+          "id": "show_skip",
+          "format": "switch",
+          "required": false,
+          "value": true,
+          "selected": true
+        },
+        {
+          "type": "boolean",
+          "icon": "sicon-toggle-off",
+          "label": "إظهار شريط التحميل",
+          "description": null,
+          "id": "show_progress",
+          "format": "switch",
+          "required": false,
+          "value": true,
+          "selected": true
+        }
+      ]
+    },
+    {
       "key": "186b3f4f-25cf-4d3c-abca-cef7eed6f0ab",
       "title": {
         "en": "Enhances Animated Images",
@@ -1249,8 +1457,8 @@
     {
       "key": "35a34569-54d9-4385-a750-c1df802e087a",
       "title": {
-        "en": "ZOD Category Shortcuts",
-        "ar": "اختصارات تصنيفات زد"
+        "en": "Smart Category Navigation",
+        "ar": "مستكشف التصنيفات الذكي"
       },
       "icon": "sicon-layout-grid-rearrange",
       "path": "home.zod-category-shortcuts",
@@ -1259,30 +1467,228 @@
         {
           "type": "string",
           "icon": "sicon-format-text-alt",
-          "label": "العنوان",
+          "label": "النص العلوي الصغير",
           "multilanguage": true,
-          "id": "title",
-          "value": "تصفح حلول زد",
+          "id": "eyebrow",
+          "value": "Premium Solutions Explorer",
           "required": false,
           "format": "text",
           "description": null,
           "placeholder": null,
           "minLength": 0,
-          "maxLength": 120
+          "maxLength": 140
         },
         {
           "type": "string",
           "icon": "sicon-format-text-alt",
-          "label": "الوصف",
+          "label": "عنوان القسم",
+          "multilanguage": true,
+          "id": "title",
+          "value": "استكشف حلول زد",
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 140
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "وصف القسم",
           "multilanguage": true,
           "id": "description",
-          "value": "اختصارات سريعة لأهم الأقسام والمنتجات.",
+          "value": "تنقل سريع وفاخر بين أهم أقسام المتجر بتجربة مناسبة للجوال والكمبيوتر.",
           "required": false,
           "format": "textarea",
           "description": null,
           "placeholder": null,
           "minLength": 0,
-          "maxLength": 500
+          "maxLength": 700
+        },
+        {
+          "id": "background",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "نمط خلفية القسم",
+          "labelHTML": null,
+          "icon": "sicon-keyboard_arrow_down",
+          "selected": [
+            {
+              "label": "Luxury Dark UI",
+              "value": "luxury_dark",
+              "key": "57434b39-7b1e-40c2-ab6a-e7004c7fc356"
+            }
+          ],
+          "options": [
+            {
+              "label": "Luxury Dark UI",
+              "value": "luxury_dark",
+              "key": "10f5186b-82a1-43b0-9050-a906d069c35b"
+            },
+            {
+              "label": "Neon Glow",
+              "value": "neon",
+              "key": "c1f13a0c-7e67-4702-9093-fcaac84b87e5"
+            },
+            {
+              "label": "Glassmorphism",
+              "value": "glass",
+              "key": "742f7c68-2ab5-4b25-ab84-a123dab08843"
+            },
+            {
+              "label": "Gradient",
+              "value": "gradient",
+              "key": "3a1637cc-90ad-4b5f-aa9c-860080ba7470"
+            },
+            {
+              "label": "Minimal White",
+              "value": "minimal_white",
+              "key": "93b35d4a-dafa-419f-9b45-48a6af6e2cb4"
+            }
+          ],
+          "source": "Manual",
+          "required": false,
+          "description": null
+        },
+        {
+          "id": "card_style",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "نمط البطاقات",
+          "labelHTML": null,
+          "icon": "sicon-keyboard_arrow_down",
+          "selected": [
+            {
+              "label": "Modern Glass Cards",
+              "value": "glass",
+              "key": "f36682b5-6e00-4515-a1eb-66a4efca9603"
+            }
+          ],
+          "options": [
+            {
+              "label": "Modern Glass Cards",
+              "value": "glass",
+              "key": "0468c08c-38f3-419a-9bc9-c2ac88d108f3"
+            },
+            {
+              "label": "Floating Cards",
+              "value": "floating",
+              "key": "883c41a1-7198-49d1-a4d4-60efc416aae4"
+            },
+            {
+              "label": "Bordered Cards",
+              "value": "bordered",
+              "key": "c8329979-9d7e-445d-b905-acdd9c2a13d8"
+            },
+            {
+              "label": "Soft Glow Cards",
+              "value": "soft_glow",
+              "key": "1399a94c-0d86-4c82-9ba9-a8574297f329"
+            },
+            {
+              "label": "Minimal Flat Cards",
+              "value": "minimal",
+              "key": "2448536b-aa0f-41f7-a1c4-df2d3054035a"
+            }
+          ],
+          "source": "Manual",
+          "required": false,
+          "description": null
+        },
+        {
+          "id": "mobile_layout",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "طريقة عرض الجوال",
+          "labelHTML": null,
+          "icon": "sicon-keyboard_arrow_down",
+          "selected": [
+            {
+              "label": "سلايدر أفقي قابل للسحب",
+              "value": "swipe",
+              "key": "7615c7cf-7d3a-4057-8b7d-13ccdce9448c"
+            }
+          ],
+          "options": [
+            {
+              "label": "سلايدر أفقي قابل للسحب",
+              "value": "swipe",
+              "key": "04518664-0e14-4629-8163-eea70532158d"
+            },
+            {
+              "label": "شبكة عمودين",
+              "value": "grid",
+              "key": "42c1ecdf-346f-495b-bc69-3da6786cf60c"
+            },
+            {
+              "label": "أزرار Pill عائمة",
+              "value": "pills",
+              "key": "a82a0301-2cbe-444f-87cb-b01cecdb32a4"
+            }
+          ],
+          "source": "Manual",
+          "required": false,
+          "description": null
+        },
+        {
+          "type": "number",
+          "icon": "sicon-list",
+          "label": "عدد البطاقات في الصف للكمبيوتر",
+          "id": "columns",
+          "value": 4,
+          "required": false,
+          "format": "number",
+          "minimum": 2,
+          "maximum": 6,
+          "description": null
+        },
+        {
+          "type": "number",
+          "icon": "sicon-list",
+          "label": "حجم الأيقونة بالبكسل",
+          "id": "icon_size",
+          "value": 56,
+          "required": false,
+          "format": "number",
+          "minimum": 36,
+          "maximum": 96,
+          "description": null
+        },
+        {
+          "type": "number",
+          "icon": "sicon-list",
+          "label": "قوة التوهج",
+          "id": "glow_intensity",
+          "value": 18,
+          "required": false,
+          "format": "number",
+          "minimum": 0,
+          "maximum": 40,
+          "description": "القيمة 18 تعني توهجاً متوسطاً. سيتم تحويلها بصرياً داخل التصميم."
+        },
+        {
+          "type": "number",
+          "icon": "sicon-list",
+          "label": "استدارة زوايا البطاقة",
+          "id": "border_radius",
+          "value": 24,
+          "required": false,
+          "format": "number",
+          "minimum": 8,
+          "maximum": 40,
+          "description": null
+        },
+        {
+          "type": "boolean",
+          "icon": "sicon-toggle-off",
+          "label": "إظهار سهم التصفح داخل البطاقة",
+          "description": null,
+          "id": "show_arrow",
+          "format": "switch",
+          "required": false,
+          "value": true,
+          "selected": true
         },
         {
           "id": "items",
@@ -1290,31 +1696,34 @@
           "format": "collection",
           "required": true,
           "minLength": 3,
-          "maxLength": 12,
+          "maxLength": 16,
           "item_label": "تصنيف",
           "value": [
             {
               "items.image": null,
-              "items.title": "كاميرات المراقبة",
-              "items.text": "أنظمة رؤية ومراقبة احترافية",
-              "items.url": "/"
-            },
-            {
-              "items.image": null,
+              "items.image_mode": "icon",
               "items.title": "أنظمة الإنتركوم",
               "items.text": "حلول اتصال وتحكم للمباني",
+              "items.count": "120+ منتج",
+              "items.badge": "مميز",
               "items.url": "/"
             },
             {
               "items.image": null,
+              "items.image_mode": "icon",
+              "items.title": "أنظمة الكاميرات",
+              "items.text": "مراقبة وحماية احترافية",
+              "items.count": "80+ منتج",
+              "items.badge": "الأكثر طلباً",
+              "items.url": "/"
+            },
+            {
+              "items.image": null,
+              "items.image_mode": "icon",
               "items.title": "الشبكات",
-              "items.text": "أجهزة وربط وتجهيزات تقنية",
-              "items.url": "/"
-            },
-            {
-              "items.image": null,
-              "items.title": "التحكم بالدخول",
-              "items.text": "حماية وإدارة دخول ذكية",
+              "items.text": "حلول شبكية قوية ومستقرة",
+              "items.count": "60+ منتج",
+              "items.badge": "",
               "items.url": "/"
             }
           ],
@@ -1322,17 +1731,52 @@
             {
               "type": "string",
               "icon": "sicon-image",
-              "label": "صورة الأيقونة",
+              "label": "صورة أو أيقونة التصنيف",
               "id": "items.image",
               "value": null,
               "required": false,
               "format": "image",
               "placeholder": null,
-              "description": "* المقاس المقترح: 96×96 بكسل أو SVG مربع. ستظهر كأيقونة صغيرة داخل البطاقة.",
+              "description": "* المقاس المقترح: 160×160 بكسل أو SVG/WebP مربع.",
               "settings": {
-                "width": 96,
-                "height": 96
+                "width": 160,
+                "height": 160
               }
+            },
+            {
+              "id": "items.image_mode",
+              "type": "items",
+              "format": "dropdown-list",
+              "label": "طريقة استخدام الصورة",
+              "labelHTML": null,
+              "icon": "sicon-keyboard_arrow_down",
+              "selected": [
+                {
+                  "label": "أيقونة فقط",
+                  "value": "icon",
+                  "key": "3a8e73a8-646f-40e3-937b-135f511d5c16"
+                }
+              ],
+              "options": [
+                {
+                  "label": "أيقونة فقط",
+                  "value": "icon",
+                  "key": "9ddf6c3c-92b9-4f94-8996-aceeac9944c6"
+                },
+                {
+                  "label": "صورة فقط",
+                  "value": "image",
+                  "key": "bdbeba45-d0b6-4b41-a331-3f3fa02e5828"
+                },
+                {
+                  "label": "خلفية للبطاقة",
+                  "value": "background",
+                  "key": "55230135-2380-49ab-8be4-43a168bc6a84"
+                }
+              ],
+              "source": "Manual",
+              "required": false,
+              "description": null
             },
             {
               "type": "string",
@@ -1341,12 +1785,12 @@
               "multilanguage": true,
               "id": "items.title",
               "value": null,
-              "required": false,
+              "required": true,
               "format": "text",
               "description": null,
               "placeholder": null,
               "minLength": 0,
-              "maxLength": 120
+              "maxLength": 140
             },
             {
               "type": "string",
@@ -1360,12 +1804,40 @@
               "description": null,
               "placeholder": null,
               "minLength": 0,
-              "maxLength": 500
+              "maxLength": 700
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "عدد المنتجات اختياري",
+              "multilanguage": true,
+              "id": "items.count",
+              "value": null,
+              "required": false,
+              "format": "text",
+              "description": "مثال: 120+ منتج",
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 140
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "شارة اختيارية",
+              "multilanguage": true,
+              "id": "items.badge",
+              "value": null,
+              "required": false,
+              "format": "text",
+              "description": "مثال: جديد، الأكثر طلباً، مميز",
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 140
             },
             {
               "type": "string",
               "icon": "sicon-link",
-              "label": "رابط البطاقة",
+              "label": "رابط التصنيف",
               "id": "items.url",
               "value": "/",
               "required": false,

@@ -672,3 +672,404 @@ body.theme-raed .store-footer a:hover {
     padding-inline: 16px;
   }
 }
+
+/* Premium splash screen component */
+.zod-splash-active body {
+  overflow: hidden;
+}
+
+.zod-premium-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--zod-splash-gradient), var(--zod-splash-bg);
+  overflow: hidden;
+  opacity: 1;
+  transform: scale(1.015);
+  transition: opacity 0.55s ease, filter 0.55s ease, transform 0.55s ease;
+}
+
+.zod-premium-splash.is-ready {
+  transform: scale(1);
+}
+
+.zod-premium-splash.is-leaving {
+  opacity: 0;
+  filter: blur(12px);
+  transform: scale(1.06);
+  pointer-events: none;
+}
+
+.zod-premium-splash__background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.24;
+  filter: saturate(1.1) contrast(1.08);
+}
+
+.zod-premium-splash__panel {
+  position: relative;
+  z-index: 2;
+  width: min(92vw, 520px);
+  padding: clamp(28px, 6vw, 52px);
+  text-align: center;
+  border-radius: 30px;
+  background: rgba(9, 9, 11, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48), 0 0 50px rgba(239, 68, 68, 0.18);
+  backdrop-filter: blur(20px);
+  transform: translateY(24px) scale(0.96);
+  opacity: 0;
+  animation: zodSplashPanel 0.8s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.zod-premium-splash__logo {
+  width: min(190px, 46vw);
+  max-height: 190px;
+  object-fit: contain;
+  margin: 0 auto 22px;
+  filter: drop-shadow(0 0 30px rgba(239, 68, 68, 0.36));
+  animation: zodSplashLogoPulse 1.8s ease-in-out infinite;
+}
+
+.zod-premium-splash__panel h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  line-height: 1.15;
+  font-weight: 950;
+  background: linear-gradient(90deg, #fff, #ef4444, #fecaca);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.zod-premium-splash__panel p {
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.8;
+}
+
+.zod-premium-splash__progress {
+  position: relative;
+  height: 4px;
+  margin: 24px auto 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.zod-premium-splash__progress span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  background: linear-gradient(90deg, #ef4444, #fca5a5);
+  animation: zodSplashProgress 2.2s linear forwards;
+}
+
+.zod-premium-splash__skip {
+  margin-top: 18px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.zod-premium-splash__particles span {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(239, 68, 68, 0.54);
+  box-shadow: 0 0 22px rgba(239, 68, 68, 0.72);
+  animation: zodParticleFloat 5s ease-in-out infinite;
+}
+
+.zod-premium-splash__particles span:nth-child(1) { top: 20%; left: 18%; animation-delay: 0s; }
+.zod-premium-splash__particles span:nth-child(2) { top: 70%; left: 24%; animation-delay: .7s; }
+.zod-premium-splash__particles span:nth-child(3) { top: 28%; right: 22%; animation-delay: 1.2s; }
+.zod-premium-splash__particles span:nth-child(4) { bottom: 18%; right: 18%; animation-delay: .3s; }
+.zod-premium-splash__particles span:nth-child(5) { top: 52%; left: 8%; animation-delay: 1.8s; }
+.zod-premium-splash__particles span:nth-child(6) { top: 12%; right: 10%; animation-delay: 2.2s; }
+
+.zod-premium-splash--minimal {
+  background: #fff;
+  color: #111;
+}
+
+.zod-premium-splash--minimal .zod-premium-splash__panel {
+  background: rgba(255,255,255,.82);
+  color: #111;
+  box-shadow: 0 24px 70px rgba(0,0,0,.12);
+}
+
+.zod-premium-splash--arabic_luxury .zod-premium-splash__panel {
+  border-color: rgba(245, 158, 11, 0.34);
+  box-shadow: 0 24px 80px rgba(0,0,0,.48), 0 0 50px rgba(245,158,11,.18);
+}
+
+.zod-premium-splash--sliding_panels::before,
+.zod-premium-splash--sliding_panels::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  width: 50%;
+  background: rgba(0,0,0,.62);
+  transition: transform .65s ease;
+}
+
+.zod-premium-splash--sliding_panels::before { inset-inline-start: 0; }
+.zod-premium-splash--sliding_panels::after { inset-inline-end: 0; }
+.zod-premium-splash--sliding_panels.is-leaving::before { transform: translateX(-105%); }
+.zod-premium-splash--sliding_panels.is-leaving::after { transform: translateX(105%); }
+
+@keyframes zodSplashPanel {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes zodSplashLogoPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(239,68,68,.28)); }
+  50% { transform: scale(1.045); filter: drop-shadow(0 0 38px rgba(239,68,68,.55)); }
+}
+
+@keyframes zodSplashProgress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes zodParticleFloat {
+  0%, 100% { transform: translate3d(0,0,0); opacity: .28; }
+  50% { transform: translate3d(18px,-24px,0); opacity: 1; }
+}
+
+/* Smart Category Navigation / Premium Solutions Explorer */
+.zod-smart-category-nav {
+  padding-block: clamp(28px, 5vw, 70px);
+}
+
+.zod-smart-category-nav--luxury_dark,
+.zod-smart-category-nav--neon,
+.zod-smart-category-nav--glass {
+  background: radial-gradient(circle at 10% 10%, rgba(239,68,68,.12), transparent 28rem), rgba(0,0,0,.62);
+}
+
+.zod-smart-category-nav--minimal_white {
+  background: #f8fafc;
+  color: #111827;
+}
+
+.zod-smart-category-nav__eyebrow {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: #fecaca;
+  background: rgba(239, 68, 68, .10);
+  border: 1px solid rgba(239, 68, 68, .24);
+  font-weight: 900;
+  font-size: .85rem;
+}
+
+.zod-smart-category-nav__heading p {
+  max-width: 760px;
+  color: var(--zod-text-secondary);
+  line-height: 1.85;
+}
+
+.zod-smart-category-nav__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--zod-nav-columns), minmax(0, 1fr));
+  gap: 18px;
+}
+
+.zod-smart-category-card {
+  position: relative;
+  isolation: isolate;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  overflow: hidden;
+  border-radius: var(--zod-nav-radius);
+  color: var(--zod-text-primary) !important;
+  background: linear-gradient(180deg, rgba(24,24,27,.88), rgba(9,9,11,.94));
+  border: 1px solid rgba(255,255,255,.09);
+  box-shadow: 0 18px 46px rgba(0,0,0,.34), 0 0 34px rgb(239 68 68 / calc(var(--zod-nav-glow) * 1%));
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+
+.zod-smart-category-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: var(--zod-card-bg-image);
+  background-size: cover;
+  background-position: center;
+  opacity: .18;
+}
+
+.zod-smart-category-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at top right, rgba(239,68,68,.20), transparent 16rem);
+}
+
+.zod-smart-category-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(239,68,68,.42);
+  box-shadow: 0 26px 60px rgba(0,0,0,.42), 0 0 46px rgb(239 68 68 / calc((var(--zod-nav-glow) + 12) * 1%));
+}
+
+.zod-smart-category-card__shine {
+  position: absolute;
+  inset: -60% auto auto -60%;
+  width: 70%;
+  height: 220%;
+  transform: rotate(28deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+  transition: transform .55s ease;
+}
+
+.zod-smart-category-card:hover .zod-smart-category-card__shine {
+  transform: translateX(230%) rotate(28deg);
+}
+
+.zod-smart-category-card__badge {
+  position: absolute;
+  inset-block-start: 16px;
+  inset-inline-end: 16px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--zod-red);
+  font-size: .78rem;
+  font-weight: 900;
+}
+
+.zod-smart-category-card__icon {
+  width: var(--zod-nav-icon-size);
+  height: var(--zod-nav-icon-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: rgba(239,68,68,.14);
+  border: 1px solid rgba(239,68,68,.28);
+  box-shadow: 0 0 24px rgba(239,68,68,.18);
+  overflow: hidden;
+}
+
+.zod-smart-category-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.zod-smart-category-card__icon--empty span {
+  width: 38%;
+  height: 38%;
+  border-radius: 999px;
+  background: var(--zod-red);
+  box-shadow: 0 0 18px rgba(239,68,68,.62);
+}
+
+.zod-smart-category-card__content h3 {
+  margin: 22px 0 8px;
+  color: var(--zod-text-primary);
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  font-weight: 950;
+}
+
+.zod-smart-category-card__content p {
+  color: var(--zod-text-secondary);
+  line-height: 1.75;
+}
+
+.zod-smart-category-card__count {
+  display: inline-flex;
+  margin-top: 12px;
+  color: #fecaca;
+}
+
+.zod-smart-category-card__arrow {
+  position: absolute;
+  inset-block-end: 18px;
+  inset-inline-end: 18px;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(239,68,68,.18);
+  transition: transform .25s ease, background .25s ease;
+}
+
+.zod-smart-category-card:hover .zod-smart-category-card__arrow {
+  transform: translateX(-4px);
+  background: var(--zod-red);
+}
+
+@media (max-width: 1024px) {
+  .zod-smart-category-nav__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .zod-smart-category-nav--mobile-swipe .zod-smart-category-nav__grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 14px;
+    margin-inline: -16px;
+    padding-inline: 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .zod-smart-category-nav--mobile-swipe .zod-smart-category-card {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+  }
+
+  .zod-smart-category-nav--mobile-grid .zod-smart-category-nav__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .zod-smart-category-nav--mobile-grid .zod-smart-category-card {
+    min-height: 205px;
+    padding: 18px;
+  }
+
+  .zod-smart-category-nav--mobile-pills .zod-smart-category-nav__grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .zod-smart-category-nav--mobile-pills .zod-smart-category-card {
+    min-height: auto;
+    flex: 1 1 calc(50% - 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zod-premium-splash *,
+  .zod-smart-category-card,
+  .zod-smart-category-card * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

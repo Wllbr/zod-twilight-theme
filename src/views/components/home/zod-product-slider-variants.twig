@@ -1,54 +1,79 @@
 {#
-| Variable                           | Type     | Description
-|------------------------------------|----------|--------------------------------------------
-| component.title                    | string   | Section title
-| component.description              | string   | Section description
-| component.groups                   | object[] | Product groups configured by the merchant
-| component.groups[].name            | string   | Group or project name
-| component.groups[].description     | string   | Group description
-| component.groups[].source_type     | string   | categories, brands, latest_products, most_sales, or selected_products
-| component.groups[].source_value    | mixed    | Selected category/brand/products source value
-| component.groups[].children        | object[] | Child variant/category options
-| component.groups[].children[].name | string   | Child option label
-| component.groups[].children[].url  | string   | Child option URL
-| component.limit                    | int      | Products limit
+| Variable                         | Type     | Description
+|----------------------------------|----------|--------------------------------------------
+| component.title                  | string   | Main section title, e.g. Exhaust Fans
+| component.description            | string   | Main section description
+| component.variants               | object[] | Related category/product tabs
+| component.variants[].title       | string   | Tab title, e.g. Ceiling Exhaust Fan
+| component.variants[].description | string   | Optional tab description
+| component.variants[].source_type | string   | manual_products, categories, or brands
+| component.variants[].products    | Product[]| Manual products when source_type is manual_products
+| component.variants[].categories  | object[] | Categories when source_type is categories
+| component.variants[].brands      | object[] | Brands when source_type is brands
+| component.limit                  | int      | Product limit for category/brand panels
 #}
-<section class="s-block zod-section zod-product-slider" id="zod-product-slider-{{ position }}">
+{% set component_id = 'zod-product-switcher-' ~ position %}
+<section class="s-block s-block-tabs zod-section zod-product-slider" id="{{ component_id }}">
   <div class="container">
     <div class="s-block__title">
       <div class="right-side">
-        <h2>{{ component.title ?: 'منتجات حسب التصنيف' }}</h2>
+        <h2>{{ component.title ?: 'تسوق حسب النوع' }}</h2>
         {% if component.description %}<p class="zod-product-slider__description">{{ component.description }}</p>{% endif %}
       </div>
     </div>
 
-    {% for group in component.groups %}
-      {% set group_id = 'zod-product-slider-' ~ position ~ '-' ~ loop.index %}
-      <div class="zod-product-slider__panel" id="{{ group_id }}">
-        <div class="s-block__title">
-          <div class="right-side">
-            <h3>{{ group.name ?: 'مجموعة منتجات' }}</h3>
-            {% if group.description %}<p>{{ group.description }}</p>{% endif %}
-          </div>
-        </div>
-
-        {% if group.children|length %}
-          <div class="zod-product-slider__tabs hide-scroll">
-            {% for child in group.children %}
-              {% if child.name %}
-                <a href="{{ child.url ?: '#' }}" class="{{ loop.first ? 'is-active' : '' }}">{{ child.name }}</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endif %}
-
-        <salla-products-list
-          source="{{ group.source_type ?: 'categories' }}"
-          source-value="{{ group.source_value|json_encode }}"
-          limit="{{ component.limit ?: 8 }}"
-          class="vertical-products zod-product-slider__list">
-        </salla-products-list>
+    {% if component.variants|length > 1 %}
+      <div class="zod-product-slider__tabs tabs hide-scroll">
+        {% for variant in component.variants %}
+          {% set panel_id = component_id ~ '-variant-' ~ loop.index %}
+          <salla-button
+            shape="link"
+            class="tab-trigger {{ loop.first ? 'is-active' : '' }}"
+            data-target="{{ panel_id }}"
+            data-component-id="{{ component_id }}">
+            {{ variant.title ?: 'نوع المنتج' }}
+          </salla-button>
+        {% endfor %}
       </div>
-    {% endfor %}
+    {% endif %}
+
+    <div class="tabs-wrapper zod-product-slider__wrapper">
+      {% for variant in component.variants %}
+        {% set panel_id = component_id ~ '-variant-' ~ loop.index %}
+        {% set source_type = variant.source_type ?: 'manual_products' %}
+        <div id="{{ panel_id }}" class="tabs__item zod-product-slider__panel {{ loop.first ? 'is-active opacity-100 translate-y-0' : 'opacity-0 translate-y-3' }}">
+          <div class="zod-product-slider__panel-heading">
+            <h3>{{ variant.title ?: 'نوع المنتج' }}</h3>
+            {% if variant.description %}<p>{{ variant.description }}</p>{% endif %}
+          </div>
+
+          {% if source_type == 'manual_products' and variant.products|length %}
+            <div class="zod-product-slider__manual-grid">
+              {% for product in variant.products %}
+                <custom-salla-product-card product="{{ product }}"></custom-salla-product-card>
+              {% endfor %}
+            </div>
+          {% elseif source_type == 'categories' and variant.categories|length %}
+            <salla-products-slider
+              slider-id="{{ panel_id }}-category-slider"
+              source="categories"
+              source-value="[{{ variant.categories|map((category) => category.id)|join(',') }}]"
+              limit="{{ component.limit ?: 8 }}">
+            </salla-products-slider>
+          {% elseif source_type == 'brands' and variant.brands|length %}
+            <salla-products-slider
+              slider-id="{{ panel_id }}-brand-slider"
+              source="brands"
+              source-value="[{{ variant.brands|map((brand) => brand.id)|join(',') }}]"
+              limit="{{ component.limit ?: 8 }}">
+            </salla-products-slider>
+          {% else %}
+            <div class="zod-product-slider__empty">
+              اختر منتجات يدوياً أو حدد تصنيفاً/براند لهذا الخيار من إعدادات المكون.
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </section>

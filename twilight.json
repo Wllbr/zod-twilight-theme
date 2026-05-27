@@ -1686,8 +1686,8 @@
     {
       "key": "23909426-c16d-4975-8ce4-a5b1941e918d",
       "title": {
-        "en": "ZOD Product Slider With Category Variants",
-        "ar": "سلايدر منتجات زد مع خيارات التصنيف"
+        "en": "ZOD Product Category Switcher",
+        "ar": "مبدل تصنيفات منتجات زد"
       },
       "icon": "sicon-layout-grid-rearrange",
       "path": "home.zod-product-slider-variants",
@@ -1696,10 +1696,10 @@
         {
           "type": "string",
           "icon": "sicon-format-text-alt",
-          "label": "عنوان السلايدر",
+          "label": "عنوان القسم الرئيسي",
           "multilanguage": true,
           "id": "title",
-          "value": "تسوق حسب التصنيف",
+          "value": "مراوح الشفط",
           "required": false,
           "format": "text",
           "description": null,
@@ -1710,10 +1710,10 @@
         {
           "type": "string",
           "icon": "sicon-format-text-alt",
-          "label": "الوصف أسفل العنوان",
+          "label": "وصف القسم",
           "multilanguage": true,
           "id": "description",
-          "value": "اختر تصنيفاً رئيسياً واعرض تحته خيارات فرعية مثل مراوح الشفط السقفية والجدارية.",
+          "value": "تصفح الأنواع المختلفة بسهولة مثل مراوح الشفط السقفية والجدارية والصناعية.",
           "required": false,
           "format": "textarea",
           "description": null,
@@ -1724,7 +1724,7 @@
         {
           "type": "number",
           "icon": "sicon-list",
-          "label": "عدد المنتجات المعروضة",
+          "label": "عدد المنتجات عند عرض تصنيف أو براند",
           "id": "limit",
           "value": 8,
           "required": false,
@@ -1733,44 +1733,48 @@
           "maximum": 24
         },
         {
-          "id": "groups",
+          "id": "variants",
           "type": "collection",
           "format": "collection",
           "required": true,
           "minLength": 1,
-          "maxLength": 8,
-          "item_label": "مجموعة منتجات",
+          "maxLength": 12,
+          "item_label": "تبويب / نوع فرعي",
           "value": [
             {
-              "groups.name": "مراوح الشفط",
-              "groups.description": "اختر النوع المناسب من مراوح الشفط حسب مكان التركيب.",
-              "groups.source_type": "categories",
-              "groups.source_value": null,
-              "groups.children": [
-                {
-                  "groups.children.name": "مروحة شفط سقفية",
-                  "groups.children.url": "/"
-                },
-                {
-                  "groups.children.name": "مروحة شفط جدارية",
-                  "groups.children.url": "/"
-                },
-                {
-                  "groups.children.name": "مروحة شفط مخفية",
-                  "groups.children.url": "/"
-                }
-              ]
+              "variants.title": "مراوح شفط سقفية",
+              "variants.description": "منتجات مناسبة للتركيب في السقف.",
+              "variants.source_type": "categories",
+              "variants.products": [],
+              "variants.categories": [],
+              "variants.brands": []
+            },
+            {
+              "variants.title": "مراوح شفط جدارية",
+              "variants.description": "منتجات مناسبة للتركيب على الجدار.",
+              "variants.source_type": "manual_products",
+              "variants.products": [],
+              "variants.categories": [],
+              "variants.brands": []
+            },
+            {
+              "variants.title": "مراوح شفط صناعية",
+              "variants.description": "خيارات مخصصة للأماكن الكبيرة والاستخدام الثقيل.",
+              "variants.source_type": "categories",
+              "variants.products": [],
+              "variants.categories": [],
+              "variants.brands": []
             }
           ],
           "fields": [
             {
               "type": "string",
               "icon": "sicon-format-text-alt",
-              "label": "اسم المشروع أو المجموعة",
+              "label": "اسم التبويب أو النوع الفرعي",
               "multilanguage": true,
-              "id": "groups.name",
+              "id": "variants.title",
               "value": null,
-              "required": false,
+              "required": true,
               "format": "text",
               "description": null,
               "placeholder": null,
@@ -1780,9 +1784,9 @@
             {
               "type": "string",
               "icon": "sicon-format-text-alt",
-              "label": "وصف قصير",
+              "label": "وصف قصير للتبويب",
               "multilanguage": true,
-              "id": "groups.description",
+              "id": "variants.description",
               "value": null,
               "required": false,
               "format": "textarea",
@@ -1792,118 +1796,104 @@
               "maxLength": 500
             },
             {
-              "id": "groups.source_type",
+              "id": "variants.source_type",
               "type": "items",
               "format": "dropdown-list",
-              "label": "نوع مصدر المنتجات",
+              "label": "طريقة اختيار المنتجات",
               "labelHTML": null,
               "icon": "sicon-keyboard_arrow_down",
               "selected": [
                 {
-                  "label": "تصنيف",
-                  "value": "categories",
-                  "key": "306ff891-6e7c-4c5b-83cf-96c158971862"
+                  "label": "منتجات مختارة يدوياً",
+                  "value": "manual_products",
+                  "key": "ddd18246-c647-46f7-ab9c-5813744936ab"
                 }
               ],
               "options": [
                 {
-                  "label": "تصنيف",
+                  "label": "منتجات مختارة يدوياً",
+                  "value": "manual_products",
+                  "key": "af79c98b-6c7e-4d10-a645-df4af42ed5db"
+                },
+                {
+                  "label": "تصنيف أو عدة تصنيفات",
                   "value": "categories",
-                  "key": "04c7949c-b1b1-4477-a003-08202fee5d1e"
+                  "key": "9f98d178-8699-478f-8908-ef9d55319b7a"
                 },
                 {
-                  "label": "ماركة تجارية",
+                  "label": "براند أو عدة براندات",
                   "value": "brands",
-                  "key": "237f77cc-558d-47f5-a420-d03ec1136bfe"
-                },
-                {
-                  "label": "أحدث المنتجات",
-                  "value": "latest_products",
-                  "key": "178a866f-7a01-4367-ad93-015c805948d9"
-                },
-                {
-                  "label": "الأكثر مبيعاً",
-                  "value": "most_sales",
-                  "key": "e709256a-7eb9-4bba-8586-711e06fe58da"
-                },
-                {
-                  "label": "منتجات مختارة",
-                  "value": "selected_products",
-                  "key": "770122e9-00b3-488e-89c4-a8f08a169360"
+                  "key": "ab82df31-c50f-4c5f-8d8b-33dba0b17c3e"
                 }
               ],
               "source": "Manual",
-              "required": false
+              "required": true
             },
             {
               "type": "items",
-              "icon": "sicon-link",
-              "label": "اختر التصنيف أو البراند أو المنتجات",
-              "id": "groups.source_value",
-              "value": null,
-              "description": "اختر التصنيف أو البراند أو مجموعة المنتجات التي سيتم عرضها في هذا السلايدر.",
+              "icon": "sicon-keyboard_arrow_down",
+              "label": "منتجات مختارة يدوياً",
+              "id": "variants.products",
+              "format": "dropdown-list",
+              "description": "استخدم هذا الخيار عندما تريد تحديد منتجات معينة لهذا التبويب بدلاً من عرض تصنيف كامل.",
+              "selected": [],
+              "options": [],
               "required": false,
-              "format": "variable-list",
+              "multichoice": true,
+              "source": "products",
               "searchable": true,
-              "source": "custom",
-              "sources": [
+              "maxLength": 24,
+              "minLength": 0,
+              "value": [],
+              "conditions": [
                 {
-                  "label": "تصنيف",
-                  "key": "categories",
-                  "value": "categories"
-                },
-                {
-                  "label": "ماركة تجارية",
-                  "key": "brands",
-                  "value": "brands"
-                },
-                {
-                  "label": "منتجات مختارة",
-                  "key": "products",
-                  "value": "products"
-                },
-                {
-                  "label": "منتجات مع وسم",
-                  "key": "products_tags",
-                  "value": "products_tags"
+                  "id": "variants.source_type",
+                  "operation": "=",
+                  "value": "manual_products"
                 }
               ]
             },
             {
-              "id": "groups.children",
-              "type": "collection",
-              "format": "collection",
+              "type": "items",
+              "icon": "sicon-keyboard_arrow_down",
+              "label": "التصنيفات المعروضة",
+              "id": "variants.categories",
+              "format": "dropdown-list",
+              "description": "اختر التصنيف أو التصنيفات التي تريد عرض منتجاتها في هذا التبويب.",
+              "selected": [],
+              "options": [],
               "required": false,
-              "minLength": 0,
-              "maxLength": 10,
-              "item_label": "خيار فرعي",
+              "multichoice": true,
+              "source": "categories",
+              "searchable": true,
               "value": [],
-              "fields": [
+              "conditions": [
                 {
-                  "type": "string",
-                  "icon": "sicon-format-text-alt",
-                  "label": "اسم الخيار الفرعي",
-                  "multilanguage": true,
-                  "id": "groups.children.name",
-                  "value": null,
-                  "required": false,
-                  "format": "text",
-                  "description": null,
-                  "placeholder": null,
-                  "minLength": 0,
-                  "maxLength": 120
-                },
+                  "id": "variants.source_type",
+                  "operation": "=",
+                  "value": "categories"
+                }
+              ]
+            },
+            {
+              "type": "items",
+              "icon": "sicon-keyboard_arrow_down",
+              "label": "البراندات المعروضة",
+              "id": "variants.brands",
+              "format": "dropdown-list",
+              "description": "اختر البراند أو البراندات التي تريد عرض منتجاتها في هذا التبويب.",
+              "selected": [],
+              "options": [],
+              "required": false,
+              "multichoice": true,
+              "source": "brands",
+              "searchable": true,
+              "value": [],
+              "conditions": [
                 {
-                  "type": "string",
-                  "icon": "sicon-link",
-                  "label": "رابط الخيار الفرعي",
-                  "id": "groups.children.url",
-                  "value": "/",
-                  "required": false,
-                  "format": "url",
-                  "inputType": "url",
-                  "description": null,
-                  "placeholder": "https://example.com"
+                  "id": "variants.source_type",
+                  "operation": "=",
+                  "value": "brands"
                 }
               ]
             }

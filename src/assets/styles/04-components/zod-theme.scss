@@ -506,3 +506,51 @@ body.theme-raed .store-footer a:hover {
     transition: none;
   }
 }
+
+/* Corrected ZOD product category switcher */
+.zod-product-slider__wrapper {
+  position: relative;
+}
+
+.zod-product-slider__panel {
+  width: 100%;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.zod-product-slider__panel:not(.is-active) {
+  display: none;
+}
+
+.zod-product-slider__panel-heading {
+  margin-bottom: 18px;
+}
+
+.zod-product-slider__panel-heading h3 {
+  color: var(--zod-text-primary);
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.zod-product-slider__panel-heading p {
+  color: var(--zod-text-secondary);
+  line-height: 1.75;
+}
+
+.zod-product-slider__manual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.zod-product-slider__empty {
+  padding: 24px;
+  border: 1px dashed rgba(239, 68, 68, 0.38);
+  border-radius: 18px;
+  color: var(--zod-text-secondary);
+  background: rgba(18, 18, 20, 0.72);
+}
+
+.zod-product-slider .salla-button-link,
+.zod-product-slider salla-button::part(button) {
+  border-radius: 999px !important;
+}

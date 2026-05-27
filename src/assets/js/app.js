@@ -153,32 +153,40 @@ isElementLoaded(selector){
 
 
   initiateMobileMenu() {
+    // The new ZOD drawer is fully managed by NavigationMenu (main-menu.js).
+    // We only fall back to mmenu-light if the legacy #mobile-menu element is
+    // present AND the new drawer element is NOT present.
+    const zodDrawer = document.getElementById('zod-mobile-drawer');
+    if (zodDrawer) {
+      // New drawer is active — nothing to do here.
+      return;
+    }
 
-  this.isElementLoaded('#mobile-menu').then((menu) => {
+    this.isElementLoaded('#mobile-menu').then((menu) => {
+      const mobileMenu = new MobileMenu(menu, '(max-width: 1024px)');
 
- 
-  const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)");
+      salla.lang.onLoaded(() => {
+        mobileMenu.navigation({
+          title: salla.lang.get('blocks.header.main_menu'),
+          slidingSubmenus: false,
+          theme: 'light'
+        });
+      });
 
-  salla.lang.onLoaded(() => {
-    mobileMenu.navigation({
-      title: salla.lang.get('blocks.header.main_menu'),
-      slidingSubmenus: false,
-      theme: 'light'
+      const drawer = mobileMenu.offcanvas({
+        position: salla.config.get('theme.is_rtl') ? 'right' : 'left'
+      });
+
+      this.onClick("a[href='#mobile-menu']", event => {
+        document.body.classList.add('menu-opened');
+        event.preventDefault() || drawer.close() || drawer.open();
+      });
+
+      this.onClick('.close-mobile-menu', event => {
+        document.body.classList.remove('menu-opened');
+        event.preventDefault() || drawer.close();
+      });
     });
-  });
-  const drawer = mobileMenu.offcanvas({ position: salla.config.get('theme.is_rtl') ? "right" : 'left' });
-
-  this.onClick("a[href='#mobile-menu']", event => {
-    document.body.classList.add('menu-opened');
-    event.preventDefault() || drawer.close() || drawer.open()
-    
-  });
-  this.onClick(".close-mobile-menu", event => {
-    document.body.classList.remove('menu-opened');
-    event.preventDefault() || drawer.close()
-  });
-  });
-
   }
 
   initiateStickyMenu() {

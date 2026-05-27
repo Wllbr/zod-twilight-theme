@@ -1,13 +1,11 @@
 import "lite-youtube-embed";
 import BasePage from "./base-page";
 import Lightbox from "fslightbox";
-import ZodMovingProductsShowcase from "./partials/moving-products-showcase";
 window.fslightbox = Lightbox;
 
 class Home extends BasePage {
     onReady() {
         this.initFeaturedTabs();
-        new ZodMovingProductsShowcase().init();
     }
 
     /**

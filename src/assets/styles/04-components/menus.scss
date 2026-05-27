@@ -344,3 +344,23 @@
     width: 48px !important;
   }
 }
+
+// Desktop safety: the mobile off-canvas category drawer must never appear on PC view.
+@media (min-width: 1024px) {
+  #mobile-menu,
+  .mobile-menu,
+  .mm-ocd,
+  .mm-ocd__content,
+  .mm-spn.mobile-menu {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  #mobile-menu .main-menu > li.zod-mobile-menu__item,
+  .mm-spn .main-menu > li.zod-mobile-menu__item,
+  #mobile-menu li.zod-mobile-menu__item,
+  .mm-spn li.zod-mobile-menu__item {
+    display: none !important;
+  }
+}

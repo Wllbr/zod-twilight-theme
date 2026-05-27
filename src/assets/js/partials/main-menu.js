@@ -66,23 +66,24 @@ class NavigationMenu extends HTMLElement {
     * @returns {String}
     */
     getMobileMenu(menu, displayAllText) {
-        const menuImage = menu.image ? `<img src="${menu.image}" class="rounded-full" width="48" height="48" alt="${menu.title}" />` : '';
+        const menuImage = menu.image ? `<img src="${menu.image}" class="zod-mobile-menu__image rounded-full" width="48" height="48" alt="${menu.title}" />` : '';
+        const itemTypeClass = this.hasChildren(menu) ? 'zod-mobile-menu__item--has-children' : 'zod-mobile-menu__item--leaf';
 
         return `
-        <li class="lg:hidden text-sm font-bold" ${menu.attrs}>
+        <li class="lg:hidden text-sm font-bold zod-mobile-menu__item ${itemTypeClass}" ${menu.attrs}>
             ${!this.hasChildren(menu) ? `
-                <a href="${menu.url}" aria-label="${menu.title || 'category'}" class="text-gray-500 ${menu.image ? '!py-3' : ''}" ${menu.link_attrs}>
+                <a href="${menu.url}" aria-label="${menu.title || 'category'}" class="zod-mobile-menu__link text-gray-500 ${menu.image ? '!py-3' : ''}" ${menu.link_attrs}>
                     ${menuImage}
                     <span>${menu.title || ''}</span>
                 </a>` :
                 `
-                <span class="${menu.image ? '!py-3' : ''}">
+                <span class="zod-mobile-menu__parent ${menu.image ? '!py-3' : ''}">
                     ${menuImage}
-                    ${menu.title}
+                    <span>${menu.title || ''}</span>
                 </span>
                 <ul>
-                    <li class="text-sm font-bold">
-                        <a href="${menu.url}" class="text-gray-500">${displayAllText}</a>
+                    <li class="text-sm font-bold zod-mobile-menu__item zod-mobile-menu__item--all">
+                        <a href="${menu.url}" class="zod-mobile-menu__link text-gray-500">${displayAllText}</a>
                     </li>
                     ${menu.children.map((subMenu) => this.getMobileMenu(subMenu, displayAllText)).join('')}
                 </ul>

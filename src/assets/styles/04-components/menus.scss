@@ -248,4 +248,99 @@
       }
     }
   }
+
+  // ZOD mobile category drawer fixes
+  // Keep the improved desktop menu untouched while making the phone drawer
+  // readable, vertical, and free from the horizontal scrollbar caused by
+  // sliding-panel menu width calculations.
+  .mm-ocd__content {
+    background: #050506 !important;
+    overflow-x: hidden !important;
+  }
+
+  @media (max-width: 480px) {
+    .mm-ocd__content {
+      width: 100vw !important;
+      max-width: 100vw !important;
+      min-width: 0 !important;
+    }
+  }
+
+  .mobile-menu.mm-spn,
+  .mm-spn.mm-spn--light,
+  .mm-spn.mm-spn--vertical {
+    background: #050506 !important;
+    color: #f6f6f8 !important;
+  }
+
+  .mm-spn.mm-spn--vertical {
+    overflow-x: hidden !important;
+
+    ul {
+      background: inherit !important;
+      overflow-x: hidden !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      width: 100% !important;
+    }
+  }
+
+  #mobile-menu .main-menu > li:not(.zod-mobile-menu__item),
+  .mm-spn .main-menu > li:not(.zod-mobile-menu__item) {
+    display: none !important;
+  }
+
+  #mobile-menu .main-menu > li.zod-mobile-menu__item,
+  .mm-spn .main-menu > li.zod-mobile-menu__item {
+    display: block !important;
+    background: #050506 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    min-height: 64px;
+  }
+
+  .mm-spn li.zod-mobile-menu__item > a,
+  .mm-spn li.zod-mobile-menu__item > span,
+  #mobile-menu li.zod-mobile-menu__item > a,
+  #mobile-menu li.zod-mobile-menu__item > span {
+    align-items: center;
+    color: #f6f6f8 !important;
+    display: flex !important;
+    gap: 14px;
+    line-height: 1.5;
+    min-height: 64px;
+    padding: 14px 18px !important;
+    text-align: start;
+    width: 100% !important;
+  }
+
+  .mm-spn li.zod-mobile-menu__item > a span,
+  .mm-spn li.zod-mobile-menu__item > span span,
+  #mobile-menu li.zod-mobile-menu__item > a span,
+  #mobile-menu li.zod-mobile-menu__item > span span {
+    color: inherit !important;
+    padding: 0 !important;
+    white-space: normal;
+  }
+
+  .mm-spn li.zod-mobile-menu__item--leaf:before,
+  #mobile-menu li.zod-mobile-menu__item--leaf:before,
+  .mm-spn li.zod-mobile-menu__item--all:before,
+  #mobile-menu li.zod-mobile-menu__item--all:before {
+    display: none !important;
+  }
+
+  .mm-spn li.zod-mobile-menu__item--has-children:before,
+  #mobile-menu li.zod-mobile-menu__item--has-children:before {
+    border-color: rgba(255, 255, 255, 0.76) !important;
+    opacity: 1;
+  }
+
+  .zod-mobile-menu__image {
+    background: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    flex: 0 0 48px;
+    height: 48px !important;
+    object-fit: cover;
+    width: 48px !important;
+  }
 }

@@ -157,10 +157,14 @@ isElementLoaded(selector){
   this.isElementLoaded('#mobile-menu').then((menu) => {
 
  
-  const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)", "( slidingSubmenus: false)");
+  const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)");
 
   salla.lang.onLoaded(() => {
-    mobileMenu.navigation({ title: salla.lang.get('blocks.header.main_menu') });
+    mobileMenu.navigation({
+      title: salla.lang.get('blocks.header.main_menu'),
+      slidingSubmenus: false,
+      theme: 'light'
+    });
   });
   const drawer = mobileMenu.offcanvas({ position: salla.config.get('theme.is_rtl') ? "right" : 'left' });
 

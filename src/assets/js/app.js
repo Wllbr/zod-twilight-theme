@@ -153,47 +153,28 @@ isElementLoaded(selector){
 
 
   initiateMobileMenu() {
-    // The new ZOD drawer is fully managed by NavigationMenu (main-menu.js).
-    // The drawer's document-level click listeners are registered in main-menu.js
-    // connectedCallback, so they work regardless of timing.
-    // We skip the legacy mmenu-light initialization entirely — the new drawer
-    // handles everything.
-    //
-    // If the new custom element is present in the DOM, we know the new system
-    // is active. The drawer open/close is handled by document-level listeners
-    // in NavigationMenu._registerGlobalListeners().
-    const customMenu = document.querySelector('custom-main-menu');
-    if (customMenu) {
-      // New system is active — do nothing here.
-      return;
-    }
 
-    // Fallback: legacy mmenu-light for themes without custom-main-menu
-    this.isElementLoaded('#mobile-menu').then((menu) => {
-      const mobileMenu = new MobileMenu(menu, '(max-width: 1024px)');
+  this.isElementLoaded('#mobile-menu').then((menu) => {
 
-      salla.lang.onLoaded(() => {
-        mobileMenu.navigation({
-          title: salla.lang.get('blocks.header.main_menu'),
-          slidingSubmenus: false,
-          theme: 'light'
-        });
-      });
+ 
+  const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)", "( slidingSubmenus: false)");
 
-      const drawer = mobileMenu.offcanvas({
-        position: salla.config.get('theme.is_rtl') ? 'right' : 'left'
-      });
+  salla.lang.onLoaded(() => {
+    mobileMenu.navigation({ title: salla.lang.get('blocks.header.main_menu') });
+  });
+  const drawer = mobileMenu.offcanvas({ position: salla.config.get('theme.is_rtl') ? "right" : 'left' });
 
-      this.onClick("a[href='#mobile-menu']", event => {
-        document.body.classList.add('menu-opened');
-        event.preventDefault() || drawer.close() || drawer.open();
-      });
+  this.onClick("a[href='#mobile-menu']", event => {
+    document.body.classList.add('menu-opened');
+    event.preventDefault() || drawer.close() || drawer.open()
+    
+  });
+  this.onClick(".close-mobile-menu", event => {
+    document.body.classList.remove('menu-opened');
+    event.preventDefault() || drawer.close()
+  });
+  });
 
-      this.onClick('.close-mobile-menu', event => {
-        document.body.classList.remove('menu-opened');
-        event.preventDefault() || drawer.close();
-      });
-    });
   }
 
   initiateStickyMenu() {

@@ -26,7 +26,6 @@ class NavigationMenu extends HTMLElement {
                     return this.render()
                 }).then(() => {
                     this.initializeResponsiveMenu();
-                    this.initMobileAccordion();
                 }).catch((error) => salla.logger.error('salla-menu::Error fetching menus', error));
             });
     }
@@ -61,49 +60,33 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Get the mobile menu — accordion-style, no mmenu dependency
+    * Get the mobile menu
     * @param {Object} menu
     * @param {String} displayAllText
-    * @param {Number} depth
     * @returns {String}
     */
-    getMobileMenu(menu, displayAllText, depth = 0) {
-        const menuImage = menu.image
-            ? `<img src="${menu.image}" class="zod-mobile-menu__image rounded-full" width="40" height="40" alt="${menu.title}" loading="lazy" />`
-            : '';
-        const hasKids = this.hasChildren(menu);
-        const itemTypeClass = hasKids ? 'zod-mobile-menu__item--has-children' : 'zod-mobile-menu__item--leaf';
-        const depthClass = depth > 0 ? `zod-mobile-menu__item--depth-${depth}` : '';
-
-        if (!hasKids) {
-            return `
-            <li class="zod-mobile-menu__item ${itemTypeClass} ${depthClass}" ${menu.attrs}>
-                <a href="${menu.url}" aria-label="${menu.title || 'category'}" class="zod-mobile-menu__link ${menu.image ? 'has-image' : ''}" ${menu.link_attrs}>
-                    ${menuImage}
-                    <span class="zod-mobile-menu__label">${menu.title || ''}</span>
-                </a>
-            </li>`;
-        }
-
-        const childrenHtml = menu.children.map(sub => this.getMobileMenu(sub, displayAllText, depth + 1)).join('');
+    getMobileMenu(menu, displayAllText) {
+        const menuImage = menu.image ? `<img src="${menu.image}" class="rounded-full" width="48" height="48" alt="${menu.title}" />` : '';
 
         return `
-        <li class="zod-mobile-menu__item ${itemTypeClass} ${depthClass}" ${menu.attrs}>
-            <div class="zod-mobile-menu__parent-row ${menu.image ? 'has-image' : ''}">
-                <a href="${menu.url}" class="zod-mobile-menu__parent-link" aria-label="${menu.title || 'category'}">
+        <li class="lg:hidden text-sm font-bold" ${menu.attrs}>
+            ${!this.hasChildren(menu) ? `
+                <a href="${menu.url}" aria-label="${menu.title || 'category'}" class="text-gray-500 ${menu.image ? '!py-3' : ''}" ${menu.link_attrs}>
                     ${menuImage}
-                    <span class="zod-mobile-menu__label">${menu.title || ''}</span>
-                </a>
-                <button class="zod-mobile-menu__toggle" aria-expanded="false" aria-label="expand submenu">
-                    <span class="zod-mobile-menu__arrow"></span>
-                </button>
-            </div>
-            <ul class="zod-mobile-menu__sub" aria-hidden="true">
-                <li class="zod-mobile-menu__item zod-mobile-menu__item--all">
-                    <a href="${menu.url}" class="zod-mobile-menu__link">${displayAllText}</a>
-                </li>
-                ${childrenHtml}
-            </ul>
+                    <span>${menu.title || ''}</span>
+                </a>` :
+                `
+                <span class="${menu.image ? '!py-3' : ''}">
+                    ${menuImage}
+                    ${menu.title}
+                </span>
+                <ul>
+                    <li class="text-sm font-bold">
+                        <a href="${menu.url}" class="text-gray-500">${displayAllText}</a>
+                    </li>
+                    ${menu.children.map((subMenu) => this.getMobileMenu(subMenu, displayAllText)).join('')}
+                </ul>
+            `}
         </li>`;
     }
 
@@ -135,13 +118,14 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Get the menus — mobile items only in mobile nav, desktop items only in desktop nav
-    * @returns {Object} { mobileHtml, desktopHtml }
+    * Get the menus
+    * @returns {String}
     */
-    getMenusSplit() {
-        const mobileHtml = this.menus.map(menu => this.getMobileMenu(menu, this.displayAllText, 0)).join('\n');
-        const desktopHtml = this.menus.map(menu => this.getDesktopMenu(menu, true)).join('\n');
-        return { mobileHtml, desktopHtml };
+    getMenus() {
+        return this.menus.map((menu) => `
+            ${this.getMobileMenu(menu, this.displayAllText)}
+            ${this.getDesktopMenu(menu, true)}
+        `).join('\n');
     }
 
     /**
@@ -170,17 +154,19 @@ class NavigationMenu extends HTMLElement {
     initializeResponsiveMenu() {
         if (window.innerWidth < 1024) return; // Only for desktop
 
-        const mainMenu = this.querySelector('.zod-desktop-menu');
+        const mainMenu = this.querySelector('.main-menu');
         if (!mainMenu) return;
 
         // Check if more menu is enabled from global window variable set in master.twig
         const isMoreMenuEnabled = window.enable_more_menu;
         if (!isMoreMenuEnabled) {
+            // If disabled, keep the menu behavior as original (no More dropdown / overflow handling)
             return;
         }
 
         this.checkMenuOverflow();
 
+        // Re-check on window resize
         const resizeHandler = this.debounce(() => {
             this.checkMenuOverflow();
         }, 250);
@@ -192,41 +178,53 @@ class NavigationMenu extends HTMLElement {
     * Check if menu items overflow and move them to More dropdown
     */
     checkMenuOverflow() {
-        const mainMenu = this.querySelector('.zod-desktop-menu');
+        const mainMenu = this.querySelector('.main-menu');
         if (!mainMenu) return;
 
         const container = mainMenu.closest('.container');
         if (!container) return;
 
+        // Reset menus
         this.visibleMenus = [...this.menus];
         this.overflowMenus = [];
 
+        // Remove existing more dropdown
         const existingMore = mainMenu.querySelector('#more-menu-dropdown');
-        if (existingMore) existingMore.remove();
+        if (existingMore) {
+            existingMore.remove();
+        }
 
+        // Show all menu items first
         const menuItems = mainMenu.querySelectorAll('.root-level[data-menu-item]');
-        menuItems.forEach(item => { item.style.display = ''; });
+        menuItems.forEach(item => {
+            item.style.display = '';
+        });
 
+        // Calculate available width
         const containerWidth = container.offsetWidth;
-        const otherElements = container.querySelector('.flex') ? container.querySelector('.flex').children : [];
+        const otherElements = container.querySelector('.flex').children;
         let usedWidth = 0;
 
+        // Calculate width used by logo and other elements
         Array.from(otherElements).forEach(element => {
             if (!element.contains(mainMenu)) {
                 usedWidth += element.offsetWidth;
             }
         });
 
-        const availableWidth = containerWidth - usedWidth - 300;
+        const availableWidth = containerWidth - usedWidth - 300; // 300px buffer for More dropdown
         let currentWidth = 0;
         let visibleCount = 0;
 
+        // Check each menu item
         menuItems.forEach((item, index) => {
             const itemWidth = item.offsetWidth;
+
             if (currentWidth + itemWidth <= availableWidth && index < this.menus.length) {
                 currentWidth += itemWidth;
                 visibleCount++;
             } else {
+                // Hide overflow items
                 item.style.setProperty('display', 'none', 'important');
                 if (index < this.menus.length) {
                     this.overflowMenus.push(this.menus[index]);
@@ -234,68 +232,13 @@ class NavigationMenu extends HTMLElement {
             }
         });
 
+        // Update visible menus
         this.visibleMenus = this.menus.slice(0, visibleCount);
 
+        // Add More dropdown if needed
         if (this.overflowMenus.length > 0) {
             mainMenu.insertAdjacentHTML('beforeend', this.createMoreDropdown());
         }
-    }
-
-    /**
-    * Initialize accordion behavior for mobile menu
-    */
-    initMobileAccordion() {
-        const mobileNav = this.querySelector('.zod-mobile-nav');
-        if (!mobileNav) return;
-
-        mobileNav.addEventListener('click', (e) => {
-            const toggleBtn = e.target.closest('.zod-mobile-menu__toggle');
-            if (!toggleBtn) return;
-
-            e.preventDefault();
-            e.stopPropagation();
-
-            const parentItem = toggleBtn.closest('.zod-mobile-menu__item--has-children');
-            if (!parentItem) return;
-
-            const subMenu = parentItem.querySelector(':scope > .zod-mobile-menu__sub');
-            if (!subMenu) return;
-
-            const isOpen = parentItem.classList.contains('is-open');
-
-            // Close siblings at same level
-            const siblings = parentItem.parentElement
-                ? Array.from(parentItem.parentElement.children).filter(el => el !== parentItem && el.classList.contains('zod-mobile-menu__item--has-children'))
-                : [];
-            siblings.forEach(sib => {
-                sib.classList.remove('is-open');
-                const sibToggle = sib.querySelector(':scope > .zod-mobile-menu__parent-row > .zod-mobile-menu__toggle');
-                const sibSub = sib.querySelector(':scope > .zod-mobile-menu__sub');
-                if (sibToggle) sibToggle.setAttribute('aria-expanded', 'false');
-                if (sibSub) {
-                    sibSub.style.maxHeight = '0';
-                    sibSub.setAttribute('aria-hidden', 'true');
-                }
-            });
-
-            if (isOpen) {
-                parentItem.classList.remove('is-open');
-                toggleBtn.setAttribute('aria-expanded', 'false');
-                subMenu.style.maxHeight = '0';
-                subMenu.setAttribute('aria-hidden', 'true');
-            } else {
-                parentItem.classList.add('is-open');
-                toggleBtn.setAttribute('aria-expanded', 'true');
-                subMenu.style.maxHeight = subMenu.scrollHeight + 'px';
-                subMenu.setAttribute('aria-hidden', 'false');
-                // After transition, allow natural height for nested opens
-                subMenu.addEventListener('transitionend', () => {
-                    if (parentItem.classList.contains('is-open')) {
-                        subMenu.style.maxHeight = 'none';
-                    }
-                }, { once: true });
-            }
-        });
     }
 
     /**
@@ -317,102 +260,15 @@ class NavigationMenu extends HTMLElement {
     }
 
     /**
-    * Render the header menu — separate mobile drawer from desktop nav
+    * Render the header menu
     */
     render() {
-        const { mobileHtml, desktopHtml } = this.getMenusSplit();
-
-        this.innerHTML = `
-        <!-- Mobile Drawer -->
-        <div class="zod-mobile-drawer" id="zod-mobile-drawer" role="dialog" aria-modal="true" aria-label="القائمة الرئيسية">
-            <div class="zod-mobile-drawer__overlay" id="zod-drawer-overlay"></div>
-            <div class="zod-mobile-drawer__panel">
-                <div class="zod-mobile-drawer__header">
-                    <span class="zod-mobile-drawer__title">الأقسام</span>
-                    <button class="zod-mobile-drawer__close" id="zod-drawer-close" aria-label="إغلاق القائمة">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-                </div>
-                <nav class="zod-mobile-nav" aria-label="Mobile navigation">
-                    <ul class="zod-mobile-menu__list">
-                        ${mobileHtml}
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-        <!-- Desktop Navigation (hidden on mobile) -->
-        <ul class="zod-desktop-menu main-menu" aria-label="Desktop navigation">
-            ${desktopHtml}
-        </ul>
-
-        <!-- Legacy close button for compatibility -->
+        this.innerHTML =  `
+        <nav id="mobile-menu" class="mobile-menu">
+            <ul class="main-menu">${this.getMenus()}</ul>
+            <button class="btn--close close-mobile-menu sicon-cancel lg:hidden"></button>
+        </nav>
         <button class="btn--close-sm close-mobile-menu sicon-cancel hidden"></button>`;
-
-        // Wire up drawer open/close after render
-        this._initDrawerControls();
-    }
-
-    /**
-    * Initialize drawer open/close controls
-    */
-    _initDrawerControls() {
-        const drawer = this.querySelector('#zod-mobile-drawer');
-        const overlay = this.querySelector('#zod-drawer-overlay');
-        const closeBtn = this.querySelector('#zod-drawer-close');
-
-        if (!drawer) return;
-
-        // Close on overlay click
-        if (overlay) {
-            overlay.addEventListener('click', () => this._closeDrawer());
-        }
-
-        // Close on close button click
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => this._closeDrawer());
-        }
-
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
-                this._closeDrawer();
-            }
-        });
-
-        // Wire the hamburger trigger (a[href='#mobile-menu'])
-        document.addEventListener('click', (e) => {
-            const trigger = e.target.closest("a[href='#mobile-menu']");
-            if (trigger) {
-                e.preventDefault();
-                this._openDrawer();
-            }
-        });
-
-        // Wire legacy .close-mobile-menu buttons
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.close-mobile-menu')) {
-                this._closeDrawer();
-            }
-        });
-    }
-
-    _openDrawer() {
-        const drawer = this.querySelector('#zod-mobile-drawer');
-        if (!drawer) return;
-        drawer.classList.add('is-open');
-        document.body.classList.add('zod-drawer-open', 'menu-opened');
-        document.body.style.overflow = 'hidden';
-    }
-
-    _closeDrawer() {
-        const drawer = this.querySelector('#zod-mobile-drawer');
-        if (!drawer) return;
-        drawer.classList.remove('is-open');
-        document.body.classList.remove('zod-drawer-open', 'menu-opened');
-        document.body.style.overflow = '';
     }
 }
 

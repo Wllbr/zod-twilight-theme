@@ -1,88 +1,67 @@
 
-// ============================================================
-// DESKTOP NAVIGATION
-// ============================================================
-
-// Highlight offer links
-.main-menu > li > a[href*="offer"] {
-  @apply text-red-800;
+// Main Menu
+.main-menu > li > a[href*="offer"]{
+  @apply text-red-800
 }
 
 @media only screen and (min-width: 1024px) {
-
-  // Desktop menu container
-  .zod-desktop-menu,
   .main-menu {
     @apply hidden lg:flex flex-wrap items-center mx-6 pt-8 pb-0;
-    position: static !important;
-    overflow: visible !important;
 
     .fixed-pinned & {
       padding-top: 0;
       padding-bottom: 0;
     }
 
-    li {
-      > a {
-        @apply flex justify-between items-center transition duration-300 p-3 text-sm hover:text-primary hover:no-underline;
+    li{
+      > a{
+        @apply flex justify-between items-center transition duration-300 p-3 text-sm hover:text-primary hover:no-underline; 
       }
 
-      &.root-level {
+      &.root-level{
         @apply inline-block;
-        position: relative;
-
-        > a {
+        
+        > a{
           @apply font-bold pt-0 pb-8;
         }
       }
     }
 
-    > .has-children:hover > a {
+    > .has-children:hover > a{
       color: var(--color-primary);
     }
 
-    .has-children {
+    .has-children{
       li a:hover,
-      .has-children:hover > a {
+      .has-children:hover > a{
         color: var(--color-primary);
         @apply bg-gray-200/20;
       }
 
-      > a:after {
+      > a:after{
         font-family: 'sallaicons';
         content: "\e970";
         @apply inline-block transition-transform duration-300 self-end mx-0.5 text-lg opacity-50 leading-4;
       }
 
       &.root-level {
-        > a:after {
+        > a:after{
           content: "\e96e";
         }
 
-        &:hover > a:after {
+        &:hover > a:after{
           opacity: 1;
           transform: scaleY(-1);
         }
       }
     }
 
-    // ── Dropdown sub-menu ──────────────────────────────────────
-    // KEY FIX: z-index raised to 9999 so dropdowns always appear
-    // above hero banners and all homepage sections.
-    // overflow: visible on parent chain prevents clipping.
     .sub-menu {
-      position: absolute !important;
-      z-index: 9999 !important;
-      @apply transition opacity-0 invisible bg-white -translate-y-3 shadow-default rounded-b-md border-t border-gray-300/30;
-      overflow: visible !important;
-      // Prevent the dropdown from being clipped by parent containers
-      top: 100%;
+      @apply z-20 transition opacity-0 invisible absolute bg-white -translate-y-3 shadow-default rounded-b-md border-t border-gray-300/30;
 
-      // Nested sub-menu flies out to the side
       .sub-menu {
         top: -1px;
         right: 100%;
-        left: auto;
 
         [dir="ltr"] & {
           left: 100%;
@@ -90,7 +69,7 @@
         }
       }
 
-      .s-product-card-entry {
+      .s-product-card-entry{
         @apply border border-gray-100;
       }
 
@@ -99,17 +78,17 @@
       }
 
       li.mega-menu .container {
-        ul {
+        ul{
           @apply p-0 m-0 border-none;
         }
-
-        > div {
+  
+        > div{
           @apply hidden;
         }
       }
     }
 
-    .change-menu-dir .sub-menu .sub-menu {
+    .change-menu-dir .sub-menu  .sub-menu {
       @apply rtl:left-full rtl:right-auto ltr:right-full ltr:left-auto;
     }
 
@@ -121,7 +100,7 @@
       }
     }
 
-    // More dropdown — scrollable if very tall, but no internal scroll trap
+    // More dropdown specific styles
     #more-menu-dropdown {
       @apply flex-shrink-0;
 
@@ -129,16 +108,17 @@
         @apply whitespace-nowrap;
       }
 
+      // Make the More dropdown scrollable if it becomes taller than the viewport
       > .sub-menu {
-        max-height: 80vh;
+        max-height: 70vh;
         overflow-y: auto;
-        overflow-x: visible;
       }
 
+      // Keep deeper levels visible inside the same column (no fly-out)
       > .sub-menu {
         .sub-menu {
           @apply static opacity-0 invisible transform-none shadow-none border-0 m-0 p-0 bg-transparent max-h-0 overflow-hidden transition-[max-height,opacity,visibility] duration-200 ease-in;
-          transition-duration: 250ms, 200ms, 200ms;
+          transition-duration: 250ms, 200ms, 200ms; 
         }
 
         li.has-children {
@@ -154,6 +134,7 @@
           }
         }
 
+        // Indent nested lists for readability
         .sub-menu > ul {
           @apply rtl:pr-4 ltr:pl-4;
         }
@@ -161,360 +142,110 @@
     }
   }
 
-  // Fix: ensure the category row container doesn't clip dropdowns
-  .zod-header__category-row {
-    position: relative;
-    overflow: visible !important;
-  }
-
-  // Fix: ensure the main nav inner wrapper doesn't clip dropdowns
-  .main-nav-container .inner,
-  #mainnav .inner {
-    overflow: visible !important;
-  }
-
-  .main-menu .sub-menu ul > li:not(:first-child) > .sub-menu {
+  .main-menu .sub-menu ul > li:not(:first-child) > .sub-menu{
     border-top-right-radius: 0.375rem;
     border-top-left-radius: 0.375rem;
     border: none;
   }
 }
-
-
-// ============================================================
-// MOBILE CATEGORY DRAWER — ZOD Premium
-// ============================================================
-
-// Hide the mobile hamburger trigger on desktop
-@media only screen and (min-width: 1024px) {
-  .zod-header__mobile-menu,
-  a[href='#mobile-menu'],
-  .mburger {
-    display: none !important;
-  }
-}
-
-// Mobile drawer base — hidden by default
-.zod-mobile-drawer {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  pointer-events: none;
-
-  @media only screen and (max-width: 1023px) {
-    display: block;
-  }
-
-  // Overlay
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0);
-    backdrop-filter: blur(0px);
-    transition: background 0.35s ease, backdrop-filter 0.35s ease;
-    pointer-events: none;
-  }
-
-  // Sliding panel
-  &__panel {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: min(340px, 88vw);
-    display: flex;
-    flex-direction: column;
-    background: #050506;
-    border-inline-start: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 60px rgba(0, 0, 0, 0.72);
-    transform: translateX(100%);
-    transition: transform 0.38s cubic-bezier(0.23, 1, 0.32, 1);
-    overflow: hidden;
-
-    [dir="rtl"] & {
-      right: 0;
-      left: auto;
-      transform: translateX(100%);
+// Mobile Slide Menu
+@media only screen and (max-width: 1024px) {
+  .filters-opened{
+    .close-filters{
+      display: block !important;
     }
-
-    [dir="ltr"] & {
-      left: 0;
-      right: auto;
-      transform: translateX(-100%);
-    }
-  }
-
-  // Drawer header bar
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    flex-shrink: 0;
-    background: rgba(9, 9, 11, 0.92);
-  }
-
-  &__title {
-    font-size: 1rem;
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: 0.02em;
-  }
-
-  // Close button — always visible, large touch target
-  &__close {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.06);
-    color: #ffffff;
-    cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-    flex-shrink: 0;
-
-    &:hover {
-      background: rgba(239, 68, 68, 0.18);
-      border-color: rgba(239, 68, 68, 0.46);
-      transform: rotate(90deg);
-    }
-
-    svg {
-      pointer-events: none;
-    }
-  }
-
-  // Scrollable nav area
-  .zod-mobile-nav {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-
-    // Custom scrollbar
-    &::-webkit-scrollbar {
-      width: 3px;
-    }
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: rgba(239, 68, 68, 0.36);
-      border-radius: 999px;
-    }
-  }
-
-  // ── OPEN STATE ──────────────────────────────────────────────
-  &.is-open {
-    pointer-events: all;
-
-    .zod-mobile-drawer__overlay {
-      background: rgba(0, 0, 0, 0.68);
-      backdrop-filter: blur(4px);
-      pointer-events: all;
-    }
-
-    .zod-mobile-drawer__panel {
-      [dir="rtl"] & {
-        transform: translateX(0);
-      }
-      [dir="ltr"] & {
-        transform: translateX(0);
-      }
-    }
-  }
-}
-
-// Body scroll lock when drawer is open
-body.zod-drawer-open {
-  overflow: hidden !important;
-  touch-action: none;
-}
-
-
-// ============================================================
-// MOBILE MENU LIST ITEMS — Accordion style
-// ============================================================
-
-.zod-mobile-menu__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.zod-mobile-menu__item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  background: #050506;
-}
-
-// Depth indentation
-.zod-mobile-menu__item--depth-1 {
-  background: rgba(18, 18, 20, 0.72);
-}
-
-.zod-mobile-menu__item--depth-2 {
-  background: rgba(24, 24, 27, 0.60);
-}
-
-// Leaf item — simple link
-.zod-mobile-menu__link {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 20px;
-  color: #e4e4e7 !important;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none !important;
-  transition: color 0.2s ease, background 0.2s ease;
-  min-height: 56px;
-
-  &:hover {
-    color: #ef4444 !important;
-    background: rgba(239, 68, 68, 0.06);
-  }
-
-  &.has-image {
-    padding-block: 12px;
-  }
-}
-
-// "View all" link
-.zod-mobile-menu__item--all .zod-mobile-menu__link {
-  color: #a1a1aa !important;
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding-block: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-
-  &:hover {
-    color: #ef4444 !important;
-  }
-}
-
-// Parent row — link + toggle button side by side
-.zod-mobile-menu__parent-row {
-  display: flex;
-  align-items: center;
-  min-height: 56px;
-
-  &.has-image {
-    min-height: 68px;
-  }
-}
-
-.zod-mobile-menu__parent-link {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 20px;
-  color: #e4e4e7 !important;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-decoration: none !important;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: #ef4444 !important;
-  }
-}
-
-// Toggle/expand button
-.zod-mobile-menu__toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #a1a1aa;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: #ef4444;
-  }
-}
-
-// Arrow icon inside toggle
-.zod-mobile-menu__arrow {
-  display: block;
-  width: 8px;
-  height: 8px;
-  border-inline-end: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(45deg);
-  transition: transform 0.28s cubic-bezier(0.23, 1, 0.32, 1);
-
-  [dir="rtl"] & {
-    transform: rotate(225deg);
-  }
-}
-
-// Rotate arrow when open
-.zod-mobile-menu__item--has-children.is-open {
-  > .zod-mobile-menu__parent-row .zod-mobile-menu__arrow {
-    transform: rotate(-135deg) !important;
-  }
-}
-
-// Category image thumbnail
-.zod-mobile-menu__image {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: #1a1a1e;
-  flex-shrink: 0;
-}
-
-.zod-mobile-menu__label {
-  flex: 1;
-  white-space: normal;
-  line-height: 1.4;
-}
-
-// Accordion sub-list — collapsed by default
-.zod-mobile-menu__sub {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.38s cubic-bezier(0.23, 1, 0.32, 1);
-  background: rgba(12, 12, 14, 0.72);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-
-// ============================================================
-// LEGACY mmenu-light COMPATIBILITY — keep for non-drawer usage
-// ============================================================
-
-@media only screen and (max-width: 1023px) {
-  .filters-opened {
-    .close-filters {
+  } 
+  .menu-opened{
+    .btn--close-sm.close-mobile-menu{
       display: block !important;
     }
   }
-
-  .menu-opened {
-    .btn--close-sm.close-mobile-menu {
-      display: block !important;
-    }
-  }
-
-  // Hide the old mmenu mobile-menu element since we use our own drawer
   .mobile-menu {
-    display: none !important;
+      display: none;
+      @apply lg:hidden overflow-hidden;
+  }
+  .mm-ocd__content{
+    overflow-y: auto;
+  }
+  .mm-ocd-opened {
+    .mobile-menu {
+      display: block;
+    }
+
+    @media (max-width: 480px) {
+      .btn--close-sm {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        z-index: 99999999;
+      }
+    }
+  }
+
+  .mm-spn.mm-spn--light {
+    color: #000;
+    background: #ffffff;
+  }
+
+  .mm-spn {
+    ul.main-menu li:before{
+      @apply w-2 h-2; 
+    }
+
+    &.mm-spn--navbar{
+      &:after {
+        @apply transition-all duration-300 rtl:pr-12 ltr:pl-12 text-start opacity-90 font-bold;
+      }
+
+      &.mm-spn--main{
+        &:after{
+          @apply rtl:pr-3 ltr:pl-3;
+        }
+      }
+    }
+
+    &.mm-spn--navbar:before {
+      [dir="rtl"] & {
+        transform: rotate(135deg) translateY(77%);
+        right: var(--mm-spn-item-indent);
+        left: auto;
+      }
+    }
+
+    li {
+      a,
+      > span {
+		padding: 18px;
+		@apply flex items-center gap-4;
+	  }
+
+	  img{
+		@apply w-12 h-12 object-cover bg-[#f5f7f9] pointer-events-none;
+	  }
+
+      a span{
+        padding: 0;
+      }
+
+      &:before {
+        [dir="rtl"] & {
+          width: 6px;
+          height: 6px;
+          top: 50%;
+          left: 25px;
+          left: calc(var(--mm-spn-item-height) / 2);
+          right: auto;
+          border-bottom: 1px solid;
+          border-left: 1px solid;
+          border-right: none;
+          border-top: none;
+        }
+      }
+
+      &:after {
+        width: 100%;
+        border-color: var(--infinte-color);
+      }
+    }
   }
 }

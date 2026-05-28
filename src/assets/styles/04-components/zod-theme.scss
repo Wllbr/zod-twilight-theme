@@ -1803,10 +1803,7 @@ body.theme-raed .zod-header__mainnav,
   min-height: 52px;
   justify-content: flex-start;
   border-top: 1px solid rgba(255, 255, 255, 0.055);
-  /* FIX: allow dropdowns to overflow out of the category row */
-  overflow: visible !important;
-  position: relative;
-  z-index: 100;
+  overflow: hidden;
 }
 
 .zod-header__category-label {
@@ -1826,9 +1823,7 @@ body.theme-raed .zod-header__mainnav,
 .zod-header__category-nav {
   flex: 1 1 auto;
   min-width: 0;
-  /* FIX: allow dropdown menus to overflow — do NOT use overflow-x:auto here
-     as it creates a scroll container that clips absolutely-positioned children */
-  overflow: visible !important;
+  overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -1879,11 +1874,7 @@ body.theme-raed .zod-header__mainnav,
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 18px !important;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 30px rgba(255, 45, 45, 0.06) !important;
-  /* FIX: raise z-index above all homepage sections */
-  z-index: 9999 !important;
-  overflow: visible !important;
-  /* Premium entrance animation */
-  animation: zodDropdownIn 0.22s cubic-bezier(0.23, 1, 0.32, 1) both;
+  overflow: hidden;
 }
 
 .zod-header__category-nav .sub-menu a,
@@ -1941,80 +1932,6 @@ body.theme-raed .zod-header__mainnav,
   }
 }
 
-/* ============================================================
-   PREMIUM ANIMATION KEYFRAMES
-   ============================================================ */
-
-/* Dropdown entrance */
-@keyframes zodDropdownIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Mobile drawer slide-in (RTL) */
-@keyframes zodDrawerSlideInRtl {
-  from { transform: translateX(100%); }
-  to   { transform: translateX(0); }
-}
-
-/* Mobile drawer slide-in (LTR) */
-@keyframes zodDrawerSlideInLtr {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(0); }
-}
-
-/* Overlay fade */
-@keyframes zodOverlayFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* Accordion item reveal */
-@keyframes zodAccordionReveal {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Staggered mobile item entrance */
-.zod-mobile-drawer.is-open .zod-mobile-menu__item {
-  animation: zodAccordionReveal 0.28s cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-
-.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(1)  { animation-delay: 0.04s; }
-.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(2)  { animation-delay: 0.07s; }
-.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(3)  { animation-delay: 0.10s; }
-.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(4)  { animation-delay: 0.13s; }
-.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(5)  { animation-delay: 0.16s; }
-.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(6)  { animation-delay: 0.19s; }
-.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(7)  { animation-delay: 0.22s; }
-.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(8)  { animation-delay: 0.25s; }
-.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(n+9) { animation-delay: 0.28s; }
-
-/* Reduce motion */
-@media (prefers-reduced-motion: reduce) {
-  .zod-mobile-drawer,
-  .zod-mobile-drawer__panel,
-  .zod-mobile-drawer__overlay,
-  .zod-mobile-menu__item,
-  .zod-mobile-menu__sub,
-  .zod-header__category-nav .sub-menu {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
 /* Footer V8: no mobile collapse and no customer-service column */
 .zod-footer--no-accordion .zod-footer__grid--three {
   grid-template-columns: minmax(280px, 1.35fr) minmax(190px, .8fr) minmax(240px, 1fr);
@@ -2065,4 +1982,109 @@ body.theme-raed .zod-header__mainnav,
   .zod-footer--no-accordion .zod-footer__section-content {
     padding: 0 !important;
   }
+}
+
+/* ============================
+   Mobile Drawer Fix
+   Override the dark theme styles when .main-menu is inside the mmenu-light drawer
+   so the drawer panel renders correctly with proper background, visible text,
+   and a working close button.
+   ============================ */
+
+/* Reset the dark header styles for .main-menu when inside the offcanvas drawer */
+body.theme-raed .mm-ocd .main-menu,
+body.theme-raed .mm-ocd__content .main-menu {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+}
+
+/* Style the drawer panel itself with the dark theme */
+body.theme-raed .mm-ocd__content {
+  background: #0a0a0c !important;
+}
+
+/* Style the mmenu navigation panel */
+body.theme-raed .mm-spn.mm-spn--light {
+  background: #0a0a0c !important;
+  color: #ffffff !important;
+}
+
+/* Menu items text color inside the drawer */
+body.theme-raed .mm-ocd .main-menu a,
+body.theme-raed .mm-ocd__content .main-menu a,
+body.theme-raed .mm-ocd .mm-spn a,
+body.theme-raed .mm-ocd .mm-spn span {
+  color: #e4e4e7 !important;
+}
+
+body.theme-raed .mm-ocd .main-menu a:hover,
+body.theme-raed .mm-ocd__content .main-menu a:hover {
+  color: #ff3b3b !important;
+  text-shadow: none !important;
+}
+
+/* Menu item separators */
+body.theme-raed .mm-ocd .mm-spn li:after {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Navbar title bar styling */
+body.theme-raed .mm-ocd .mm-spn.mm-spn--navbar:after {
+  color: #ffffff !important;
+  opacity: 0.9;
+}
+
+/* Back arrow in navbar */
+body.theme-raed .mm-ocd .mm-spn.mm-spn--navbar:before {
+  border-color: #ff3b3b !important;
+}
+
+/* Chevron arrows for items with children */
+body.theme-raed .mm-ocd .mm-spn li:before {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Close button inside the drawer - always visible */
+body.theme-raed .mm-ocd .btn--close,
+body.theme-raed .mm-ocd__content .btn--close {
+  display: block !important;
+  position: absolute;
+  top: 4px;
+  z-index: 100;
+  color: #ff3b3b !important;
+  font-size: 1.5rem;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+body.theme-raed .mm-ocd .btn--close:where([dir=rtl], [dir=rtl] *) {
+  left: 4px;
+  right: auto;
+}
+
+body.theme-raed .mm-ocd .btn--close:where([dir=ltr], [dir=ltr] *) {
+  right: 4px;
+  left: auto;
+}
+
+/* Drawer backdrop */
+body.theme-raed .mm-ocd {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Ensure the mobile-menu nav panel border in drawer */
+body.theme-raed .mm-ocd .mobile-menu {
+  display: block !important;
+}
+
+/* Fix the navbar top border */
+body.theme-raed .mm-ocd .mm-spn.mm-spn--navbar ul:before {
+  border-color: rgba(255, 255, 255, 0.1) !important;
 }

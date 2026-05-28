@@ -1,1 +1,437 @@
-(()=>{"use strict";function e(e,n){(null==n||n>e.length)&&(n=e.length);for(var t=0,o=Array(n);t<n;t++)o[t]=e[t];return o}function n(e){return n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},n(e)}function t(e){var t=function(e){if("object"!=n(e)||!e)return e;var t=e[Symbol.toPrimitive];if(void 0!==t){var o=t.call(e,"string");if("object"!=n(o))return o;throw new TypeError("@@toPrimitive must return a primitive value.")}return String(e)}(e);return"symbol"==n(t)?t:t+""}function o(e,n){for(var o=0;o<n.length;o++){var r=n[o];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,t(r.key),r)}}function r(e){return r=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){return e.__proto__||Object.getPrototypeOf(e)},r(e)}function i(e,n){return i=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,n){return e.__proto__=n,e},i(e,n)}function a(){try{var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],function(){}))}catch(e){}return(a=function(){return!!e})()}function l(e){var n="function"==typeof Map?new Map:void 0;return l=function(e){if(null===e||!function(e){try{return-1!==Function.toString.call(e).indexOf("[native code]")}catch(n){return"function"==typeof e}}(e))return e;if("function"!=typeof e)throw new TypeError("Super expression must either be null or a function");if(void 0!==n){if(n.has(e))return n.get(e);n.set(e,t)}function t(){return function(e,n,t){if(a())return Reflect.construct.apply(null,arguments);var o=[null];o.push.apply(o,n);var r=new(e.bind.apply(e,o));return t&&i(r,t.prototype),r}(e,arguments,r(this).constructor)}return t.prototype=Object.create(e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),i(t,e)},l(e)}function s(){try{var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],function(){}))}catch(e){}return(s=function(){return!!e})()}var c=function(t){function a(){return function(e,n){if(!(e instanceof n))throw new TypeError("Cannot call a class as a function")}(this,a),e=this,o=arguments,t=r(t=a),function(e,t){if(t&&("object"==n(t)||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e)}(e,s()?Reflect.construct(t,o||[],r(e).constructor):t.apply(e,o));var e,t,o}return function(e,n){if("function"!=typeof n&&null!==n)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(n&&n.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),n&&i(e,n)}(a,t),l=a,c=[{key:"connectedCallback",value:function(){var e=this;this.innerHTML='\n            <div class="main-menu-skel" aria-hidden="true">\n                <span class="header-skel-item header-skel-item--menu" style="width:80px"></span>\n                <span class="header-skel-item header-skel-item--menu" style="width:60px"></span>\n                <span class="header-skel-item header-skel-item--menu" style="width:90px"></span>\n                <span class="header-skel-item header-skel-item--menu" style="width:70px"></span>\n                <span class="header-skel-item header-skel-item--menu" style="width:80px"></span>\n            </div>',this._registerGlobalListeners(),salla.onReady().then(function(){return salla.lang.onLoaded()}).then(function(){return e.menus=[],e.displayAllText=salla.lang.get("blocks.home.display_all"),e.moreText=salla.lang.get("common.titles.more"),e.visibleMenus=[],e.overflowMenus=[],salla.api.component.getMenus().then(function(n){var t=n.data;return e.menus=t,e.render()}).then(function(){e.initializeResponsiveMenu(),e.initMobileAccordion()}).catch(function(e){return salla.logger.error("salla-menu::Error fetching menus",e)})})}},{key:"_registerGlobalListeners",value:function(){a._listenersRegistered||(a._listenersRegistered=!0,document.addEventListener("click",function(e){if(e.target.closest("a[href='#mobile-menu']")||e.target.closest(".zod-header__mobile-menu")){e.preventDefault(),e.stopPropagation();var n=document.getElementById("zod-mobile-drawer");n&&(n.classList.add("is-open"),document.body.classList.add("zod-drawer-open","menu-opened"),document.body.style.overflow="hidden")}},!0),document.addEventListener("click",function(e){(e.target.closest("#zod-drawer-close")||e.target.closest(".zod-mobile-drawer__close"))&&(e.preventDefault(),a._closeDrawer())}),document.addEventListener("click",function(e){(e.target.closest("#zod-drawer-overlay")||e.target.classList&&e.target.classList.contains("zod-mobile-drawer__overlay"))&&a._closeDrawer()}),document.addEventListener("click",function(e){e.target.closest(".close-mobile-menu")&&a._closeDrawer()}),document.addEventListener("keydown",function(e){if("Escape"===e.key){var n=document.getElementById("zod-mobile-drawer");n&&n.classList.contains("is-open")&&a._closeDrawer()}}))}},{key:"hasChildren",value:function(e){var n;return(null==e||null===(n=e.children)||void 0===n?void 0:n.length)>0}},{key:"hasProducts",value:function(e){var n;return(null==e||null===(n=e.products)||void 0===n?void 0:n.length)>0}},{key:"getDesktopClasses",value:function(e,n){return"!hidden lg:!block ".concat(n?"root-level lg:!inline-block":"relative"," ").concat(e.products?" mega-menu":"","\n        ").concat(this.hasChildren(e)?" has-children":"")}},{key:"getMobileMenu",value:function(e,n){var t=this,o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:0,r=e.image?'<img src="'.concat(e.image,'" class="zod-mobile-menu__image rounded-full" width="40" height="40" alt="').concat(e.title,'" loading="lazy" />'):"",i=this.hasChildren(e),a=i?"zod-mobile-menu__item--has-children":"zod-mobile-menu__item--leaf",l=o>0?"zod-mobile-menu__item--depth-".concat(o):"";if(!i)return'\n            <li class="zod-mobile-menu__item '.concat(a," ").concat(l,'" ').concat(e.attrs,'>\n                <a href="').concat(e.url,'" aria-label="').concat(e.title||"category",'" class="zod-mobile-menu__link ').concat(e.image?"has-image":"",'" ').concat(e.link_attrs,">\n                    ").concat(r,'\n                    <span class="zod-mobile-menu__label">').concat(e.title||"","</span>\n                </a>\n            </li>");var s=e.children.map(function(e){return t.getMobileMenu(e,n,o+1)}).join("");return'\n        <li class="zod-mobile-menu__item '.concat(a," ").concat(l,'" ').concat(e.attrs,'>\n            <div class="zod-mobile-menu__parent-row ').concat(e.image?"has-image":"",'">\n                <a href="').concat(e.url,'" class="zod-mobile-menu__parent-link" aria-label="').concat(e.title||"category",'">\n                    ').concat(r,'\n                    <span class="zod-mobile-menu__label">').concat(e.title||"",'</span>\n                </a>\n                <button class="zod-mobile-menu__toggle" aria-expanded="false" aria-label="expand submenu">\n                    <span class="zod-mobile-menu__arrow"></span>\n                </button>\n            </div>\n            <ul class="zod-mobile-menu__sub" aria-hidden="true">\n                <li class="zod-mobile-menu__item zod-mobile-menu__item--all">\n                    <a href="').concat(e.url,'" class="zod-mobile-menu__link">').concat(n,"</a>\n                </li>\n                ").concat(s,"\n            </ul>\n        </li>")}},{key:"getDesktopMenu",value:function(e,n){var t=this,o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"";return'\n        <li class="'.concat(this.getDesktopClasses(e,n)," ").concat(o,'" ').concat(e.attrs,' data-menu-item>\n            <a href="').concat(e.url,'" aria-label="').concat(e.title||"category",'" ').concat(e.link_attrs,">\n                <span>").concat(e.title,"</span>\n            </a>\n            ").concat(this.hasChildren(e)?'\n                <div class="sub-menu '.concat(this.hasProducts(e)?"w-full left-0 flex":"w-56",'">\n                    <ul class="').concat(this.hasProducts(e)?"w-56 shrink-0 m-8 rtl:ml-0 ltr:mr-0":"",'">\n                        ').concat(e.children.map(function(e){return t.getDesktopMenu(e,!1)}).join("\n"),"\n                    </ul>\n                    ").concat(this.hasProducts(e)?'\n                    <salla-products-list\n                    source="selected"\n                    shadow-on-hover\n                    source-value="['.concat(e.products,']" />'):"","\n                </div>"):"","\n        </li>")}},{key:"getMenusSplit",value:function(){var e=this;return{mobileHtml:this.menus.map(function(n){return e.getMobileMenu(n,e.displayAllText,0)}).join("\n"),desktopHtml:this.menus.map(function(n){return e.getDesktopMenu(n,!0)}).join("\n")}}},{key:"createMoreDropdown",value:function(){var e=this;return 0===this.overflowMenus.length?"":'\n        <li class="!hidden lg:!block root-level lg:!inline-block has-children relative" id="more-menu-dropdown">\n            <a href="#" aria-label="'.concat(this.moreText,'">\n                <span>').concat(this.moreText,'</span>\n            </a>\n            <div class="sub-menu w-56">\n                <ul>\n                    ').concat(this.overflowMenus.map(function(n){return e.getDesktopMenu(n,!1)}).join("\n"),"\n                </ul>\n            </div>\n        </li>")}},{key:"initializeResponsiveMenu",value:function(){var e=this;if(!(window.innerWidth<1024)&&this.querySelector(".zod-desktop-menu")&&window.enable_more_menu){this.checkMenuOverflow();var n=this.debounce(function(){e.checkMenuOverflow()},250);window.addEventListener("resize",n)}}},{key:"checkMenuOverflow",value:function(){var n=this,t=this.querySelector(".zod-desktop-menu");if(t){var o=t.closest(".container");if(o){this.visibleMenus=function(n){return function(n){if(Array.isArray(n))return e(n)}(n)||function(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}(n)||function(n,t){if(n){if("string"==typeof n)return e(n,t);var o={}.toString.call(n).slice(8,-1);return"Object"===o&&n.constructor&&(o=n.constructor.name),"Map"===o||"Set"===o?Array.from(n):"Arguments"===o||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(o)?e(n,t):void 0}}(n)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}(this.menus),this.overflowMenus=[];var r=t.querySelector("#more-menu-dropdown");r&&r.remove();var i=t.querySelectorAll(".root-level[data-menu-item]");i.forEach(function(e){e.style.display=""});var a=o.offsetWidth,l=o.querySelector(".flex")?o.querySelector(".flex").children:[],s=0;Array.from(l).forEach(function(e){e.contains(t)||(s+=e.offsetWidth)});var c=a-s-300,u=0,d=0;i.forEach(function(e,t){var o=e.offsetWidth;u+o<=c&&t<n.menus.length?(u+=o,d++):(e.style.setProperty("display","none","important"),t<n.menus.length&&n.overflowMenus.push(n.menus[t]))}),this.visibleMenus=this.menus.slice(0,d),this.overflowMenus.length>0&&t.insertAdjacentHTML("beforeend",this.createMoreDropdown())}}}},{key:"initMobileAccordion",value:function(){var e=this.querySelector(".zod-mobile-nav");e&&e.addEventListener("click",function(e){var n=e.target.closest(".zod-mobile-menu__toggle");if(n){e.preventDefault(),e.stopPropagation();var t=n.closest(".zod-mobile-menu__item--has-children");if(t){var o=t.querySelector(":scope > .zod-mobile-menu__sub");if(o){var r=t.classList.contains("is-open");(t.parentElement?Array.from(t.parentElement.children).filter(function(e){return e!==t&&e.classList.contains("zod-mobile-menu__item--has-children")}):[]).forEach(function(e){e.classList.remove("is-open");var n=e.querySelector(":scope > .zod-mobile-menu__parent-row > .zod-mobile-menu__toggle"),t=e.querySelector(":scope > .zod-mobile-menu__sub");n&&n.setAttribute("aria-expanded","false"),t&&(t.style.maxHeight="0",t.setAttribute("aria-hidden","true"))}),r?(t.classList.remove("is-open"),n.setAttribute("aria-expanded","false"),o.style.maxHeight="0",o.setAttribute("aria-hidden","true")):(t.classList.add("is-open"),n.setAttribute("aria-expanded","true"),o.style.maxHeight=o.scrollHeight+"px",o.setAttribute("aria-hidden","false"),o.addEventListener("transitionend",function(){t.classList.contains("is-open")&&(o.style.maxHeight="none")},{once:!0}))}}}})}},{key:"debounce",value:function(e,n){var t;return function(){for(var o=arguments.length,r=new Array(o),i=0;i<o;i++)r[i]=arguments[i];clearTimeout(t),t=setTimeout(function(){clearTimeout(t),e.apply(void 0,r)},n)}}},{key:"render",value:function(){var e=this.getMenusSplit(),n=e.mobileHtml,t=e.desktopHtml;this.innerHTML='\n        \x3c!-- Mobile Drawer --\x3e\n        <div class="zod-mobile-drawer" id="zod-mobile-drawer" role="dialog" aria-modal="true" aria-label="القائمة الرئيسية">\n            <div class="zod-mobile-drawer__overlay" id="zod-drawer-overlay"></div>\n            <div class="zod-mobile-drawer__panel">\n                <div class="zod-mobile-drawer__header">\n                    <span class="zod-mobile-drawer__title">الأقسام</span>\n                    <button class="zod-mobile-drawer__close" id="zod-drawer-close" aria-label="إغلاق القائمة">\n                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n                            <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>\n                        </svg>\n                    </button>\n                </div>\n                <nav class="zod-mobile-nav" aria-label="Mobile navigation">\n                    <ul class="zod-mobile-menu__list">\n                        '.concat(n,'\n                    </ul>\n                </nav>\n            </div>\n        </div>\n\n        \x3c!-- Desktop Navigation (hidden on mobile) --\x3e\n        <ul class="zod-desktop-menu main-menu" aria-label="Desktop navigation">\n            ').concat(t,'\n        </ul>\n\n        \x3c!-- Legacy close button for compatibility --\x3e\n        <button class="btn--close-sm close-mobile-menu sicon-cancel hidden"></button>')}}],u=[{key:"_closeDrawer",value:function(){var e=document.getElementById("zod-mobile-drawer");e&&(e.classList.remove("is-open"),document.body.classList.remove("zod-drawer-open","menu-opened"),document.body.style.overflow="")}}],c&&o(l.prototype,c),u&&o(l,u),Object.defineProperty(l,"prototype",{writable:!1}),l;var l,c,u}(l(HTMLElement));c._listenersRegistered=!1,customElements.define("custom-main-menu",c)})();
+class NavigationMenu extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <div class="main-menu-skel" aria-hidden="true">
+                <span class="header-skel-item header-skel-item--menu" style="width:80px"></span>
+                <span class="header-skel-item header-skel-item--menu" style="width:60px"></span>
+                <span class="header-skel-item header-skel-item--menu" style="width:90px"></span>
+                <span class="header-skel-item header-skel-item--menu" style="width:70px"></span>
+                <span class="header-skel-item header-skel-item--menu" style="width:80px"></span>
+            </div>`;
+
+        this._registerGlobalListeners();
+
+        salla.onReady()
+            .then(() => salla.lang.onLoaded())
+            .then(() => {
+                this.menus = [];
+                this.displayAllText = salla.lang.get('blocks.home.display_all');
+                this.moreText = salla.lang.get('common.titles.more');
+                this.visibleMenus = [];
+                this.overflowMenus = [];
+
+                return salla.api.component.getMenus()
+                    .then(({ data }) => {
+                        this.menus = data;
+                        return this.render();
+                    })
+                    .then(() => {
+                        this.initializeResponsiveMenu();
+                        this.initMobileAccordion();
+                    })
+                    .catch((error) => salla.logger.error('salla-menu::Error fetching menus', error));
+            });
+    }
+
+    _registerGlobalListeners() {
+        if (NavigationMenu._listenersRegistered) return;
+        NavigationMenu._listenersRegistered = true;
+
+        document.addEventListener('click', (event) => {
+            const trigger = event.target.closest("a[href='#mobile-menu']") || event.target.closest('.zod-header__mobile-menu');
+            if (!trigger || !NavigationMenu._isMobileViewport()) return;
+
+            event.preventDefault();
+            NavigationMenu._openDrawer();
+        }, true);
+
+        document.addEventListener('click', (event) => {
+            if (event.target.closest('#zod-drawer-close') || event.target.closest('.zod-mobile-drawer__close')) {
+                event.preventDefault();
+                NavigationMenu._closeDrawer();
+                return;
+            }
+
+            const overlay = event.target.closest('#zod-drawer-overlay') || (event.target.classList && event.target.classList.contains('zod-mobile-drawer__overlay'));
+            if (overlay) {
+                event.preventDefault();
+                NavigationMenu._closeDrawer();
+                return;
+            }
+
+            const mobileLink = event.target.closest('.zod-mobile-menu__link, .zod-mobile-menu__parent-link');
+            const isToggle = event.target.closest('.zod-mobile-menu__toggle');
+            if (mobileLink && !isToggle) {
+                NavigationMenu._closeDrawer();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                NavigationMenu._closeDrawer();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (!NavigationMenu._isMobileViewport()) {
+                NavigationMenu._closeDrawer(true);
+            }
+        }, { passive: true });
+    }
+
+    static _isMobileViewport() {
+        return window.matchMedia('(max-width: 1023px)').matches;
+    }
+
+    static _getDrawer() {
+        return document.getElementById('zod-mobile-drawer');
+    }
+
+    static _lockBodyScroll() {
+        if (NavigationMenu._scrollLocked) return;
+
+        NavigationMenu._savedScrollY = window.scrollY || window.pageYOffset || 0;
+        document.documentElement.classList.add('zod-drawer-open');
+        document.body.classList.add('zod-drawer-open');
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${NavigationMenu._savedScrollY}px`;
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.body.style.width = '100%';
+        NavigationMenu._scrollLocked = true;
+    }
+
+    static _unlockBodyScroll() {
+        if (!NavigationMenu._scrollLocked) return;
+
+        const storedTop = parseInt(document.body.style.top || '0', 10);
+        const scrollY = Number.isNaN(storedTop) ? NavigationMenu._savedScrollY : Math.abs(storedTop);
+
+        document.documentElement.classList.remove('zod-drawer-open');
+        document.body.classList.remove('zod-drawer-open');
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY || 0);
+
+        NavigationMenu._scrollLocked = false;
+        NavigationMenu._savedScrollY = 0;
+    }
+
+    static _openDrawer() {
+        const drawer = NavigationMenu._getDrawer();
+        if (!drawer) return;
+
+        clearTimeout(NavigationMenu._closeTimer);
+        drawer.classList.remove('is-closing');
+        drawer.setAttribute('aria-hidden', 'false');
+        NavigationMenu._lockBodyScroll();
+
+        requestAnimationFrame(() => {
+            drawer.classList.add('is-open');
+        });
+    }
+
+    static _closeDrawer(force = false) {
+        const drawer = NavigationMenu._getDrawer();
+        if (!drawer) {
+            NavigationMenu._unlockBodyScroll();
+            return;
+        }
+
+        clearTimeout(NavigationMenu._closeTimer);
+        drawer.classList.remove('is-open');
+        drawer.setAttribute('aria-hidden', 'true');
+        NavigationMenu._unlockBodyScroll();
+
+        if (force) {
+            drawer.classList.remove('is-closing');
+            return;
+        }
+
+        drawer.classList.add('is-closing');
+        NavigationMenu._closeTimer = setTimeout(() => {
+            drawer.classList.remove('is-closing');
+        }, NavigationMenu._drawerAnimationDuration);
+    }
+
+    hasChildren(menu) {
+        return menu?.children?.length > 0;
+    }
+
+    hasProducts(menu) {
+        return menu?.products?.length > 0;
+    }
+
+    getDesktopClasses(menu, isRootMenu) {
+        return `!hidden lg:!block ${isRootMenu ? 'root-level lg:!inline-block' : 'relative'} ${menu.products ? ' mega-menu' : ''}
+        ${this.hasChildren(menu) ? ' has-children' : ''}`;
+    }
+
+    getMobileMenu(menu, displayAllText, depth = 0) {
+        const menuImage = menu.image
+            ? `<img src="${menu.image}" class="zod-mobile-menu__image rounded-full" width="40" height="40" alt="${menu.title}" loading="lazy" />`
+            : '';
+        const hasKids = this.hasChildren(menu);
+        const itemTypeClass = hasKids ? 'zod-mobile-menu__item--has-children' : 'zod-mobile-menu__item--leaf';
+        const depthClass = depth > 0 ? `zod-mobile-menu__item--depth-${depth}` : '';
+
+        if (!hasKids) {
+            return `
+            <li class="zod-mobile-menu__item ${itemTypeClass} ${depthClass}" ${menu.attrs}>
+                <a href="${menu.url}" aria-label="${menu.title || 'category'}" class="zod-mobile-menu__link ${menu.image ? 'has-image' : ''}" ${menu.link_attrs}>
+                    ${menuImage}
+                    <span class="zod-mobile-menu__label">${menu.title || ''}</span>
+                </a>
+            </li>`;
+        }
+
+        const childrenHtml = menu.children.map(sub => this.getMobileMenu(sub, displayAllText, depth + 1)).join('');
+
+        return `
+        <li class="zod-mobile-menu__item ${itemTypeClass} ${depthClass}" ${menu.attrs}>
+            <div class="zod-mobile-menu__parent-row ${menu.image ? 'has-image' : ''}">
+                <a href="${menu.url}" class="zod-mobile-menu__parent-link" aria-label="${menu.title || 'category'}">
+                    ${menuImage}
+                    <span class="zod-mobile-menu__label">${menu.title || ''}</span>
+                </a>
+                <button class="zod-mobile-menu__toggle" aria-expanded="false" aria-label="expand submenu">
+                    <span class="zod-mobile-menu__arrow"></span>
+                </button>
+            </div>
+            <ul class="zod-mobile-menu__sub" aria-hidden="true">
+                <li class="zod-mobile-menu__item zod-mobile-menu__item--all">
+                    <a href="${menu.url}" class="zod-mobile-menu__link">${displayAllText}</a>
+                </li>
+                ${childrenHtml}
+            </ul>
+        </li>`;
+    }
+
+    getDesktopMenu(menu, isRootMenu, additionalClasses = '') {
+        return `
+        <li class="${this.getDesktopClasses(menu, isRootMenu)} ${additionalClasses}" ${menu.attrs} data-menu-item>
+            <a href="${menu.url}" aria-label="${menu.title || 'category'}" ${menu.link_attrs}>
+                <span>${menu.title}</span>
+            </a>
+            ${this.hasChildren(menu) ? `
+                <div class="sub-menu ${this.hasProducts(menu) ? 'w-full left-0 flex' : 'w-56'}">
+                    <ul class="${this.hasProducts(menu) ? 'w-56 shrink-0 m-8 rtl:ml-0 ltr:mr-0' : ''}">
+                        ${menu.children.map((subMenu) => this.getDesktopMenu(subMenu, false)).join('\n')}
+                    </ul>
+                    ${this.hasProducts(menu) ? `
+                    <salla-products-list
+                    source="selected"
+                    shadow-on-hover
+                    source-value="[${menu.products}]" />` : ''}
+                </div>` : ''}
+        </li>`;
+    }
+
+    getMenusSplit() {
+        const mobileHtml = this.menus.map(menu => this.getMobileMenu(menu, this.displayAllText, 0)).join('\n');
+        const desktopHtml = this.menus.map(menu => this.getDesktopMenu(menu, true)).join('\n');
+        return { mobileHtml, desktopHtml };
+    }
+
+    createMoreDropdown() {
+        if (this.overflowMenus.length === 0) return '';
+
+        return `
+        <li class="!hidden lg:!block root-level lg:!inline-block has-children relative" id="more-menu-dropdown">
+            <a href="#" aria-label="${this.moreText}">
+                <span>${this.moreText}</span>
+            </a>
+            <div class="sub-menu w-56">
+                <ul>
+                    ${this.overflowMenus.map((menu) => this.getDesktopMenu(menu, false)).join('\n')}
+                </ul>
+            </div>
+        </li>`;
+    }
+
+    initializeResponsiveMenu() {
+        if (window.innerWidth < 1024) return;
+
+        const mainMenu = this.querySelector('.zod-desktop-menu');
+        if (!mainMenu) return;
+
+        const isMoreMenuEnabled = window.enable_more_menu;
+        if (!isMoreMenuEnabled) return;
+
+        this.checkMenuOverflow();
+
+        const resizeHandler = this.debounce(() => {
+            this.checkMenuOverflow();
+        }, 250);
+
+        window.addEventListener('resize', resizeHandler);
+    }
+
+    checkMenuOverflow() {
+        const mainMenu = this.querySelector('.zod-desktop-menu');
+        if (!mainMenu) return;
+
+        const container = mainMenu.closest('.container');
+        if (!container) return;
+
+        this.visibleMenus = [...this.menus];
+        this.overflowMenus = [];
+
+        const existingMore = mainMenu.querySelector('#more-menu-dropdown');
+        if (existingMore) existingMore.remove();
+
+        const menuItems = mainMenu.querySelectorAll('.root-level[data-menu-item]');
+        menuItems.forEach(item => { item.style.display = ''; });
+
+        const containerWidth = container.offsetWidth;
+        const otherElements = container.querySelector('.flex') ? container.querySelector('.flex').children : [];
+        let usedWidth = 0;
+
+        Array.from(otherElements).forEach(element => {
+            if (!element.contains(mainMenu)) {
+                usedWidth += element.offsetWidth;
+            }
+        });
+
+        const availableWidth = containerWidth - usedWidth - 300;
+        let currentWidth = 0;
+        let visibleCount = 0;
+
+        menuItems.forEach((item, index) => {
+            const itemWidth = item.offsetWidth;
+            if (currentWidth + itemWidth <= availableWidth && index < this.menus.length) {
+                currentWidth += itemWidth;
+                visibleCount++;
+            } else {
+                item.style.setProperty('display', 'none', 'important');
+                if (index < this.menus.length) {
+                    this.overflowMenus.push(this.menus[index]);
+                }
+            }
+        });
+
+        this.visibleMenus = this.menus.slice(0, visibleCount);
+
+        if (this.overflowMenus.length > 0) {
+            mainMenu.insertAdjacentHTML('beforeend', this.createMoreDropdown());
+        }
+    }
+
+    _setSubmenuState(parentItem, isOpen) {
+        const toggleBtn = parentItem.querySelector(':scope > .zod-mobile-menu__parent-row > .zod-mobile-menu__toggle');
+        const subMenu = parentItem.querySelector(':scope > .zod-mobile-menu__sub');
+        if (!toggleBtn || !subMenu) return;
+
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        subMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+
+        if (isOpen) {
+            parentItem.classList.add('is-open');
+            subMenu.style.maxHeight = `${subMenu.scrollHeight}px`;
+            requestAnimationFrame(() => this._refreshAncestorHeights(parentItem));
+            return;
+        }
+
+        if (subMenu.style.maxHeight === 'none' || !subMenu.style.maxHeight) {
+            subMenu.style.maxHeight = `${subMenu.scrollHeight}px`;
+        }
+
+        requestAnimationFrame(() => {
+            parentItem.classList.remove('is-open');
+            subMenu.style.maxHeight = '0px';
+            this._refreshAncestorHeights(parentItem.parentElement?.closest('.zod-mobile-menu__item--has-children'));
+        });
+    }
+
+    _refreshAncestorHeights(startItem) {
+        let currentItem = startItem;
+
+        while (currentItem) {
+            const currentSub = currentItem.querySelector(':scope > .zod-mobile-menu__sub');
+            if (currentSub && currentItem.classList.contains('is-open')) {
+                currentSub.style.maxHeight = `${currentSub.scrollHeight}px`;
+            }
+            currentItem = currentItem.parentElement?.closest('.zod-mobile-menu__item--has-children');
+        }
+    }
+
+    initMobileAccordion() {
+        const mobileNav = this.querySelector('.zod-mobile-nav');
+        if (!mobileNav) return;
+
+        mobileNav.addEventListener('click', (event) => {
+            const toggleBtn = event.target.closest('.zod-mobile-menu__toggle');
+            if (!toggleBtn) return;
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            const parentItem = toggleBtn.closest('.zod-mobile-menu__item--has-children');
+            if (!parentItem) return;
+
+            const isOpen = parentItem.classList.contains('is-open');
+            const siblings = parentItem.parentElement
+                ? Array.from(parentItem.parentElement.children).filter((element) => element !== parentItem && element.classList.contains('zod-mobile-menu__item--has-children'))
+                : [];
+
+            siblings.forEach((sibling) => this._setSubmenuState(sibling, false));
+            this._setSubmenuState(parentItem, !isOpen);
+        });
+    }
+
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    render() {
+        const { mobileHtml, desktopHtml } = this.getMenusSplit();
+
+        this.innerHTML = `
+        <!-- Mobile Drawer -->
+        <div class="zod-mobile-drawer" id="zod-mobile-drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-label="القائمة الرئيسية">
+            <div class="zod-mobile-drawer__overlay" id="zod-drawer-overlay"></div>
+            <div class="zod-mobile-drawer__panel">
+                <div class="zod-mobile-drawer__header">
+                    <button class="zod-mobile-drawer__close" id="zod-drawer-close" aria-label="إغلاق القائمة">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <span class="zod-mobile-drawer__title">الأقسام</span>
+                </div>
+                <nav class="zod-mobile-nav" aria-label="Mobile navigation">
+                    <ul class="zod-mobile-menu__list">
+                        ${mobileHtml}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Desktop Navigation (hidden on mobile) -->
+        <ul class="zod-desktop-menu main-menu" aria-label="Desktop navigation">
+            ${desktopHtml}
+        </ul>
+
+        <!-- Legacy close button for compatibility -->
+        <button class="btn--close-sm close-mobile-menu sicon-cancel hidden"></button>`;
+    }
+}
+
+NavigationMenu._listenersRegistered = false;
+NavigationMenu._scrollLocked = false;
+NavigationMenu._savedScrollY = 0;
+NavigationMenu._closeTimer = null;
+NavigationMenu._drawerAnimationDuration = 420;
+
+customElements.define('custom-main-menu', NavigationMenu);

@@ -518,3 +518,222 @@ body.zod-drawer-open {
     display: none !important;
   }
 }
+
+
+// ============================================================
+// MOBILE DRAWER UX HOTFIX OVERRIDES
+// Keeps desktop untouched and hardens mobile/tablet behavior.
+// ============================================================
+
+@media only screen and (max-width: 1023px) {
+  .zod-mobile-drawer {
+    visibility: hidden;
+    opacity: 1;
+    transition: visibility 0s linear 0.42s;
+
+    &.is-open,
+    &.is-closing {
+      visibility: visible;
+      pointer-events: all;
+      transition-delay: 0s;
+    }
+
+    &__overlay {
+      opacity: 0;
+      background: rgba(1, 1, 1, 0.0);
+      backdrop-filter: blur(0px);
+      transition: opacity 0.38s ease, background 0.38s ease, backdrop-filter 0.38s ease;
+      pointer-events: none;
+    }
+
+    &__panel {
+      left: 0;
+      right: auto;
+      width: clamp(280px, 82vw, 380px);
+      max-width: 85vw;
+      border-inline-start: 0;
+      border-inline-end: 1px solid rgba(255, 45, 45, 0.18);
+      background:
+        linear-gradient(180deg, rgba(255, 45, 45, 0.11) 0%, rgba(255, 45, 45, 0.03) 18%, rgba(5, 5, 5, 0.98) 48%, #050505 100%),
+        #050505;
+      box-shadow:
+        0 0 0 1px rgba(255, 45, 45, 0.08),
+        0 24px 64px rgba(0, 0, 0, 0.72),
+        0 0 40px rgba(255, 45, 45, 0.12);
+      transform: translate3d(-104%, 0, 0);
+      transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    &__panel::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255, 45, 45, 0.92), rgba(255, 45, 45, 0.12));
+      box-shadow: 0 0 18px rgba(255, 45, 45, 0.35);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    &__header {
+      position: relative;
+      min-height: 72px;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 18px 20px 18px 72px;
+      background: linear-gradient(180deg, rgba(17, 17, 19, 0.98) 0%, rgba(7, 7, 8, 0.94) 100%);
+    }
+
+    &__title {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-shadow: 0 0 18px rgba(255, 45, 45, 0.14);
+    }
+
+    &__close {
+      position: absolute;
+      top: 16px;
+      left: 18px;
+      right: auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 0 16px rgba(255, 45, 45, 0.08);
+      color: #fff;
+      z-index: 2;
+    }
+
+    &__close:hover,
+    &__close:focus-visible {
+      background: rgba(255, 45, 45, 0.16);
+      border-color: rgba(255, 45, 45, 0.4);
+      color: #fff;
+      outline: none;
+    }
+
+    .zod-mobile-nav {
+      padding-bottom: 18px;
+    }
+
+    &.is-open {
+      .zod-mobile-drawer__overlay {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.62);
+        backdrop-filter: blur(3px);
+        pointer-events: all;
+      }
+
+      .zod-mobile-drawer__panel {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    &.is-closing {
+      .zod-mobile-drawer__overlay {
+        opacity: 0;
+        background: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        pointer-events: none;
+      }
+
+      .zod-mobile-drawer__panel {
+        transform: translate3d(-104%, 0, 0);
+      }
+    }
+  }
+
+  html.zod-drawer-open,
+  body.zod-drawer-open {
+    overflow: hidden !important;
+    overscroll-behavior: none;
+    touch-action: auto !important;
+  }
+
+  body.zod-drawer-open {
+    height: auto;
+  }
+
+  .zod-mobile-menu__item {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .zod-mobile-menu__item--depth-1 {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .zod-mobile-menu__item--depth-2,
+  .zod-mobile-menu__item--depth-3 {
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .zod-mobile-menu__parent-row,
+  .zod-mobile-menu__link,
+  .zod-mobile-menu__parent-link {
+    position: relative;
+  }
+
+  .zod-mobile-menu__link,
+  .zod-mobile-menu__parent-link {
+    color: #f4f4f5 !important;
+    min-height: 58px;
+    padding: 15px 18px;
+  }
+
+  .zod-mobile-menu__link:hover,
+  .zod-mobile-menu__link:focus-visible,
+  .zod-mobile-menu__parent-link:hover,
+  .zod-mobile-menu__parent-link:focus-visible {
+    color: #ffffff !important;
+    background: linear-gradient(90deg, rgba(255, 45, 45, 0.12), rgba(255, 45, 45, 0.02));
+    outline: none;
+  }
+
+  .zod-mobile-menu__item--all .zod-mobile-menu__link {
+    color: #d4d4d8 !important;
+    padding-block: 11px;
+  }
+
+  .zod-mobile-menu__toggle {
+    width: 52px;
+    height: 52px;
+    color: #fafafa;
+  }
+
+  .zod-mobile-menu__toggle:hover,
+  .zod-mobile-menu__toggle:focus-visible {
+    color: #ff2d2d;
+    outline: none;
+  }
+
+  .zod-mobile-menu__arrow {
+    width: 9px;
+    height: 9px;
+    border-inline-end: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(135deg);
+  }
+
+  [dir='rtl'] .zod-mobile-menu__arrow {
+    transform: rotate(135deg);
+  }
+
+  .zod-mobile-menu__item--has-children.is-open > .zod-mobile-menu__parent-row .zod-mobile-menu__arrow {
+    transform: rotate(45deg) !important;
+  }
+
+  .zod-mobile-menu__sub {
+    background: linear-gradient(180deg, rgba(255, 45, 45, 0.04), rgba(255, 255, 255, 0.01));
+    transition: max-height 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .zod-mobile-menu__image {
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 14px rgba(255, 45, 45, 0.08);
+  }
+}

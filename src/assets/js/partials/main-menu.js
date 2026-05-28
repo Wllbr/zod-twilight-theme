@@ -1,7 +1,5 @@
 class NavigationMenu extends HTMLElement {
     connectedCallback() {
-        // Seed a skeleton placeholder shown until the menu data is fetched
-        // and render() replaces this innerHTML with the real menu.
         this.innerHTML = `
             <div class="main-menu-skel" aria-hidden="true">
                 <span class="header-skel-item header-skel-item--menu" style="width:80px"></span>
@@ -11,9 +9,6 @@ class NavigationMenu extends HTMLElement {
                 <span class="header-skel-item header-skel-item--menu" style="width:80px"></span>
             </div>`;
 
-        // IMPORTANT: Register the global click handler immediately on connect,
-        // BEFORE the async API call. This ensures the hamburger button works
-        // as soon as the drawer is rendered, regardless of app.js timing.
         this._registerGlobalListeners();
 
         salla.onReady()
@@ -26,120 +21,155 @@ class NavigationMenu extends HTMLElement {
                 this.overflowMenus = [];
 
                 return salla.api.component.getMenus()
-                .then(({ data }) => {
-                    this.menus = data;
-                    return this.render()
-                }).then(() => {
-                    this.initializeResponsiveMenu();
-                    this.initMobileAccordion();
-                }).catch((error) => salla.logger.error('salla-menu::Error fetching menus', error));
+                    .then(({ data }) => {
+                        this.menus = data;
+                        return this.render();
+                    })
+                    .then(() => {
+                        this.initializeResponsiveMenu();
+                        this.initMobileAccordion();
+                    })
+                    .catch((error) => salla.logger.error('salla-menu::Error fetching menus', error));
             });
     }
 
-    /**
-    * Register document-level listeners immediately so the hamburger trigger
-    * works as soon as the drawer DOM exists — no dependency on app.js timing.
-    */
     _registerGlobalListeners() {
-        // Only register once
         if (NavigationMenu._listenersRegistered) return;
         NavigationMenu._listenersRegistered = true;
 
-        const self = this;
+        document.addEventListener('click', (event) => {
+            const trigger = event.target.closest("a[href='#mobile-menu']") || event.target.closest('.zod-header__mobile-menu');
+            if (!trigger || !NavigationMenu._isMobileViewport()) return;
 
-        // Hamburger trigger — open drawer
-        document.addEventListener('click', function(e) {
-            const trigger = e.target.closest("a[href='#mobile-menu']") || e.target.closest('.zod-header__mobile-menu');
-            if (trigger) {
-                e.preventDefault();
-                e.stopPropagation();
-                const drawer = document.getElementById('zod-mobile-drawer');
-                if (drawer) {
-                    drawer.classList.add('is-open');
-                    document.body.classList.add('zod-drawer-open', 'menu-opened');
-                    document.body.style.overflow = 'hidden';
-                }
+            event.preventDefault();
+            NavigationMenu._openDrawer();
+        }, true);
+
+        document.addEventListener('click', (event) => {
+            if (event.target.closest('#zod-drawer-close') || event.target.closest('.zod-mobile-drawer__close')) {
+                event.preventDefault();
+                NavigationMenu._closeDrawer();
+                return;
             }
-        }, true); // Use capture phase to intercept before other handlers
 
-        // Close button
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('#zod-drawer-close') || e.target.closest('.zod-mobile-drawer__close')) {
-                e.preventDefault();
+            const overlay = event.target.closest('#zod-drawer-overlay') || (event.target.classList && event.target.classList.contains('zod-mobile-drawer__overlay'));
+            if (overlay) {
+                event.preventDefault();
+                NavigationMenu._closeDrawer();
+                return;
+            }
+
+            const mobileLink = event.target.closest('.zod-mobile-menu__link, .zod-mobile-menu__parent-link');
+            const isToggle = event.target.closest('.zod-mobile-menu__toggle');
+            if (mobileLink && !isToggle) {
                 NavigationMenu._closeDrawer();
             }
         });
 
-        // Overlay click
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('#zod-drawer-overlay') || (e.target.classList && e.target.classList.contains('zod-mobile-drawer__overlay'))) {
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
                 NavigationMenu._closeDrawer();
             }
         });
 
-        // Legacy close buttons
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.close-mobile-menu')) {
-                NavigationMenu._closeDrawer();
+        window.addEventListener('resize', () => {
+            if (!NavigationMenu._isMobileViewport()) {
+                NavigationMenu._closeDrawer(true);
             }
-        });
+        }, { passive: true });
+    }
 
-        // Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const drawer = document.getElementById('zod-mobile-drawer');
-                if (drawer && drawer.classList.contains('is-open')) {
-                    NavigationMenu._closeDrawer();
-                }
-            }
+    static _isMobileViewport() {
+        return window.matchMedia('(max-width: 1023px)').matches;
+    }
+
+    static _getDrawer() {
+        return document.getElementById('zod-mobile-drawer');
+    }
+
+    static _lockBodyScroll() {
+        if (NavigationMenu._scrollLocked) return;
+
+        NavigationMenu._savedScrollY = window.scrollY || window.pageYOffset || 0;
+        document.documentElement.classList.add('zod-drawer-open');
+        document.body.classList.add('zod-drawer-open');
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${NavigationMenu._savedScrollY}px`;
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.body.style.width = '100%';
+        NavigationMenu._scrollLocked = true;
+    }
+
+    static _unlockBodyScroll() {
+        if (!NavigationMenu._scrollLocked) return;
+
+        const storedTop = parseInt(document.body.style.top || '0', 10);
+        const scrollY = Number.isNaN(storedTop) ? NavigationMenu._savedScrollY : Math.abs(storedTop);
+
+        document.documentElement.classList.remove('zod-drawer-open');
+        document.body.classList.remove('zod-drawer-open');
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY || 0);
+
+        NavigationMenu._scrollLocked = false;
+        NavigationMenu._savedScrollY = 0;
+    }
+
+    static _openDrawer() {
+        const drawer = NavigationMenu._getDrawer();
+        if (!drawer) return;
+
+        clearTimeout(NavigationMenu._closeTimer);
+        drawer.classList.remove('is-closing');
+        drawer.setAttribute('aria-hidden', 'false');
+        NavigationMenu._lockBodyScroll();
+
+        requestAnimationFrame(() => {
+            drawer.classList.add('is-open');
         });
     }
 
-    static _closeDrawer() {
-        const drawer = document.getElementById('zod-mobile-drawer');
-        if (drawer) {
-            drawer.classList.remove('is-open');
-            document.body.classList.remove('zod-drawer-open', 'menu-opened');
-            document.body.style.overflow = '';
+    static _closeDrawer(force = false) {
+        const drawer = NavigationMenu._getDrawer();
+        if (!drawer) {
+            NavigationMenu._unlockBodyScroll();
+            return;
         }
+
+        clearTimeout(NavigationMenu._closeTimer);
+        drawer.classList.remove('is-open');
+        drawer.setAttribute('aria-hidden', 'true');
+        NavigationMenu._unlockBodyScroll();
+
+        if (force) {
+            drawer.classList.remove('is-closing');
+            return;
+        }
+
+        drawer.classList.add('is-closing');
+        NavigationMenu._closeTimer = setTimeout(() => {
+            drawer.classList.remove('is-closing');
+        }, NavigationMenu._drawerAnimationDuration);
     }
 
-    /** 
-    * Check if the menu has children
-    * @param {Object} menu
-    * @returns {Boolean}
-    */
     hasChildren(menu) {
         return menu?.children?.length > 0;
     }
 
-    /**
-    * Check if the menu has products
-    * @param {Object} menu
-    * @returns {Boolean}
-    */
     hasProducts(menu) {
         return menu?.products?.length > 0;
     }
 
-    /**
-    * Get the classes for desktop menu
-    * @param {Object} menu
-    * @param {Boolean} isRootMenu
-    * @returns {String}
-    */
     getDesktopClasses(menu, isRootMenu) {
         return `!hidden lg:!block ${isRootMenu ? 'root-level lg:!inline-block' : 'relative'} ${menu.products ? ' mega-menu' : ''}
-        ${this.hasChildren(menu) ? ' has-children' : ''}`
+        ${this.hasChildren(menu) ? ' has-children' : ''}`;
     }
 
-    /**
-    * Get the mobile menu — accordion-style
-    * @param {Object} menu
-    * @param {String} displayAllText
-    * @param {Number} depth
-    * @returns {String}
-    */
     getMobileMenu(menu, displayAllText, depth = 0) {
         const menuImage = menu.image
             ? `<img src="${menu.image}" class="zod-mobile-menu__image rounded-full" width="40" height="40" alt="${menu.title}" loading="lazy" />`
@@ -180,13 +210,6 @@ class NavigationMenu extends HTMLElement {
         </li>`;
     }
 
-    /**
-    * Get the desktop menu
-    * @param {Object} menu
-    * @param {Boolean} isRootMenu
-    * @param {String} additionalClasses
-    * @returns {String}
-    */
     getDesktopMenu(menu, isRootMenu, additionalClasses = '') {
         return `
         <li class="${this.getDesktopClasses(menu, isRootMenu)} ${additionalClasses}" ${menu.attrs} data-menu-item>
@@ -207,20 +230,12 @@ class NavigationMenu extends HTMLElement {
         </li>`;
     }
 
-    /**
-    * Get the menus split for mobile and desktop
-    * @returns {Object} { mobileHtml, desktopHtml }
-    */
     getMenusSplit() {
         const mobileHtml = this.menus.map(menu => this.getMobileMenu(menu, this.displayAllText, 0)).join('\n');
         const desktopHtml = this.menus.map(menu => this.getDesktopMenu(menu, true)).join('\n');
         return { mobileHtml, desktopHtml };
     }
 
-    /**
-    * Create More dropdown menu
-    * @returns {String}
-    */
     createMoreDropdown() {
         if (this.overflowMenus.length === 0) return '';
 
@@ -237,9 +252,6 @@ class NavigationMenu extends HTMLElement {
         </li>`;
     }
 
-    /*
-    * Initialize responsive menu functionality
-    */
     initializeResponsiveMenu() {
         if (window.innerWidth < 1024) return;
 
@@ -258,9 +270,6 @@ class NavigationMenu extends HTMLElement {
         window.addEventListener('resize', resizeHandler);
     }
 
-    /**
-    * Check if menu items overflow and move them to More dropdown
-    */
     checkMenuOverflow() {
         const mainMenu = this.querySelector('.zod-desktop-menu');
         if (!mainMenu) return;
@@ -311,69 +320,68 @@ class NavigationMenu extends HTMLElement {
         }
     }
 
-    /**
-    * Initialize accordion behavior for mobile menu
-    */
+    _setSubmenuState(parentItem, isOpen) {
+        const toggleBtn = parentItem.querySelector(':scope > .zod-mobile-menu__parent-row > .zod-mobile-menu__toggle');
+        const subMenu = parentItem.querySelector(':scope > .zod-mobile-menu__sub');
+        if (!toggleBtn || !subMenu) return;
+
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        subMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+
+        if (isOpen) {
+            parentItem.classList.add('is-open');
+            subMenu.style.maxHeight = `${subMenu.scrollHeight}px`;
+            requestAnimationFrame(() => this._refreshAncestorHeights(parentItem));
+            return;
+        }
+
+        if (subMenu.style.maxHeight === 'none' || !subMenu.style.maxHeight) {
+            subMenu.style.maxHeight = `${subMenu.scrollHeight}px`;
+        }
+
+        requestAnimationFrame(() => {
+            parentItem.classList.remove('is-open');
+            subMenu.style.maxHeight = '0px';
+            this._refreshAncestorHeights(parentItem.parentElement?.closest('.zod-mobile-menu__item--has-children'));
+        });
+    }
+
+    _refreshAncestorHeights(startItem) {
+        let currentItem = startItem;
+
+        while (currentItem) {
+            const currentSub = currentItem.querySelector(':scope > .zod-mobile-menu__sub');
+            if (currentSub && currentItem.classList.contains('is-open')) {
+                currentSub.style.maxHeight = `${currentSub.scrollHeight}px`;
+            }
+            currentItem = currentItem.parentElement?.closest('.zod-mobile-menu__item--has-children');
+        }
+    }
+
     initMobileAccordion() {
         const mobileNav = this.querySelector('.zod-mobile-nav');
         if (!mobileNav) return;
 
-        mobileNav.addEventListener('click', (e) => {
-            const toggleBtn = e.target.closest('.zod-mobile-menu__toggle');
+        mobileNav.addEventListener('click', (event) => {
+            const toggleBtn = event.target.closest('.zod-mobile-menu__toggle');
             if (!toggleBtn) return;
 
-            e.preventDefault();
-            e.stopPropagation();
+            event.preventDefault();
+            event.stopPropagation();
 
             const parentItem = toggleBtn.closest('.zod-mobile-menu__item--has-children');
             if (!parentItem) return;
 
-            const subMenu = parentItem.querySelector(':scope > .zod-mobile-menu__sub');
-            if (!subMenu) return;
-
             const isOpen = parentItem.classList.contains('is-open');
-
-            // Close siblings at same level
             const siblings = parentItem.parentElement
-                ? Array.from(parentItem.parentElement.children).filter(el => el !== parentItem && el.classList.contains('zod-mobile-menu__item--has-children'))
+                ? Array.from(parentItem.parentElement.children).filter((element) => element !== parentItem && element.classList.contains('zod-mobile-menu__item--has-children'))
                 : [];
-            siblings.forEach(sib => {
-                sib.classList.remove('is-open');
-                const sibToggle = sib.querySelector(':scope > .zod-mobile-menu__parent-row > .zod-mobile-menu__toggle');
-                const sibSub = sib.querySelector(':scope > .zod-mobile-menu__sub');
-                if (sibToggle) sibToggle.setAttribute('aria-expanded', 'false');
-                if (sibSub) {
-                    sibSub.style.maxHeight = '0';
-                    sibSub.setAttribute('aria-hidden', 'true');
-                }
-            });
 
-            if (isOpen) {
-                parentItem.classList.remove('is-open');
-                toggleBtn.setAttribute('aria-expanded', 'false');
-                subMenu.style.maxHeight = '0';
-                subMenu.setAttribute('aria-hidden', 'true');
-            } else {
-                parentItem.classList.add('is-open');
-                toggleBtn.setAttribute('aria-expanded', 'true');
-                subMenu.style.maxHeight = subMenu.scrollHeight + 'px';
-                subMenu.setAttribute('aria-hidden', 'false');
-                // After transition, allow natural height for nested opens
-                subMenu.addEventListener('transitionend', () => {
-                    if (parentItem.classList.contains('is-open')) {
-                        subMenu.style.maxHeight = 'none';
-                    }
-                }, { once: true });
-            }
+            siblings.forEach((sibling) => this._setSubmenuState(sibling, false));
+            this._setSubmenuState(parentItem, !isOpen);
         });
     }
 
-    /**
-    * Debounce function to limit resize event calls
-    * @param {Function} func
-    * @param {Number} wait
-    * @returns {Function}
-    */
     debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -386,24 +394,21 @@ class NavigationMenu extends HTMLElement {
         };
     }
 
-    /**
-    * Render the header menu — separate mobile drawer from desktop nav
-    */
     render() {
         const { mobileHtml, desktopHtml } = this.getMenusSplit();
 
         this.innerHTML = `
         <!-- Mobile Drawer -->
-        <div class="zod-mobile-drawer" id="zod-mobile-drawer" role="dialog" aria-modal="true" aria-label="القائمة الرئيسية">
+        <div class="zod-mobile-drawer" id="zod-mobile-drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-label="القائمة الرئيسية">
             <div class="zod-mobile-drawer__overlay" id="zod-drawer-overlay"></div>
             <div class="zod-mobile-drawer__panel">
                 <div class="zod-mobile-drawer__header">
-                    <span class="zod-mobile-drawer__title">الأقسام</span>
                     <button class="zod-mobile-drawer__close" id="zod-drawer-close" aria-label="إغلاق القائمة">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </button>
+                    <span class="zod-mobile-drawer__title">الأقسام</span>
                 </div>
                 <nav class="zod-mobile-nav" aria-label="Mobile navigation">
                     <ul class="zod-mobile-menu__list">
@@ -423,7 +428,10 @@ class NavigationMenu extends HTMLElement {
     }
 }
 
-// Static flag to prevent duplicate listener registration
 NavigationMenu._listenersRegistered = false;
+NavigationMenu._scrollLocked = false;
+NavigationMenu._savedScrollY = 0;
+NavigationMenu._closeTimer = null;
+NavigationMenu._drawerAnimationDuration = 420;
 
 customElements.define('custom-main-menu', NavigationMenu);

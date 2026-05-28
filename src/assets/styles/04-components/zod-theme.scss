@@ -1713,6 +1713,7 @@ body.theme-raed .zod-header__mainnav,
 
 .zod-header__mainnav .inner {
   background: transparent !important;
+  overflow: visible !important;
 }
 
 .zod-header__main-inner {
@@ -1738,13 +1739,19 @@ body.theme-raed .zod-header__mainnav,
 .zod-header__mobile-menu {
   width: 42px;
   height: 42px;
-  display: inline-flex !important;
+  display: none;
   align-items: center;
   justify-content: center;
   border-radius: 14px;
   color: #ffffff !important;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 1024px) {
+  .zod-header__mobile-menu {
+    display: inline-flex !important;
+  }
 }
 
 .zod-header__mobile-menu i {
@@ -1803,7 +1810,7 @@ body.theme-raed .zod-header__mainnav,
   min-height: 52px;
   justify-content: flex-start;
   border-top: 1px solid rgba(255, 255, 255, 0.055);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .zod-header__category-label {
@@ -1823,7 +1830,8 @@ body.theme-raed .zod-header__mainnav,
 .zod-header__category-nav {
   flex: 1 1 auto;
   min-width: 0;
-  overflow-x: auto;
+  overflow-x: visible;
+  overflow-y: visible;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -1839,6 +1847,7 @@ body.theme-raed .zod-header__mainnav,
 
 .zod-header__category-nav .main-menu {
   display: flex !important;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
   margin: 0 !important;
@@ -1869,12 +1878,18 @@ body.theme-raed .zod-header__mainnav,
   transform: translateY(-1px);
 }
 
+.zod-header__category-nav .root-level {
+  position: relative;
+}
+
 .zod-header__category-nav .sub-menu {
   background: rgba(8, 8, 10, 0.98) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 18px !important;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 30px rgba(255, 45, 45, 0.06) !important;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 999;
+  top: 100%;
 }
 
 .zod-header__category-nav .sub-menu a,
@@ -2005,10 +2020,12 @@ body.theme-raed .mm-ocd__content {
   background: #0a0a0c !important;
 }
 
-/* Style the mmenu navigation panel */
-body.theme-raed .mm-spn.mm-spn--light {
-  background: #0a0a0c !important;
-  color: #ffffff !important;
+/* Style the mmenu navigation panel - scoped to mobile drawer only */
+@media (max-width: 1024px) {
+  body.theme-raed .mm-spn.mm-spn--light {
+    background: #0a0a0c !important;
+    color: #ffffff !important;
+  }
 }
 
 /* Menu items text color inside the drawer */

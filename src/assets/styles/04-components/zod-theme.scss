@@ -1803,7 +1803,10 @@ body.theme-raed .zod-header__mainnav,
   min-height: 52px;
   justify-content: flex-start;
   border-top: 1px solid rgba(255, 255, 255, 0.055);
-  overflow: hidden;
+  /* FIX: allow dropdowns to overflow out of the category row */
+  overflow: visible !important;
+  position: relative;
+  z-index: 100;
 }
 
 .zod-header__category-label {
@@ -1823,7 +1826,9 @@ body.theme-raed .zod-header__mainnav,
 .zod-header__category-nav {
   flex: 1 1 auto;
   min-width: 0;
-  overflow-x: auto;
+  /* FIX: allow dropdown menus to overflow — do NOT use overflow-x:auto here
+     as it creates a scroll container that clips absolutely-positioned children */
+  overflow: visible !important;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -1874,7 +1879,11 @@ body.theme-raed .zod-header__mainnav,
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 18px !important;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 30px rgba(255, 45, 45, 0.06) !important;
-  overflow: hidden;
+  /* FIX: raise z-index above all homepage sections */
+  z-index: 9999 !important;
+  overflow: visible !important;
+  /* Premium entrance animation */
+  animation: zodDropdownIn 0.22s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 .zod-header__category-nav .sub-menu a,
@@ -1929,6 +1938,80 @@ body.theme-raed .zod-header__mainnav,
   .zod-header__search-zone .s-search-input,
   .zod-header .s-search-input {
     min-height: 40px !important;
+  }
+}
+
+/* ============================================================
+   PREMIUM ANIMATION KEYFRAMES
+   ============================================================ */
+
+/* Dropdown entrance */
+@keyframes zodDropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mobile drawer slide-in (RTL) */
+@keyframes zodDrawerSlideInRtl {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+/* Mobile drawer slide-in (LTR) */
+@keyframes zodDrawerSlideInLtr {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+/* Overlay fade */
+@keyframes zodOverlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Accordion item reveal */
+@keyframes zodAccordionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered mobile item entrance */
+.zod-mobile-drawer.is-open .zod-mobile-menu__item {
+  animation: zodAccordionReveal 0.28s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(1)  { animation-delay: 0.04s; }
+.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(2)  { animation-delay: 0.07s; }
+.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(3)  { animation-delay: 0.10s; }
+.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(4)  { animation-delay: 0.13s; }
+.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(5)  { animation-delay: 0.16s; }
+.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(6)  { animation-delay: 0.19s; }
+.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(7)  { animation-delay: 0.22s; }
+.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(8)  { animation-delay: 0.25s; }
+.zod-mobile-drawer.is-open .zod-mobile-menu__item:nth-child(n+9) { animation-delay: 0.28s; }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .zod-mobile-drawer,
+  .zod-mobile-drawer__panel,
+  .zod-mobile-drawer__overlay,
+  .zod-mobile-menu__item,
+  .zod-mobile-menu__sub,
+  .zod-header__category-nav .sub-menu {
+    animation: none !important;
+    transition: none !important;
   }
 }
 

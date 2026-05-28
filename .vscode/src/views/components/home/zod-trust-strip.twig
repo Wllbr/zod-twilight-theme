@@ -1,0 +1,27 @@
+{#
+| Variable              | Type     | Description
+|-----------------------|----------|--------------------------------------------
+| component.items       | object[] | Trust signals
+| component.items[].image|string   | Uploaded icon image, recommended 80×80 px
+| component.items[].text| string   | Trust text
+#}
+<section class="s-block zod-section zod-trust-strip" id="zod-trust-{{ position }}">
+  <div class="container">
+    <div class="zod-trust-strip__items">
+      {% for item in component.items %}
+        {% if item.text %}
+          <div class="zod-trust-strip__item">
+            <span class="zod-trust-strip__image">
+              {% if item.image %}
+                <img src="{{ item.image }}" width="40" height="40" alt="{{ item.text }}" loading="lazy">
+              {% else %}
+                <span class="zod-image-icon__placeholder"></span>
+              {% endif %}
+            </span>
+            <strong>{{ item.text }}</strong>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

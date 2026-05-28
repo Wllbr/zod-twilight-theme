@@ -1,0 +1,45 @@
+{#
+| Variable                | Type    | Description
+|-------------------------|---------|--------------------------------------------------
+| component               | object  | Merchant settings from twilight.json
+| component.eyebrow       | string  | Small label above the title
+| component.title         | string  | Main heading
+| component.highlight     | string  | Highlighted heading phrase
+| component.description   | string  | Hero description
+| component.primary_text  | string  | Primary CTA label
+| component.primary_url   | string  | Primary CTA URL
+| component.secondary_text| string  | Secondary CTA label
+| component.secondary_url | string  | Secondary CTA URL
+#}
+<section class="zod-section zod-hero" id="zod-hero-{{ position }}">
+  <div class="container">
+    <div class="zod-hero__content">
+      {% if component.eyebrow %}
+        <div class="zod-eyebrow">
+          <i class="sicon-flash"></i>
+          <span>{{ component.eyebrow }}</span>
+        </div>
+      {% endif %}
+
+      <h1>
+        {{ component.title ?: 'حلول تقنية وأمنية' }}
+        <span>{{ component.highlight ?: 'بهوية حمراء فاخرة' }}</span>
+      </h1>
+
+      {% if component.description %}
+        <p>{{ component.description }}</p>
+      {% else %}
+        <p>اعرض منتجات الإنتركوم، الكاميرات، الشبكات، وأنظمة التحكم بتجربة داكنة احترافية مصممة لمتاجر الإلكترونيات والحلول الفنية.</p>
+      {% endif %}
+
+      <div class="zod-hero__actions">
+        {% if component.primary_text and component.primary_url %}
+          <a class="zod-button" href="{{ component.primary_url }}">{{ component.primary_text }}</a>
+        {% endif %}
+        {% if component.secondary_text and component.secondary_url %}
+          <a class="zod-button--ghost" href="{{ component.secondary_url }}">{{ component.secondary_text }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

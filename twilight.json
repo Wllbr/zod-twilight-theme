@@ -277,9 +277,8 @@
                 "en": "Premium Splash Screen",
                 "ar": "شاشة افتتاحية فاخرة"
             },
-            "icon": "sicon-flash",
+            "icon": "sicon-art-palette",
             "path": "home.zod-premium-splash",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png?v=1.1",
             "fields": [
                 {
                     "type": "boolean",

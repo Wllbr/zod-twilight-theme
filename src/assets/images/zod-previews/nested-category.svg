@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480">
+  <defs>
+    <radialGradient id="g" cx="20%" cy="20%" r="80%"><stop offset="0" stop-color="#ef4444" stop-opacity=".35"/><stop offset=".42" stop-color="#111"/><stop offset="1" stop-color="#000"/></radialGradient>
+    <linearGradient id="line" x1="0" x2="1"><stop stop-color="#ef4444"/><stop offset="1" stop-color="#991b1b"/></linearGradient>
+  </defs>
+  <rect width="900" height="480" rx="34" fill="url(#g)"/>
+  <g opacity=".16" stroke="#fff"><path d="M0 90H900M0 180H900M0 270H900M0 360H900M150 0V480M300 0V480M450 0V480M600 0V480M750 0V480"/></g>
+  <rect x="48" y="54" width="132" height="42" rx="21" fill="#ef4444" opacity=".22" stroke="#ef4444"/>
+  <text x="64" y="82" fill="#fecaca" font-family="Arial, sans-serif" font-size="18" font-weight="700">ZOD STORE</text>
+  <text x="48" y="205" fill="#fff" font-family="Arial, sans-serif" font-size="54" font-weight="900">ZOD TABS</text>
+  <text x="50" y="252" fill="#a1a1aa" font-family="Arial, sans-serif" font-size="24">Subcategory product tabs</text>
+  <rect x="52" y="312" width="190" height="56" rx="18" fill="url(#line)"/>
+  <text x="91" y="348" fill="#fff" font-family="Arial, sans-serif" font-size="18" font-weight="800">Preview</text>
+  <g transform="translate(560 132)">
+    <rect width="250" height="220" rx="28" fill="#121214" stroke="#ef4444" stroke-opacity=".45"/>
+    <circle cx="78" cy="72" r="34" fill="#ef4444" opacity=".22"/>
+    <rect x="48" y="128" width="154" height="16" rx="8" fill="#fff" opacity=".84"/>
+    <rect x="48" y="158" width="120" height="12" rx="6" fill="#ef4444" opacity=".95"/>
+  </g>
+</svg>

@@ -4,10 +4,11 @@
  */
 
 export default function initZodInteractions() {
+  const scrollRevealEnabled = window.zod_scroll_reveal !== false && window.zod_scroll_reveal !== 'false';
   const revealSelector = '.product-card, .s-product-card, custom-salla-product-card, .banner-item, .home-section, .zod-section, .zod-glass-card, .zod-promo';
   const targetElements = Array.from(document.querySelectorAll(revealSelector));
 
-  if (targetElements.length) {
+  if (scrollRevealEnabled && targetElements.length) {
     targetElements.forEach((el) => el.classList.add('scroll-reveal-item'));
 
     if ('IntersectionObserver' in window) {

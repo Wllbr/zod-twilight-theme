@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import Anime from './partials/anime';
 import initTootTip from './partials/tooltip';
 import initZodInteractions from './partials/zod-interactions';
+import ZodMovingProductsShowcase from './partials/moving-products-showcase';
 import AppHelpers from "./app-helpers";
 
 class App extends AppHelpers {
@@ -33,6 +34,7 @@ class App extends AppHelpers {
 
     initTootTip();
     initZodInteractions();
+    new ZodMovingProductsShowcase().init();
     this.loadModalImgOnclick();
 
     salla.comment.event.onAdded(() => window.location.reload());
@@ -43,7 +45,7 @@ class App extends AppHelpers {
   }
 
   log(message) {
-    salla.log(`ThemeApp(Raed)::${message}`);
+    salla.log(`ThemeApp(ZOD)::${message}`);
     return this;
   }
 

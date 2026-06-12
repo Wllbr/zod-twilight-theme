@@ -68,11 +68,13 @@
 
 
     <script data-cfasync="false">
-        window.header_is_sticky = "{{theme.settings.get('header_is_sticky', 'Default Value')}}"
-        window.imageZoom = "{{theme.settings.get('imageZoom')}}"
-        window.can_access_wallet = {{ user.can_access_wallet | json_encode }}
-        window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
-        window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
+        window.header_is_sticky = {{ theme.settings.get('header_is_sticky', true) | json_encode }};
+        window.imageZoom = {{ theme.settings.get('imageZoom', false) | json_encode }};
+        window.can_access_wallet = {{ user.can_access_wallet | json_encode }};
+        window.enable_more_menu = {{ theme.settings.get('enable_more_menu', true) | json_encode }};
+        window.enable_add_product_toast = {{ theme.settings.get('enable_add_product_toast', true) | json_encode }};
+        window.zod_scroll_reveal = {{ theme.settings.get('zod_scroll_reveal', true) | json_encode }};
+        window.zod_neon_glow = {{ theme.settings.get('zod_neon_glow', true) | json_encode }};
     </script>
     
     {% hook 'head:start' %}
@@ -84,20 +86,28 @@
     
     <style>
         :root {
-            --font-main: '{{theme.font.name}}';
+            --font-main: '{{ theme.font.name }}';
             --color-primary: {{ theme.color.primary }};
             --color-primary-dark: {{ theme.color.darker(0.15) }};
             --color-primary-light: {{ theme.color.lighter(0.15) }};
             --color-primary-reverse: {{ theme.color.reverse_text }};
+            --zod-red: {{ theme.settings.get('zod_primary_red', '#ef4444') }};
+            --zod-red-hover: color-mix(in srgb, var(--zod-red) 84%, #000 16%);
+            --zod-red-light: color-mix(in srgb, var(--zod-red) 48%, #fff 52%);
+            --zod-red-dark: color-mix(in srgb, var(--zod-red) 62%, #000 38%);
+            --zod-red-soft-text: color-mix(in srgb, var(--zod-red) 35%, #fff 65%);
+            --zod-red-glow: color-mix(in srgb, var(--zod-red) 28%, transparent);
         }
     </style>
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>
-<body id="app" class="theme-raed overflow-x-hidden {% hook 'body:classes' %}
+<body id="app" class="theme-raed theme-zod overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
   {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
+  {{ theme.settings.get('zod_scroll_reveal', true) ? ' zod-scroll-reveal-enabled' : ' zod-scroll-reveal-disabled' }}
+  {{ theme.settings.get('zod_neon_glow', true) ? ' zod-neon-glow-enabled' : ' zod-neon-glow-disabled' }}
   ">
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how

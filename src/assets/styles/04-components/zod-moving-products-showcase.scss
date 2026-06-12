@@ -1,8 +1,8 @@
 .zod-moving-products-showcase {
-  --zod-showcase-bg: radial-gradient(circle at top right, rgba(220, 38, 38, 0.18), transparent 34%), linear-gradient(135deg, #070707 0%, #111 48%, #050505 100%);
+  --zod-showcase-bg: radial-gradient(circle at top right, color-mix(in srgb, var(--zod-red-hover) 18%, transparent), transparent 34%), linear-gradient(135deg, #070707 0%, #111 48%, #050505 100%);
   --zod-showcase-border: rgba(255, 255, 255, 0.08);
-  --zod-showcase-red: #ef4444;
-  --zod-showcase-red-soft: rgba(239, 68, 68, 0.2);
+  --zod-showcase-red: var(--zod-red);
+  --zod-showcase-red-soft: color-mix(in srgb, var(--zod-red) 20%, transparent);
   --zod-showcase-text: #fff;
   --zod-showcase-muted: rgba(255, 255, 255, 0.66);
 
@@ -27,7 +27,7 @@
     inset-inline-start: 8%;
     width: 110px;
     height: 110px;
-    background: rgba(239, 68, 68, 0.22);
+    background: color-mix(in srgb, var(--zod-red) 22%, transparent);
     animation: zodShowcaseGlow 7s ease-in-out infinite alternate;
   }
 
@@ -99,7 +99,7 @@
     gap: 8px;
     min-width: max-content;
     padding: 11px 16px;
-    border: 1px solid rgba(239, 68, 68, 0.4);
+    border: 1px solid color-mix(in srgb, var(--zod-red) 40%, transparent);
     border-radius: 999px;
     color: #fff;
     background: rgba(255, 255, 255, 0.045);
@@ -109,9 +109,9 @@
 
     &:hover {
       color: #fff;
-      border-color: rgba(239, 68, 68, 0.72);
-      background: rgba(239, 68, 68, 0.14);
-      box-shadow: 0 16px 42px rgba(239, 68, 68, 0.18);
+      border-color: color-mix(in srgb, var(--zod-red) 72%, transparent);
+      background: color-mix(in srgb, var(--zod-red) 14%, transparent);
+      box-shadow: 0 16px 42px color-mix(in srgb, var(--zod-red) 18%, transparent);
       transform: translateY(-2px);
     }
   }
@@ -206,8 +206,8 @@
 
   .s-product-card-entry:hover {
     transform: translateY(-8px);
-    border-color: rgba(239, 68, 68, 0.48);
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.42), 0 0 28px rgba(239, 68, 68, 0.18);
+    border-color: color-mix(in srgb, var(--zod-red) 48%, transparent);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.42), 0 0 28px color-mix(in srgb, var(--zod-red) 18%, transparent);
   }
 
   .s-product-card-entry:hover .s-product-card-image img {
@@ -233,8 +233,8 @@
   .swiper-button-next:hover,
   .swiper-button-prev:hover,
   .s-slider-nav-arrow:hover {
-    border-color: rgba(239, 68, 68, 0.7);
-    background: rgba(239, 68, 68, 0.18);
+    border-color: color-mix(in srgb, var(--zod-red) 70%, transparent);
+    background: color-mix(in srgb, var(--zod-red) 18%, transparent);
     color: #fff;
   }
 

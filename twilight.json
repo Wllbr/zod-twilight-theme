@@ -241,7 +241,7 @@
             "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "تفعيل تأثيرات الظهور التدريجي لثيم زد",
-            "description": "يعرض البطاقات والأقسام بحركة ظهور ناعمة أثناء التمرير.",
+            "description": "يمكن إيقافه لتحسين الأداء على الجوال أو تقليل الحركة.",
             "id": "zod_scroll_reveal",
             "format": "switch",
             "required": false,
@@ -252,7 +252,7 @@
             "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "تفعيل توهج الأحمر النيون",
-            "description": "يضيف ظلالاً حمراء للأزرار والبطاقات والعناصر النشطة.",
+            "description": "يمكن إيقافه إذا أردت مظهراً أنظف وأقل توهجاً.",
             "id": "zod_neon_glow",
             "format": "switch",
             "required": false,
@@ -263,7 +263,7 @@
             "type": "string",
             "icon": "sicon-paint-brush",
             "label": "لون زد الأساسي",
-            "description": "القيمة الافتراضية للأحمر المستخدم في الثيم.",
+            "description": "يغير اللون الأحمر الأساسي في هيدر زد والأزرار والتأثيرات.",
             "id": "zod_primary_red",
             "format": "color",
             "required": false,
@@ -280,6 +280,12 @@
             "icon": "sicon-art-palette",
             "path": "home.zod-premium-splash",
             "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "zod-preview",
+                    "value": "<div><img class='w-full' src='images/zod-previews/splash.svg'></div>"
+                },
                 {
                     "type": "boolean",
                     "icon": "sicon-toggle-off",
@@ -476,7 +482,8 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "image": "images/zod-previews/splash.svg"
         },
         {
             "key": "186b3f4f-25cf-4d3c-abca-cef7eed6f0ab",
@@ -1341,8 +1348,14 @@
             },
             "icon": "sicon-flash",
             "path": "home.zod-hero",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/main-links.png?v=1.1",
+            "image": "images/zod-previews/hero.svg",
             "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "zod-preview",
+                    "value": "<div><img class='w-full' src='images/zod-previews/hero.svg'></div>"
+                },
                 {
                     "type": "string",
                     "icon": "sicon-format-text-alt",
@@ -1461,8 +1474,14 @@
             },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.zod-category-shortcuts",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/main-links.png?v=1.1",
+            "image": "images/zod-previews/category-shortcuts.svg",
             "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "zod-preview",
+                    "value": "<div><img class='w-full' src='images/zod-previews/category-shortcuts.svg'></div>"
+                },
                 {
                     "type": "string",
                     "icon": "sicon-format-text-alt",
@@ -1857,8 +1876,14 @@
             },
             "icon": "sicon-award-ribbon",
             "path": "home.zod-feature-grid",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/main-links.png?v=1.1",
+            "image": "images/zod-previews/feature-grid.svg",
             "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "zod-preview",
+                    "value": "<div><img class='w-full' src='images/zod-previews/feature-grid.svg'></div>"
+                },
                 {
                     "type": "string",
                     "icon": "sicon-format-text-alt",
@@ -1968,8 +1993,14 @@
             },
             "icon": "sicon-megaphone",
             "path": "home.zod-promo-banner",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/main-links.png?v=1.1",
+            "image": "images/zod-previews/promo-banner.svg",
             "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "zod-preview",
+                    "value": "<div><img class='w-full' src='images/zod-previews/promo-banner.svg'></div>"
+                },
                 {
                     "type": "string",
                     "icon": "sicon-format-text-alt",
@@ -2092,8 +2123,14 @@
             },
             "icon": "sicon-shield-check",
             "path": "home.zod-trust-strip",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/main-links.png?v=1.1",
+            "image": "images/zod-previews/trust-strip.svg",
             "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "zod-preview",
+                    "value": "<div><img class='w-full' src='images/zod-previews/trust-strip.svg'></div>"
+                },
                 {
                     "id": "items",
                     "type": "collection",
@@ -2162,8 +2199,14 @@
             },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.zod-nested-category-showcase",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/featured-products-2.png?v=1.1",
+            "image": "images/zod-previews/nested-category.svg",
             "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "zod-preview",
+                    "value": "<div><img class='w-full' src='images/zod-previews/nested-category.svg'></div>"
+                },
                 {
                     "type": "string",
                     "icon": "sicon-format-text-alt",
@@ -2335,6 +2378,424 @@
                             "maxLength": 24,
                             "minLength": 1,
                             "value": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "40e1b1a5-4aa5-4dc8-bbe0-0bbd14e9336d",
+            "title": {
+                "en": "ZOD Moving Products Showcase",
+                "ar": "عارض منتجات زد المتحرك"
+            },
+            "icon": "sicon-list-play",
+            "path": "home.zod-moving-products-showcase",
+            "image": "images/zod-previews/moving-products.svg",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "zod-preview",
+                    "value": "<div><img class='w-full' src='images/zod-previews/moving-products.svg'></div>"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان القسم",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "منتجات مختارة من زد",
+                        "en": "Featured ZOD Products"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "description": null,
+                    "placeholder": null,
+                    "minLength": 0,
+                    "maxLength": 120
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "وصف القسم",
+                    "multilanguage": true,
+                    "id": "subtitle",
+                    "value": {
+                        "ar": "اعرض منتجاتك المهمة بسلايدر فاخر يتحرك تلقائياً.",
+                        "en": "Show important products in a premium auto-moving slider."
+                    },
+                    "required": false,
+                    "format": "textarea",
+                    "description": null,
+                    "placeholder": null,
+                    "minLength": 0,
+                    "maxLength": 400
+                },
+                {
+                    "id": "source_type",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "مصدر المنتجات",
+                    "labelHTML": null,
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [
+                        {
+                            "label": "أحدث المنتجات",
+                            "value": "latest",
+                            "key": "07fa1df7-0a57-495b-8ad0-a6fa4207b0a9"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "أحدث المنتجات",
+                            "value": "latest",
+                            "key": "df2bb54b-6654-4ebe-83e4-3500abdac80e"
+                        },
+                        {
+                            "label": "تصنيف محدد",
+                            "value": "category",
+                            "key": "66b4630e-8180-4911-8309-ff6e63ed651d"
+                        },
+                        {
+                            "label": "العروض",
+                            "value": "offers",
+                            "key": "48cac6aa-118e-4c25-adc5-125d866cf51e"
+                        },
+                        {
+                            "label": "منتجات مختارة",
+                            "value": "selected",
+                            "key": "20940f61-ae4d-4b20-87f2-35b5912c0b57"
+                        },
+                        {
+                            "label": "وسوم المنتجات",
+                            "value": "tags",
+                            "key": "6abdefe0-8f5a-4f6f-b08b-919d610f8e2f"
+                        },
+                        {
+                            "label": "الأكثر مبيعاً",
+                            "value": "best_selling",
+                            "key": "ec31f10c-2879-4dcd-a761-1bc62c78610d"
+                        },
+                        {
+                            "label": "الأعلى تقييماً",
+                            "value": "highest_rated",
+                            "key": "7239f39a-2e4a-40c7-a575-813a84c902bb"
+                        },
+                        {
+                            "label": "عشوائي",
+                            "value": "random",
+                            "key": "75d40bf6-b4c2-4f7b-82ab-cd3a3c3e4714"
+                        }
+                    ],
+                    "source": "Manual",
+                    "required": false,
+                    "description": null
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "label": "التصنيفات",
+                    "id": "categories",
+                    "format": "dropdown-list",
+                    "description": "يستخدم عند اختيار مصدر: تصنيف محدد",
+                    "selected": [],
+                    "options": [],
+                    "required": false,
+                    "multichoice": true,
+                    "source": "categories",
+                    "searchable": true,
+                    "value": [],
+                    "maxLength": 6,
+                    "minLength": 0
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "label": "المنتجات المختارة",
+                    "id": "selected_products",
+                    "format": "dropdown-list",
+                    "description": "يستخدم عند اختيار مصدر: منتجات مختارة",
+                    "selected": [],
+                    "options": [],
+                    "required": false,
+                    "multichoice": true,
+                    "source": "products",
+                    "searchable": true,
+                    "value": [],
+                    "maxLength": 24,
+                    "minLength": 0
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "label": "وسوم المنتجات",
+                    "id": "product_tags",
+                    "format": "dropdown-list",
+                    "description": "يستخدم عند اختيار مصدر: وسوم المنتجات",
+                    "selected": [],
+                    "options": [],
+                    "required": false,
+                    "multichoice": true,
+                    "source": "products_tags",
+                    "searchable": true,
+                    "value": [],
+                    "maxLength": 8,
+                    "minLength": 0
+                },
+                {
+                    "type": "number",
+                    "icon": "sicon-list",
+                    "label": "عدد المنتجات",
+                    "id": "product_count",
+                    "value": 12,
+                    "required": false,
+                    "format": "number",
+                    "minimum": 4,
+                    "maximum": 24
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل الحركة التلقائية",
+                    "description": null,
+                    "id": "auto_moving",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "number",
+                    "icon": "sicon-list",
+                    "label": "سرعة الحركة",
+                    "id": "motion_speed",
+                    "value": 42,
+                    "required": false,
+                    "format": "number",
+                    "minimum": 16,
+                    "maximum": 90
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "إيقاف الحركة عند مرور المؤشر",
+                    "description": null,
+                    "id": "pause_on_hover",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "إظهار زر عرض الكل عند توفر رابط",
+                    "description": null,
+                    "id": "show_display_all",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "b1a8b9b8-c586-4af6-a26f-2f58dedecc8d",
+            "title": {
+                "en": "ZOD Product Variant Tabs",
+                "ar": "تبويبات منتجات زد"
+            },
+            "icon": "sicon-layout-grid-rearrange",
+            "path": "home.zod-product-slider-variants",
+            "image": "images/zod-previews/product-variants.svg",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "zod-preview",
+                    "value": "<div><img class='w-full' src='images/zod-previews/product-variants.svg'></div>"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان القسم",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "تسوق حسب النوع",
+                        "en": "Shop by Type"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "description": null,
+                    "placeholder": null,
+                    "minLength": 0,
+                    "maxLength": 120
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "وصف القسم",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": {
+                        "ar": "قسّم المنتجات إلى تبويبات مثل مراوح، إنتركوم، كاميرات، أو بطاريات.",
+                        "en": "Split products into tabs such as fans, intercoms, cameras, or batteries."
+                    },
+                    "required": false,
+                    "format": "textarea",
+                    "description": null,
+                    "placeholder": null,
+                    "minLength": 0,
+                    "maxLength": 400
+                },
+                {
+                    "type": "number",
+                    "icon": "sicon-list",
+                    "label": "عدد المنتجات في كل تبويب",
+                    "id": "limit",
+                    "value": 8,
+                    "required": false,
+                    "format": "number",
+                    "minimum": 4,
+                    "maximum": 24
+                },
+                {
+                    "id": "variants",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 8,
+                    "item_label": "تبويب منتجات",
+                    "value": [
+                        {
+                            "variants.title": "مراوح وتهوية",
+                            "variants.description": "منتجات التهوية الأكثر طلباً",
+                            "variants.source_type": "manual_products"
+                        },
+                        {
+                            "variants.title": "إنتركوم وكاميرات",
+                            "variants.description": "حلول مراقبة واتصال للمنزل والعمل",
+                            "variants.source_type": "manual_products"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "عنوان التبويب",
+                            "multilanguage": true,
+                            "id": "variants.title",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "description": null,
+                            "placeholder": null,
+                            "minLength": 0,
+                            "maxLength": 120
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "وصف التبويب",
+                            "multilanguage": true,
+                            "id": "variants.description",
+                            "value": null,
+                            "required": false,
+                            "format": "textarea",
+                            "description": null,
+                            "placeholder": null,
+                            "minLength": 0,
+                            "maxLength": 300
+                        },
+                        {
+                            "id": "variants.source_type",
+                            "type": "items",
+                            "format": "dropdown-list",
+                            "label": "مصدر منتجات التبويب",
+                            "labelHTML": null,
+                            "icon": "sicon-keyboard_arrow_down",
+                            "selected": [
+                                {
+                                    "label": "منتجات مختارة يدوياً",
+                                    "value": "manual_products",
+                                    "key": "5c060b2f-0c59-4b74-8008-6878abfd8910"
+                                }
+                            ],
+                            "options": [
+                                {
+                                    "label": "منتجات مختارة يدوياً",
+                                    "value": "manual_products",
+                                    "key": "b6371a78-be97-4c45-8fb8-ec498b0d8009"
+                                },
+                                {
+                                    "label": "تصنيفات",
+                                    "value": "categories",
+                                    "key": "01f9c50d-0dfd-4f89-952c-87d1976b4776"
+                                },
+                                {
+                                    "label": "ماركات تجارية",
+                                    "value": "brands",
+                                    "key": "86152587-f2fe-4f40-88eb-2caaecb1538e"
+                                }
+                            ],
+                            "source": "Manual",
+                            "required": false,
+                            "description": null
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-keyboard_arrow_down",
+                            "label": "المنتجات المختارة",
+                            "id": "variants.products",
+                            "format": "dropdown-list",
+                            "description": "يستخدم مع مصدر: منتجات مختارة يدوياً",
+                            "selected": [],
+                            "options": [],
+                            "required": false,
+                            "multichoice": true,
+                            "source": "products",
+                            "searchable": true,
+                            "value": [],
+                            "maxLength": 24,
+                            "minLength": 0
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-keyboard_arrow_down",
+                            "label": "التصنيفات",
+                            "id": "variants.categories",
+                            "format": "dropdown-list",
+                            "description": "يستخدم مع مصدر: تصنيفات",
+                            "selected": [],
+                            "options": [],
+                            "required": false,
+                            "multichoice": true,
+                            "source": "categories",
+                            "searchable": true,
+                            "value": [],
+                            "maxLength": 6,
+                            "minLength": 0
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-keyboard_arrow_down",
+                            "label": "الماركات التجارية",
+                            "id": "variants.brands",
+                            "format": "dropdown-list",
+                            "description": "يستخدم مع مصدر: ماركات تجارية",
+                            "selected": [],
+                            "options": [],
+                            "required": false,
+                            "multichoice": true,
+                            "source": "brands",
+                            "searchable": true,
+                            "value": [],
+                            "maxLength": 6,
+                            "minLength": 0
                         }
                     ]
                 }

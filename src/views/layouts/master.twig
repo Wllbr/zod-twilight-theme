@@ -76,6 +76,8 @@
         window.zod_scroll_reveal = {{ theme.settings.get('zod_scroll_reveal', true) | json_encode }};
         window.zod_neon_glow = {{ theme.settings.get('zod_neon_glow', true) | json_encode }};
         window.zod_sticky_search_enabled = {{ theme.settings.get('zod_sticky_search_enabled', true) | json_encode }};
+        window.zod_compact_header_enabled = {{ theme.settings.get('zod_compact_header_enabled', true) | json_encode }};
+        window.zod_category_cards_animated = {{ theme.settings.get('zod_category_cards_animated', true) | json_encode }};
     </script>
     
     {% hook 'head:start' %}
@@ -110,6 +112,10 @@
   {{ theme.settings.get('zod_scroll_reveal', true) ? ' zod-scroll-reveal-enabled' : ' zod-scroll-reveal-disabled' }}
   {{ theme.settings.get('zod_neon_glow', true) ? ' zod-neon-glow-enabled' : ' zod-neon-glow-disabled' }}
   {{ theme.settings.get('zod_sticky_search_enabled', true) ? ' zod-sticky-search-enabled' : ' zod-sticky-search-disabled' }}
+  {{ theme.settings.get('zod_compact_header_enabled', true) ? ' zod-compact-header-enabled' : ' zod-compact-header-disabled' }}
+  {{ theme.settings.get('zod_premium_product_cards', true) ? ' zod-premium-product-cards-enabled' : ' zod-premium-product-cards-disabled' }}
+  {{ theme.settings.get('zod_category_cards_animated', true) ? ' zod-category-animation-enabled' : ' zod-category-animation-disabled' }}
+  {{ theme.settings.get('zod_product_specs_enabled', true) ? ' zod-product-specs-enabled' : ' zod-product-specs-disabled' }}
   ">
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how

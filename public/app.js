@@ -1,6 +1,7 @@
 ;(() => {
   function initZodStableFixedHeader() {
     const enabled = window.zod_sticky_search_enabled !== false && window.zod_sticky_search_enabled !== 'false';
+    const compactEnabled = window.zod_compact_header_enabled !== false && window.zod_compact_header_enabled !== 'false';
     const header = document.querySelector('.store-header.zod-header');
     const mainnav = document.querySelector('#mainnav');
     if (!enabled || !header || !mainnav) return;
@@ -61,6 +62,7 @@
 ;(() => {
   function initZodStableFixedHeader() {
     const enabled = window.zod_sticky_search_enabled !== false && window.zod_sticky_search_enabled !== 'false';
+    const compactEnabled = window.zod_compact_header_enabled !== false && window.zod_compact_header_enabled !== 'false';
     const header = document.querySelector('.store-header.zod-header');
     const mainnav = document.querySelector('#mainnav');
     if (!enabled || !header || !mainnav) return;
@@ -117,6 +119,7 @@
 ;(() => {
   function zodV40CompactHeaderRuntime() {
     const enabled = window.zod_sticky_search_enabled !== false && window.zod_sticky_search_enabled !== 'false';
+    const compactEnabled = window.zod_compact_header_enabled !== false && window.zod_compact_header_enabled !== 'false';
     const header = document.querySelector('.store-header.zod-header');
     const mainnav = document.querySelector('#mainnav');
     if (!enabled || !header || !mainnav) return;
@@ -134,7 +137,7 @@
       mainnav.classList.add('zod-safe-fixed-header');
       mainnav.classList.remove('zod-force-fixed-header');
 
-      const compact = window.scrollY > 72;
+      const compact = compactEnabled && window.scrollY > 72;
       header.classList.toggle('zod-header--compact', compact);
       document.body.classList.toggle('zod-header-compact-active', compact);
 

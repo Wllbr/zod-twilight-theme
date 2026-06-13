@@ -527,3 +527,13 @@ Handle PreOrder Label As Promotion label
 - Rebuilt mobile header into brand/actions row + search row.
 - Reduced icon, logo, and search sizes on mobile.
 - Cleaned mobile category bar and hide it if empty.
+
+
+## ZOD Twilight v5.3
+- Added Salla editor settings for compact header, premium product cards, animated categories, and product specs.
+- Added compact header toggle wiring.
+- Added animated category/card hover effects with a toggle.
+- Added a clean product specifications card with a toggle.
+- Fixed broken product page description layout on desktop.
+- Removed product-page Why/Need Help/trust boxes.
+- Moved the add-to-cart form directly below the product description.

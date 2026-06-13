@@ -433,6 +433,63 @@
       "required": false,
       "value": true,
       "selected": true
+    },
+    {
+      "id": "static-line-zod-controls-v53",
+      "type": "static",
+      "format": "line",
+      "value": null
+    },
+    {
+      "id": "static-label-zod-controls-v53",
+      "type": "static",
+      "format": "description",
+      "variant": "h6",
+      "value": "<div class='rounded-lg' style='background-color:#111111;border:1px solid #ef4444;display:flex;justify-content:center;align-items:center;padding:15px;margin-bottom:20px!important;flex-direction:column;gap:8px;'><h6 style='color:#ffffff;font-size:15px;font-weight:bold;'>تحكم إضافي في تصميم ZOD</h6><small style='color:#fecaca;'>إعدادات للهيدر، بطاقات المنتجات، الأقسام، ومواصفات المنتج</small></div>"
+    },
+    {
+      "id": "zod_compact_header_enabled",
+      "type": "boolean",
+      "format": "switch",
+      "icon": "sicon-toggle-off",
+      "label": "تفعيل تصغير الهيدر عند التمرير",
+      "description": "يجعل الهيدر أصغر أثناء النزول في الصفحة مع إبقاء البحث ظاهراً.",
+      "required": false,
+      "value": true,
+      "selected": true
+    },
+    {
+      "id": "zod_premium_product_cards",
+      "type": "boolean",
+      "format": "switch",
+      "icon": "sicon-products",
+      "label": "تفعيل تصميم بطاقات المنتجات المطور",
+      "description": "تحكم في مظهر بطاقات المنتجات والتأثيرات الخاصة بها.",
+      "required": false,
+      "value": true,
+      "selected": true
+    },
+    {
+      "id": "zod_category_cards_animated",
+      "type": "boolean",
+      "format": "switch",
+      "icon": "sicon-magic-wand",
+      "label": "تفعيل حركة الأقسام والبطاقات",
+      "description": "يضيف تأثيرات خفيفة على أقسام الهيدر وبطاقات الأقسام.",
+      "required": false,
+      "value": true,
+      "selected": true
+    },
+    {
+      "id": "zod_product_specs_enabled",
+      "type": "boolean",
+      "format": "switch",
+      "icon": "sicon-barcode",
+      "label": "إظهار بطاقة مواصفات المنتج",
+      "description": "يعرض بطاقة مواصفات مختصرة في صفحة المنتج.",
+      "required": false,
+      "value": true,
+      "selected": true
     }
   ],
   "components": [

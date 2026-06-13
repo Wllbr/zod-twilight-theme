@@ -1,6 +1,7 @@
 /* ZOD stable fixed + compact header. */
 export default function initZodStickySearch() {
   const enabled = window.zod_sticky_search_enabled !== false && window.zod_sticky_search_enabled !== 'false';
+  const compactEnabled = window.zod_compact_header_enabled !== false && window.zod_compact_header_enabled !== 'false';
   const header = document.querySelector('.store-header.zod-header');
   const mainnav = document.querySelector('#mainnav');
   if (!enabled || !header || !mainnav || header.dataset.zodStableFixedHeaderReady === '1') return;
@@ -19,7 +20,7 @@ export default function initZodStickySearch() {
     mainnav.classList.add('zod-safe-fixed-header');
     mainnav.classList.remove('zod-force-fixed-header');
 
-    const isCompact = window.scrollY > 72;
+    const isCompact = compactEnabled && window.scrollY > 72;
     header.classList.toggle('zod-header--compact', isCompact);
     document.body.classList.toggle('zod-header-compact-active', isCompact);
 

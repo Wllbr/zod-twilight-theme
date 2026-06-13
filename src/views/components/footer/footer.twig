@@ -2,6 +2,41 @@
   <div class="zod-footer__glow-line" aria-hidden="true"></div>
 
   <div aria-label="footer" class="store-footer__inner zod-footer__inner">
+    <div class="container zod-footer__hero">
+      <div class="zod-footer__hero-copy">
+        <span class="zod-footer__eyebrow">ZOD Integrated Solutions</span>
+        <h2>حلول إلكترونية وتهوية وأنظمة ذكية بتجربة شراء احترافية</h2>
+        <p>نوفر منتجات مختارة وخدمة موثوقة لاحتياجات الإنتركوم والكاميرات والتهوية والملحقات الإلكترونية، مع دعم قبل وبعد الشراء.</p>
+      </div>
+      <div class="zod-footer__hero-actions">
+        <a href="{{ link('/') }}" class="zod-footer__hero-btn zod-footer__hero-btn--primary">تصفح المتجر</a>
+        <a href="#footer-contact" class="zod-footer__hero-btn">تواصل معنا</a>
+      </div>
+    </div>
+
+    <div class="container zod-footer__features">
+      <div class="zod-footer-feature-card">
+        <span class="zod-footer-feature-card__icon"><i class="sicon-shield-check"></i></span>
+        <strong>منتجات موثوقة
+        ومختارة بعناية</strong>
+      </div>
+      <div class="zod-footer-feature-card">
+        <span class="zod-footer-feature-card__icon"><i class="sicon-shipping-fast"></i></span>
+        <strong>تجهيز سريع
+        ومتابعة للطلبات</strong>
+      </div>
+      <div class="zod-footer-feature-card">
+        <span class="zod-footer-feature-card__icon"><i class="sicon-headset"></i></span>
+        <strong>دعم قبل وبعد
+        إتمام الشراء</strong>
+      </div>
+      <div class="zod-footer-feature-card">
+        <span class="zod-footer-feature-card__icon"><i class="sicon-credit-card"></i></span>
+        <strong>دفع آمن
+        وسياسات واضحة</strong>
+      </div>
+    </div>
+
     <div class="container zod-footer__grid zod-footer__grid--three">
       <section class="zod-footer__brand">
         <a href="{{ link('/') }}" class="zod-footer__brand-link" aria-label="{{ store.name }}">
@@ -33,8 +68,9 @@
         </div>
       </section>
 
-      <section class="zod-footer__section zod-footer__contact zod-footer__contact--native-title">
+      <section id="footer-contact" class="zod-footer__section zod-footer__contact zod-footer__contact--native-title">
         <div class="zod-footer__section-content">
+          <p class="zod-footer__section-subtitle">للاستفسارات والدعم وطلبات المنتجات، يمكنك التواصل معنا عبر قنوات الاتصال التالية.</p>
           <salla-contacts></salla-contacts>
           <div class="zod-footer__social">
             <salla-social></salla-social>

@@ -1,116 +1,157 @@
-<footer class="store-footer zod-footer zod-footer--refined zod-footer--no-accordion">
-  <div class="zod-footer__glow-line" aria-hidden="true"></div>
+<footer class="store-footer zod-footer zod-footer--signature">
+  <div class="zod-footer-signature__ambient" aria-hidden="true"></div>
+  <div class="zod-footer-signature__glow-line" aria-hidden="true"></div>
 
-  <div aria-label="footer" class="store-footer__inner zod-footer__inner">
-    <div class="container zod-footer__hero">
-      <div class="zod-footer__hero-copy">
-        <span class="zod-footer__eyebrow">ZOD Integrated Solutions</span>
-        <h2>حلول إلكترونية وتهوية وأنظمة ذكية بتجربة شراء احترافية</h2>
-        <p>نوفر منتجات مختارة وخدمة موثوقة لاحتياجات الإنتركوم والكاميرات والتهوية والملحقات الإلكترونية، مع دعم قبل وبعد الشراء.</p>
+  <div class="container zod-footer-signature__hero-wrap">
+    <section class="zod-footer-signature__hero">
+      <div class="zod-footer-signature__hero-copy">
+        <span class="zod-footer-signature__eyebrow">ZOD Integrated Solutions</span>
+        <h2>حلول إلكترونية وتهوية ذكية بتجربة شراء أكثر احترافية</h2>
+        <p>
+          نوفر منتجات مختارة في مجالات الإنتركوم، الكاميرات، أنظمة التهوية، والملحقات الإلكترونية،
+          مع خدمة موثوقة ودعم قبل وبعد الشراء.
+        </p>
       </div>
-      <div class="zod-footer__hero-actions">
-        <a href="{{ link('/') }}" class="zod-footer__hero-btn zod-footer__hero-btn--primary">تصفح المتجر</a>
-        <a href="#footer-contact" class="zod-footer__hero-btn">تواصل معنا</a>
+      <div class="zod-footer-signature__hero-actions">
+        <a href="{{ link('/') }}" class="zod-footer-signature__hero-btn zod-footer-signature__hero-btn--primary">تصفح المنتجات</a>
+        <a href="#footer-contact" class="zod-footer-signature__hero-btn">تواصل معنا</a>
       </div>
-    </div>
+    </section>
+  </div>
 
-    <div class="container zod-footer__features">
-      <div class="zod-footer-feature-card">
-        <span class="zod-footer-feature-card__icon"><i class="sicon-shield-check"></i></span>
-        <strong>منتجات موثوقة
-        ومختارة بعناية</strong>
-      </div>
-      <div class="zod-footer-feature-card">
-        <span class="zod-footer-feature-card__icon"><i class="sicon-shipping-fast"></i></span>
-        <strong>تجهيز سريع
-        ومتابعة للطلبات</strong>
-      </div>
-      <div class="zod-footer-feature-card">
-        <span class="zod-footer-feature-card__icon"><i class="sicon-headset"></i></span>
-        <strong>دعم قبل وبعد
-        إتمام الشراء</strong>
-      </div>
-      <div class="zod-footer-feature-card">
-        <span class="zod-footer-feature-card__icon"><i class="sicon-credit-card"></i></span>
-        <strong>دفع آمن
-        وسياسات واضحة</strong>
+  <div class="container zod-footer-signature__ribbon" aria-label="Footer highlights">
+    <div class="zod-footer-signature__ribbon-item">
+      <span class="zod-footer-signature__ribbon-icon"><i class="sicon-shield-check"></i></span>
+      <div>
+        <strong>موثوقية وجودة</strong>
+        <p>منتجات مختارة بعناية وتجربة شراء واضحة.</p>
       </div>
     </div>
-
-    <div class="container zod-footer__grid zod-footer__grid--three">
-      <section class="zod-footer__brand">
-        <a href="{{ link('/') }}" class="zod-footer__brand-link" aria-label="{{ store.name }}">
-          {% if store.logo %}
-            <img src="{{ store.logo }}" alt="{{ store.name }}" loading="lazy">
-          {% endif %}
-          <h3>{{ store.name }}</h3>
-        </a>
-
-        {% if store.description %}
-          <div class="zod-footer__description">
-            {{ store.description|raw }}
-          </div>
-        {% else %}
-          <p class="zod-footer__description">حلول احترافية للإنتركوم والكاميرات والشبكات وأنظمة التحكم.</p>
-        {% endif %}
-
-        <div class="zod-footer__mini-trust" aria-label="ZOD trust highlights">
-          <span>دفع آمن</span>
-          <span>ضمان واضح</span>
-          <span>دعم فني</span>
-        </div>
-      </section>
-
-      <section class="zod-footer__section">
-        <h3>روابط مهمة</h3>
-        <div class="zod-footer__section-content">
-          <salla-menu source="footer" with-cookie-preferences></salla-menu>
-        </div>
-      </section>
-
-      <section id="footer-contact" class="zod-footer__section zod-footer__contact zod-footer__contact--native-title">
-        <div class="zod-footer__section-content">
-          <p class="zod-footer__section-subtitle">للاستفسارات والدعم وطلبات المنتجات، يمكنك التواصل معنا عبر قنوات الاتصال التالية.</p>
-          <salla-contacts></salla-contacts>
-          <div class="zod-footer__social">
-            <salla-social></salla-social>
-          </div>
-        </div>
-      </section>
+    <div class="zod-footer-signature__ribbon-item">
+      <span class="zod-footer-signature__ribbon-icon"><i class="sicon-shipping-fast"></i></span>
+      <div>
+        <strong>تجهيز سريع</strong>
+        <p>متابعة أفضل للطلبات وتجهيز أسرع قدر الإمكان.</p>
+      </div>
     </div>
-
-    <div class="container zod-footer__meta-row">
-      <div class="zod-footer__badges">
-        <salla-trust-badges dark></salla-trust-badges>
-        {% if store.settings.tax.number %}
-          <div class="zod-footer__tax">
-            {% if store.settings.tax.certificate %}
-              <a class="load-img-onclick" data-modal-id="modal-value-tax" href="#/" alt="{{ store.settings.tax.number }}">
-                <img width="40" height="50" src="{{'images/tax.png' | cdn(70,70)}}" loading="lazy" alt="value added tax">
-              </a>
-            {% endif %}
-            <div>
-              <p>{{ trans('common.elements.tax_number') }}</p>
-              <b>{{ store.settings.tax.number }}</b>
-            </div>
-          </div>
-
-          {% if store.settings.tax.certificate %}
-            <salla-modal sub-title-first sub-title="{{ trans('common.elements.tax_number') }}" modal-title="{{ store.settings.tax.number }}" id="modal-value-tax">
-              <div class="flex justify-center max-w-full">
-                <img class="w-full" loading="lazy" data-src="{{ store.settings.tax.certificate }}" alt="{{ store.settings.tax.number }}"/>
-              </div>
-            </salla-modal>
-          {% endif %}
-        {% endif %}
+    <div class="zod-footer-signature__ribbon-item">
+      <span class="zod-footer-signature__ribbon-icon"><i class="sicon-headset"></i></span>
+      <div>
+        <strong>دعم فني</strong>
+        <p>مساعدة قبل وبعد الشراء لراحة أكبر للعملاء.</p>
+      </div>
+    </div>
+    <div class="zod-footer-signature__ribbon-item">
+      <span class="zod-footer-signature__ribbon-icon"><i class="sicon-credit-card"></i></span>
+      <div>
+        <strong>دفع آمن</strong>
+        <p>وسائل دفع موثوقة وسياسات واضحة.</p>
       </div>
     </div>
   </div>
 
-  <div class="zod-footer__bottom">
-    <div class="container zod-footer__bottom-inner">
+  <div aria-label="footer" class="store-footer__inner zod-footer__inner">
+    <div class="container zod-footer-signature__grid">
+      <section class="zod-footer-signature__card zod-footer-signature__brand-card">
+        <a href="{{ link('/') }}" class="zod-footer-signature__brand-link" aria-label="{{ store.name }}">
+          {% if store.logo %}
+            <span class="zod-footer-signature__brand-logo-wrap">
+              <img src="{{ store.logo }}" alt="{{ store.name }}" loading="lazy">
+            </span>
+          {% endif %}
+          <div>
+            <h3>{{ store.name }}</h3>
+            <p class="zod-footer-signature__brand-subtitle">حلول متكاملة للتقنية والتهوية والأنظمة الذكية</p>
+          </div>
+        </a>
+
+        {% if store.description %}
+          <div class="zod-footer-signature__description">
+            {{ store.description|raw }}
+          </div>
+        {% else %}
+          <p class="zod-footer-signature__description">نقدّم تشكيلة مختارة من المنتجات الإلكترونية وأنظمة التهوية مع تجربة شراء احترافية وهوية بصرية حديثة.</p>
+        {% endif %}
+
+        <div class="zod-footer-signature__chips">
+          <span>حلول إنتركوم</span>
+          <span>كاميرات ومراقبة</span>
+          <span>أنظمة تهوية</span>
+          <span>ملحقات إلكترونية</span>
+        </div>
+      </section>
+
+      <section class="zod-footer-signature__card zod-footer-signature__links-card">
+        <div class="zod-footer-signature__card-head">
+          <h3>روابط مهمة</h3>
+          <p>الوصول السريع إلى أهم صفحات المتجر والخدمات.</p>
+        </div>
+        <div class="zod-footer-signature__card-body">
+          <salla-menu source="footer" with-cookie-preferences></salla-menu>
+        </div>
+      </section>
+
+      <section id="footer-contact" class="zod-footer-signature__card zod-footer-signature__contact-card zod-footer__contact--native-title">
+        <div class="zod-footer-signature__card-head">
+          <h3>تواصل معنا</h3>
+          <p>للاستفسارات والدعم وطلبات المنتجات، يمكنك التواصل معنا عبر القنوات التالية.</p>
+        </div>
+        <div class="zod-footer-signature__card-body">
+          <salla-contacts></salla-contacts>
+          <div class="zod-footer-signature__social-wrap">
+            <span class="zod-footer-signature__social-title">تابعنا</span>
+            <div class="zod-footer-signature__social">
+              <salla-social></salla-social>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="zod-footer-signature__card zod-footer-signature__trust-card">
+        <div class="zod-footer-signature__card-head">
+          <h3>الثقة والاعتماد</h3>
+          <p>كل ما يعزز الثقة بالمتجر ويدعم قرار الشراء.</p>
+        </div>
+        <div class="zod-footer-signature__card-body">
+          <div class="zod-footer-signature__badges">
+            <salla-trust-badges dark></salla-trust-badges>
+          </div>
+
+          {% if store.settings.tax.number %}
+            <div class="zod-footer-signature__tax-card">
+              {% if store.settings.tax.certificate %}
+                <a class="load-img-onclick zod-footer-signature__tax-badge" data-modal-id="modal-value-tax" href="#/" alt="{{ store.settings.tax.number }}">
+                  <img width="40" height="50" src="{{'images/tax.png' | cdn(70,70)}}" loading="lazy" alt="value added tax">
+                </a>
+              {% endif %}
+              <div>
+                <p>{{ trans('common.elements.tax_number') }}</p>
+                <b>{{ store.settings.tax.number }}</b>
+              </div>
+            </div>
+
+            {% if store.settings.tax.certificate %}
+              <salla-modal sub-title-first sub-title="{{ trans('common.elements.tax_number') }}" modal-title="{{ store.settings.tax.number }}" id="modal-value-tax">
+                <div class="flex justify-center max-w-full">
+                  <img class="w-full" loading="lazy" data-src="{{ store.settings.tax.certificate }}" alt="{{ store.settings.tax.number }}"/>
+                </div>
+              </salla-modal>
+            {% endif %}
+          {% endif %}
+
+          <div class="zod-footer-signature__payments-wrap">
+            <span class="zod-footer-signature__payments-label">وسائل الدفع</span>
+            <salla-payments></salla-payments>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="zod-footer-signature__bottom">
+    <div class="container zod-footer-signature__bottom-inner">
       <span class="copyright-text">{% hook copyright %}</span>
-      <salla-payments></salla-payments>
+      <span class="zod-footer-signature__bottom-note">تصميم وتجربة مخصصة لهوية ZOD</span>
     </div>
   </div>
 

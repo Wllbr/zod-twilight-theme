@@ -112,3 +112,55 @@
   }
   window.addEventListener('load', initZodStableFixedHeader, { passive: true });
 })();
+
+
+;(() => {
+  function zodV40CompactHeaderRuntime() {
+    const enabled = window.zod_sticky_search_enabled !== false && window.zod_sticky_search_enabled !== 'false';
+    const header = document.querySelector('.store-header.zod-header');
+    const mainnav = document.querySelector('#mainnav');
+    if (!enabled || !header || !mainnav) return;
+
+    const partHeight = (selector) => {
+      const el = header.querySelector(selector);
+      if (!el) return 0;
+      const style = window.getComputedStyle(el);
+      if (style.display === 'none' || style.visibility === 'hidden') return 0;
+      return Math.ceil(el.getBoundingClientRect().height || el.offsetHeight || 0);
+    };
+
+    const update = () => {
+      header.classList.add('zod-full-fixed-header');
+      mainnav.classList.add('zod-safe-fixed-header');
+      mainnav.classList.remove('zod-force-fixed-header');
+
+      const compact = window.scrollY > 72;
+      header.classList.toggle('zod-header--compact', compact);
+      document.body.classList.toggle('zod-header-compact-active', compact);
+
+      const measured = partHeight('.zod-header__topbar') + partHeight('.zod-header__main-inner') + partHeight('.zod-header__category-row');
+      const fallback = window.innerWidth <= 768 ? (compact ? 96 : 162) : (compact ? 118 : 190);
+      const maxSafe = window.innerWidth <= 768 ? 210 : 245;
+      const safeHeight = Math.min(Math.max(measured || fallback, compact ? 76 : 86), maxSafe);
+      document.documentElement.style.setProperty('--zod-safe-header-offset', `${safeHeight}px`);
+      document.body.style.setProperty('--zod-safe-header-offset', `${safeHeight}px`);
+      document.body.classList.add('zod-header-is-fixed', 'zod-sticky-search-ready');
+    };
+
+    const rafUpdate = () => requestAnimationFrame(update);
+    update();
+    window.addEventListener('scroll', rafUpdate, { passive: true });
+    window.addEventListener('resize', rafUpdate, { passive: true });
+    window.addEventListener('orientationchange', () => setTimeout(update, 250), { passive: true });
+    window.addEventListener('load', () => setTimeout(update, 250), { passive: true });
+    document.addEventListener('theme::ready', update, { once: true });
+    setTimeout(update, 700);
+    setTimeout(update, 1800);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', zodV40CompactHeaderRuntime);
+  } else {
+    zodV40CompactHeaderRuntime();
+  }
+})();

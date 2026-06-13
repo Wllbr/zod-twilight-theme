@@ -1,4 +1,4 @@
-/* ZOD stable fixed header: keep header/search/categories visible without height feedback loops. */
+/* ZOD stable fixed + compact header. */
 export default function initZodStickySearch() {
   const enabled = window.zod_sticky_search_enabled !== false && window.zod_sticky_search_enabled !== 'false';
   const header = document.querySelector('.store-header.zod-header');
@@ -17,8 +17,11 @@ export default function initZodStickySearch() {
   const setStableHeader = () => {
     header.classList.add('zod-full-fixed-header');
     mainnav.classList.add('zod-safe-fixed-header');
-    // Keep the old class harmless if older bundled JS adds it.
     mainnav.classList.remove('zod-force-fixed-header');
+
+    const isCompact = window.scrollY > 72;
+    header.classList.toggle('zod-header--compact', isCompact);
+    document.body.classList.toggle('zod-header-compact-active', isCompact);
 
     const topbar = measurePart('.zod-header__topbar');
     const main = measurePart('.zod-header__main-inner');
@@ -36,6 +39,7 @@ export default function initZodStickySearch() {
   const run = () => window.requestAnimationFrame(setStableHeader);
 
   setStableHeader();
+  window.addEventListener('scroll', run, { passive: true });
   window.addEventListener('load', () => window.setTimeout(setStableHeader, 250), { passive: true });
   window.addEventListener('resize', run, { passive: true });
   window.addEventListener('orientationchange', () => window.setTimeout(setStableHeader, 250), { passive: true });

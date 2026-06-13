@@ -237,6 +237,30 @@
                     <div class="zod-product-benefit"><i class="sicon-credit-card"></i><span>{{ language.code == 'ar' ? 'دفع آمن' : 'Secure payment' }}</span></div>
                 </div>
 
+                <section class="zod-product-why-card" aria-label="Why buy from ZOD">
+                    <div class="zod-product-why-card__head">
+                        <span class="zod-product-why-card__icon"><i class="sicon-award-ribbon"></i></span>
+                        <div>
+                            <h3>{{ language.code == 'ar' ? 'لماذا تشتري من ZOD؟' : 'Why buy from ZOD?' }}</h3>
+                            <p>{{ language.code == 'ar' ? 'تجربة شراء أوضح للمنتجات التقنية مع دعم ومتابعة أفضل.' : 'A clearer buying experience for technical products with better support.' }}</p>
+                        </div>
+                    </div>
+                    <div class="zod-product-why-card__grid">
+                        <span>{{ language.code == 'ar' ? 'منتجات مختارة' : 'Selected products' }}</span>
+                        <span>{{ language.code == 'ar' ? 'مواصفات واضحة' : 'Clear specs' }}</span>
+                        <span>{{ language.code == 'ar' ? 'دعم فني' : 'Technical help' }}</span>
+                        <span>{{ language.code == 'ar' ? 'سياسات موثوقة' : 'Trusted policies' }}</span>
+                    </div>
+                </section>
+
+                <section class="zod-product-help-card" aria-label="Need help choosing">
+                    <div>
+                        <strong>{{ language.code == 'ar' ? 'تحتاج مساعدة قبل الشراء؟' : 'Need help before buying?' }}</strong>
+                        <p>{{ language.code == 'ar' ? 'تواصل معنا لنساعدك في اختيار المنتج المناسب حسب احتياجك.' : 'Contact us and we will help you choose the right product.' }}</p>
+                    </div>
+                    <a href="#footer-contact">{{ language.code == 'ar' ? 'تواصل معنا' : 'Contact us' }}</a>
+                </section>
+
                 <div class="product__description p-2 px-5 sm:p-1 leading-7 mb-3 zod-product-description-card">
                     {% set product_desc = product.description|replace({"&nbsp;":"\n"}) %}
                     {% if product.has_read_more %}

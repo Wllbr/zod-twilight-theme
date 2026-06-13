@@ -492,3 +492,12 @@ Handle PreOrder Label As Promotion label
 ## ZOD Twilight v2.1
 
 - Fixed Salla Dev validation error for floating button by replacing non-UUID component/dropdown keys with valid UUID values.
+
+## ZOD Twilight v4.0
+- Added compact sticky header behavior while scrolling.
+- Upgraded product card styling with premium hover, stronger pricing, and CTA polish.
+- Added product-page trust/help cards.
+- Redesigned mobile drawer styling.
+- Added category hover animations.
+- Upgraded cart page dark styling.
+- Added dark skeleton/loading polish.

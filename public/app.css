@@ -701,3 +701,30 @@ body.theme-zod .store-header.zod-header.zod-full-fixed-header .s-search-results,
 body.theme-raed .store-header.zod-header.zod-full-fixed-header .s-search-results {
   z-index: 2147483647 !important;
 }
+
+
+/* ZOD v2.8 mobile category drawer overlay fix */
+@media (max-width: 1024px) {
+  body.theme-zod .mm-ocd,
+  body.theme-raed .mm-ocd,
+  body.theme-zod .mm-ocd__backdrop,
+  body.theme-raed .mm-ocd__backdrop,
+  body.theme-zod .mm-ocd__content,
+  body.theme-raed .mm-ocd__content {
+    z-index: 2147483647 !important;
+  }
+
+  body.menu-opened .store-header.zod-header,
+  body.menu-opened .store-header.zod-header.zod-full-fixed-header,
+  body.mm-ocd-opened .store-header.zod-header,
+  body.mm-ocd-opened .store-header.zod-header.zod-full-fixed-header {
+    z-index: 2147482000 !important;
+  }
+
+  body.menu-opened .zod-header__search-zone,
+  body.mm-ocd-opened .zod-header__search-zone {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}

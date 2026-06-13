@@ -1207,3 +1207,87 @@ body.theme-raed .cart-item img {
     gap: 12px !important;
   }
 }
+
+
+/* ZOD v5.1 mobile footer fix + remove product trust features block */
+body.theme-zod .zod-product-benefits,
+body.theme-raed .zod-product-benefits {
+  display: none !important;
+}
+
+/* Footer feature ribbon mobile fix */
+@media (max-width: 768px) {
+  body.theme-zod .zod-footer-signature__ribbon,
+  body.theme-raed .zod-footer-signature__ribbon {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    padding-top: 12px !important;
+    padding-bottom: 16px !important;
+  }
+
+  body.theme-zod .zod-footer-signature__ribbon-item,
+  body.theme-raed .zod-footer-signature__ribbon-item {
+    min-height: 92px !important;
+    padding: 12px !important;
+    border-radius: 18px !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+
+  body.theme-zod .zod-footer-signature__ribbon-icon,
+  body.theme-raed .zod-footer-signature__ribbon-icon {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    border-radius: 14px !important;
+  }
+
+  body.theme-zod .zod-footer-signature__ribbon-icon i,
+  body.theme-raed .zod-footer-signature__ribbon-icon i {
+    font-size: 1rem !important;
+  }
+
+  body.theme-zod .zod-footer-signature__ribbon-item strong,
+  body.theme-raed .zod-footer-signature__ribbon-item strong {
+    font-size: .88rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 4px !important;
+  }
+
+  body.theme-zod .zod-footer-signature__ribbon-item p,
+  body.theme-raed .zod-footer-signature__ribbon-item p {
+    font-size: .76rem !important;
+    line-height: 1.45 !important;
+    margin: 0 !important;
+  }
+
+  body.theme-zod .zod-footer-signature__grid,
+  body.theme-raed .zod-footer-signature__grid {
+    gap: 12px !important;
+  }
+
+  body.theme-zod .zod-footer-signature__card,
+  body.theme-raed .zod-footer-signature__card {
+    padding: 16px !important;
+    border-radius: 20px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  body.theme-zod .zod-footer-signature__ribbon,
+  body.theme-raed .zod-footer-signature__ribbon {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.theme-zod .zod-footer-signature__ribbon-item,
+  body.theme-raed .zod-footer-signature__ribbon-item {
+    min-height: 82px !important;
+    padding: 12px 14px !important;
+  }
+
+  body.theme-zod .zod-footer-signature__ribbon-item p,
+  body.theme-raed .zod-footer-signature__ribbon-item p {
+    display: none !important;
+  }
+}

@@ -513,3 +513,17 @@ Handle PreOrder Label As Promotion label
 - Complete unique header redesign with utility shell, branded main shell, and category shell.
 - Retained sticky header compatibility with compact-on-scroll behavior.
 - Improved desktop and mobile header layout and actions.
+
+
+## ZOD Twilight v5.1
+- Fixed footer mobile layout with more compact feature cards.
+- Changed footer trust ribbon to 2-column mobile layout and tighter spacing.
+- Removed the 4 trust feature boxes from the product page.
+
+
+## ZOD Twilight v5.2
+- Fixed mobile header layout and spacing.
+- Hid the utility strip on mobile for a cleaner header.
+- Rebuilt mobile header into brand/actions row + search row.
+- Reduced icon, logo, and search sizes on mobile.
+- Cleaned mobile category bar and hide it if empty.

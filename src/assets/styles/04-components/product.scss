@@ -973,3 +973,237 @@ body.theme-raed .s-products-list-wrapper:empty::before {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* ZOD v4.1 cart page white-block fix */
+body.theme-zod .cart-item,
+body.theme-raed .cart-item,
+body.theme-zod .cart-options,
+body.theme-raed .cart-options,
+body.theme-zod #free-shipping,
+body.theme-raed #free-shipping,
+body.theme-zod #cart-gifting,
+body.theme-raed #cart-gifting,
+body.theme-zod div[class*="lg:w-96"] > .bg-white,
+body.theme-raed div[class*="lg:w-96"] > .bg-white,
+body.theme-zod div[class*="lg:w-96"] > .shadow-default,
+body.theme-raed div[class*="lg:w-96"] > .shadow-default {
+  background: linear-gradient(180deg, rgba(16,16,19,.96), rgba(7,7,9,.99)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 18px 46px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.03) !important;
+}
+
+body.theme-zod div[class*="lg:w-96"] > .bg-white *,
+body.theme-raed div[class*="lg:w-96"] > .bg-white *,
+body.theme-zod div[class*="lg:w-96"] > .shadow-default *,
+body.theme-raed div[class*="lg:w-96"] > .shadow-default *,
+body.theme-zod .cart-item *,
+body.theme-raed .cart-item *,
+body.theme-zod .cart-options *,
+body.theme-raed .cart-options * {
+  border-color: rgba(255,255,255,.08) !important;
+}
+
+body.theme-zod div[class*="lg:w-96"] h2,
+body.theme-raed div[class*="lg:w-96"] h2,
+body.theme-zod div[class*="lg:w-96"] h3,
+body.theme-raed div[class*="lg:w-96"] h3,
+body.theme-zod div[class*="lg:w-96"] h4,
+body.theme-raed div[class*="lg:w-96"] h4,
+body.theme-zod div[class*="lg:w-96"] b,
+body.theme-raed div[class*="lg:w-96"] b,
+body.theme-zod .cart-item h1,
+body.theme-raed .cart-item h1,
+body.theme-zod .cart-item h2,
+body.theme-raed .cart-item h2,
+body.theme-zod .cart-item b,
+body.theme-raed .cart-item b,
+body.theme-zod .cart-item a,
+body.theme-raed .cart-item a {
+  color: #ffffff !important;
+}
+
+body.theme-zod div[class*="lg:w-96"] .text-gray-500,
+body.theme-raed div[class*="lg:w-96"] .text-gray-500,
+body.theme-zod .cart-item .text-gray-500,
+body.theme-raed .cart-item .text-gray-500,
+body.theme-zod .cart-options .text-gray-500,
+body.theme-raed .cart-options .text-gray-500 {
+  color: #a7a7b1 !important;
+}
+
+body.theme-zod .cart-item .item-price,
+body.theme-raed .cart-item .item-price,
+body.theme-zod .cart-item .item-total,
+body.theme-raed .cart-item .item-total,
+body.theme-zod div[class*="lg:w-96"] [data-cart-total],
+body.theme-raed div[class*="lg:w-96"] [data-cart-total],
+body.theme-zod #sub-total,
+body.theme-raed #sub-total,
+body.theme-zod #cart-options-total,
+body.theme-raed #cart-options-total,
+body.theme-zod #tax-amount,
+body.theme-raed #tax-amount {
+  color: var(--zod-red) !important;
+  text-shadow: 0 0 14px color-mix(in srgb, var(--zod-red) 14%, transparent);
+}
+
+/* Cart product options/select boxes */
+body.theme-zod .cart-item salla-product-options,
+body.theme-raed .cart-item salla-product-options,
+body.theme-zod .cart-options salla-product-options,
+body.theme-raed .cart-options salla-product-options {
+  display: block;
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+body.theme-zod .cart-item salla-product-options .s-product-options-option,
+body.theme-raed .cart-item salla-product-options .s-product-options-option,
+body.theme-zod .cart-options salla-product-options .s-product-options-option,
+body.theme-raed .cart-options salla-product-options .s-product-options-option {
+  background: rgba(255,255,255,.035) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 18px !important;
+  padding: 16px !important;
+  margin-top: 14px !important;
+  color: #ffffff !important;
+}
+
+body.theme-zod .cart-item salla-product-options label,
+body.theme-raed .cart-item salla-product-options label,
+body.theme-zod .cart-options salla-product-options label,
+body.theme-raed .cart-options salla-product-options label,
+body.theme-zod .cart-item .s-product-options-option-label,
+body.theme-raed .cart-item .s-product-options-option-label,
+body.theme-zod .cart-options .s-product-options-option-label,
+body.theme-raed .cart-options .s-product-options-option-label {
+  color: #ffffff !important;
+}
+
+body.theme-zod .cart-item .s-form-control,
+body.theme-raed .cart-item .s-form-control,
+body.theme-zod .cart-options .s-form-control,
+body.theme-raed .cart-options .s-form-control,
+body.theme-zod .cart-item select,
+body.theme-raed .cart-item select,
+body.theme-zod .cart-options select,
+body.theme-raed .cart-options select,
+body.theme-zod .cart-item input,
+body.theme-raed .cart-item input,
+body.theme-zod .cart-options input,
+body.theme-raed .cart-options input,
+body.theme-zod .cart-item textarea,
+body.theme-raed .cart-item textarea,
+body.theme-zod .cart-options textarea,
+body.theme-raed .cart-options textarea {
+  background-color: rgba(18,18,20,.96) !important;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,.10) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+}
+
+body.theme-zod .cart-item select option,
+body.theme-raed .cart-item select option,
+body.theme-zod .cart-options select option,
+body.theme-raed .cart-options select option {
+  background: #111114 !important;
+  color: #ffffff !important;
+}
+
+/* Cart quantity input */
+body.theme-zod .cart-item salla-quantity-input,
+body.theme-raed .cart-item salla-quantity-input {
+  color: #ffffff !important;
+}
+
+body.theme-zod .cart-item .s-quantity-input-container,
+body.theme-raed .cart-item .s-quantity-input-container,
+body.theme-zod .cart-item salla-quantity-input .s-quantity-input-container,
+body.theme-raed .cart-item salla-quantity-input .s-quantity-input-container {
+  background: rgba(18,18,20,.96) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+
+body.theme-zod .cart-item .s-quantity-input-input,
+body.theme-raed .cart-item .s-quantity-input-input,
+body.theme-zod .cart-item salla-quantity-input input,
+body.theme-raed .cart-item salla-quantity-input input {
+  background: rgba(255,255,255,.045) !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body.theme-zod .cart-item .s-quantity-input-button,
+body.theme-raed .cart-item .s-quantity-input-button,
+body.theme-zod .cart-item salla-quantity-input button,
+body.theme-raed .cart-item salla-quantity-input button {
+  background: rgba(255,255,255,.04) !important;
+  color: #ffffff !important;
+  border: 0 !important;
+}
+
+body.theme-zod .cart-item .s-quantity-input-button:hover,
+body.theme-raed .cart-item .s-quantity-input-button:hover,
+body.theme-zod .cart-item salla-quantity-input button:hover,
+body.theme-raed .cart-item salla-quantity-input button:hover {
+  background: color-mix(in srgb, var(--zod-red) 14%, rgba(255,255,255,.04)) !important;
+  color: #fff !important;
+}
+
+/* Cart coupon/gifting/free-shipping custom elements */
+body.theme-zod salla-cart-coupons,
+body.theme-raed salla-cart-coupons,
+body.theme-zod salla-gifting,
+body.theme-raed salla-gifting,
+body.theme-zod salla-loyalty-panel,
+body.theme-raed salla-loyalty-panel,
+body.theme-zod salla-tiered-offer,
+body.theme-raed salla-tiered-offer,
+body.theme-zod salla-offer,
+body.theme-raed salla-offer,
+body.theme-zod salla-conditional-offer,
+body.theme-raed salla-conditional-offer {
+  color: #ffffff !important;
+}
+
+body.theme-zod salla-cart-coupons::part(container),
+body.theme-raed salla-cart-coupons::part(container),
+body.theme-zod salla-cart-coupons::part(input),
+body.theme-raed salla-cart-coupons::part(input),
+body.theme-zod salla-gifting::part(container),
+body.theme-raed salla-gifting::part(container) {
+  background: rgba(255,255,255,.035) !important;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+
+/* Cart images can stay white but should look intentional */
+body.theme-zod .cart-item img,
+body.theme-raed .cart-item img {
+  background: #f7f7f7 !important;
+  border-color: rgba(255,255,255,.10) !important;
+  border-radius: 16px !important;
+}
+
+/* Mobile cart spacing */
+@media (max-width: 768px) {
+  body.theme-zod .cart-item,
+  body.theme-raed .cart-item,
+  body.theme-zod div[class*="lg:w-96"] > .bg-white,
+  body.theme-raed div[class*="lg:w-96"] > .bg-white {
+    border-radius: 20px !important;
+  }
+
+  body.theme-zod .cart-item .md\:flex,
+  body.theme-raed .cart-item .md\:flex {
+    gap: 12px !important;
+  }
+}

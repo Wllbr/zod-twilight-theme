@@ -6,72 +6,83 @@
 | cart.total       | string  |
 #}
 {% set important_links = theme.settings.get('important_links') %}
-<header class="store-header zod-header">
-  <div class="zod-header__topbar">
-    <div class="container zod-header__topbar-inner">
-      <div class="zod-header__topbar-start">
-        <span class="zod-header__badge">متجر تقني متخصص</span>
-        {% if important_links %}
-          <salla-menu source="footer" topnav></salla-menu>
-        {% endif %}
-      </div>
-
-      <div class="zod-header__topbar-end">
-        {% if store.scope %}
-          <button class="zod-header__scope" onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})">
-            <i class="sicon-location"></i>
-            <span>{{ store.scope.name }}</span>
-          </button>
-        {% endif %}
-
-        {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
-          <div class="zod-header__localization">
-            <salla-localization-modal show-trigger></salla-localization-modal>
+<header class="store-header zod-header zod-header--signature">
+  <div class="container zod-header__stack">
+    <div class="zod-header__topbar zod-header__utility-shell">
+      <div class="zod-header__topbar-inner zod-header__utility-inner">
+        <div class="zod-header__topbar-start zod-header__utility-left">
+          <span class="zod-header__badge">ZOD INTEGRATED SOLUTIONS</span>
+          <div class="zod-header__contacts zod-header__contacts--inline">
+            <salla-contacts is-header></salla-contacts>
           </div>
-        {% endif %}
+        </div>
 
-        <div class="zod-header__contacts">
-          <salla-contacts is-header></salla-contacts>
+        <div class="zod-header__topbar-end zod-header__utility-right">
+          {% if important_links %}
+            <div class="zod-header__quick-links">
+              <salla-menu source="footer" topnav></salla-menu>
+            </div>
+          {% endif %}
+
+          {% if store.scope %}
+            <button class="zod-header__scope" onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})">
+              <i class="sicon-location"></i>
+              <span>{{ store.scope.name }}</span>
+            </button>
+          {% endif %}
+
+          {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+            <div class="zod-header__localization">
+              <salla-localization-modal show-trigger></salla-localization-modal>
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="mainnav" class="main-nav-container zod-header__mainnav">
-    <div class="inner">
-      <div class="container zod-header__main-inner">
-        <div class="zod-header__brand-zone">
-          <a class="lg:hidden mburger mburger--collapse zod-header__mobile-menu" href="#mobile-menu" aria-label="Open-menu">
-            <i class="sicon-menu"></i>
-          </a>
+    <div id="mainnav" class="main-nav-container zod-header__mainnav">
+      <div class="inner">
+        <div class="zod-header__main-inner zod-header__main-shell">
+          <div class="zod-header__brand-zone zod-header__brand-card">
+            <a class="lg:hidden mburger mburger--collapse zod-header__mobile-menu" href="#mobile-menu" aria-label="Open-menu">
+              <i class="sicon-menu"></i>
+            </a>
 
-          <a class="navbar-brand zod-header__brand" href="{{ store.url }}">
-            <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo|cdn(175) }}" alt="{{ store.name }} logo">
-            {% if is_page('index') %}
-              <h1 class="sr-only">{{ store.name }}</h1>
-            {% else %}
-              <h2 class="sr-only">{{ store.name }}</h2>
-            {% endif %}
-          </a>
+            <a class="navbar-brand zod-header__brand" href="{{ store.url }}">
+              <span class="zod-header__brand-logo-wrap">
+                <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo|cdn(175) }}" alt="{{ store.name }} logo">
+              </span>
+              <span class="zod-header__brand-copy">
+                <strong>{{ store.name }}</strong>
+                <small>Smart Electronics & Ventilation</small>
+              </span>
+              {% if is_page('index') %}
+                <h1 class="sr-only">{{ store.name }}</h1>
+              {% else %}
+                <h2 class="sr-only">{{ store.name }}</h2>
+              {% endif %}
+            </a>
+          </div>
+
+          <div class="zod-header__search-zone zod-header__search-card">
+            <span class="zod-header__search-icon"><i class="sicon-search"></i></span>
+            <salla-search inline oval height="48"></salla-search>
+          </div>
+
+          <div class="zod-header__actions zod-header__actions-shell">
+            <salla-user-menu avatar-only show-header show-trigger></salla-user-menu>
+            <salla-cart-summary>
+              <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
+            </salla-cart-summary>
+          </div>
         </div>
 
-        <div class="zod-header__search-zone">
-          <salla-search inline oval height="42"></salla-search>
+        <div class="zod-header__category-row zod-header__category-shell">
+          <span class="zod-header__category-label"><i class="sicon-menu"></i><span>الأقسام</span></span>
+          <nav class="zod-header__category-nav" aria-label="Main categories">
+            <custom-main-menu></custom-main-menu>
+          </nav>
         </div>
-
-        <div class="zod-header__actions">
-          <salla-user-menu avatar-only show-header show-trigger></salla-user-menu>
-          <salla-cart-summary>
-            <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
-          </salla-cart-summary>
-        </div>
-      </div>
-
-      <div class="container zod-header__category-row">
-        <span class="zod-header__category-label">الأقسام</span>
-        <nav class="zod-header__category-nav" aria-label="Main categories">
-          <custom-main-menu></custom-main-menu>
-        </nav>
       </div>
     </div>
   </div>

@@ -501,3 +501,15 @@ Handle PreOrder Label As Promotion label
 - Added category hover animations.
 - Upgraded cart page dark styling.
 - Added dark skeleton/loading polish.
+
+
+## ZOD Twilight v4.1
+- Fixed cart page white panels.
+- Darkened checkout summary, free-shipping block, gifting block, product option selectors, and quantity inputs.
+- Removed conflicting `bg-white` utility classes from cart page template.
+
+
+## ZOD Twilight v5.0
+- Complete unique header redesign with utility shell, branded main shell, and category shell.
+- Retained sticky header compatibility with compact-on-scroll behavior.
+- Improved desktop and mobile header layout and actions.

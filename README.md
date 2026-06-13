@@ -215,3 +215,6 @@ You can also simply open an issue with the tag "enhancement". Don't forget to gi
 ## License
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+### ZOD v2.2 sticky header note
+The ZOD sticky header setting now forces the main header/search area to remain fixed at the top while customers scroll. This uses the `zod-force-fixed-header` class and works independently from Raed's default fixed-header animation.

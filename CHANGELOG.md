@@ -1,3 +1,8 @@
+
+## v2.2 - Force sticky header/search fix
+- Fixed the ZOD header behavior so the full main header/search area follows the customer while scrolling.
+- Added a dedicated `zod-force-fixed-header` class controlled by JS instead of relying only on Salla/Raed's default sticky classes.
+- Patched both source JS/CSS and compiled public JS/CSS for Salla Dev preview compatibility.
 # Changelog
 
 On this page, you will find all about Salla's Theme Raed updates, including frequent updates, bug fixes, new features, and deprecated elements. We will be displaying only released updates on [Theme Read's ChangeLog](https://github.com/SallaApp/theme-raed/blob/master/CHANGELOG.md) here on GitHub
@@ -482,3 +487,8 @@ Handle PreOrder Label As Promotion label
 # 🔄 [1.137.39](https://github.com/SallaApp/theme-raed/compare/1.8.0...1.137.39) (29-01-2024)
 ### Features
 - Start of documentation
+
+
+## ZOD Twilight v2.1
+
+- Fixed Salla Dev validation error for floating button by replacing non-UUID component/dropdown keys with valid UUID values.

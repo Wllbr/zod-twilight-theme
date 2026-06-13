@@ -362,29 +362,29 @@
         {
           "label": "أسفل يمين",
           "value": "bottom_right",
-          "key": "zod-float-bottom-right"
+          "key": "9a1b8d71-8c4f-4e97-a7e4-4bc58c5f0f11"
         }
       ],
       "options": [
         {
           "label": "أسفل يمين",
           "value": "bottom_right",
-          "key": "zod-float-bottom-right"
+          "key": "9a1b8d71-8c4f-4e97-a7e4-4bc58c5f0f11"
         },
         {
           "label": "أسفل يسار",
           "value": "bottom_left",
-          "key": "zod-float-bottom-left"
+          "key": "7c4e913a-4e60-4c60-a6ed-8fcf5d6a9c31"
         },
         {
           "label": "أعلى يمين",
           "value": "top_right",
-          "key": "zod-float-top-right"
+          "key": "3530d1f7-2f74-4c67-8c31-7c02e5f53b12"
         },
         {
           "label": "أعلى يسار",
           "value": "top_left",
-          "key": "zod-float-top-left"
+          "key": "e7f1ec51-2d54-46f8-b73e-d6df506b81b6"
         }
       ],
       "source": "Manual",
@@ -2967,7 +2967,7 @@
       ]
     },
     {
-      "key": "zod-floating-link-button",
+      "key": "627b0312-652c-4c17-bf4d-52324ccda90b",
       "title": {
         "ar": "زر رابط عائم زد",
         "en": "ZOD Floating Link Button"
@@ -3054,29 +3054,29 @@
             {
               "label": "أسفل يمين",
               "value": "bottom_right",
-              "key": "float-c-bottom-right"
+              "key": "9a1b8d71-8c4f-4e97-a7e4-4bc58c5f0f11"
             }
           ],
           "options": [
             {
               "label": "أسفل يمين",
               "value": "bottom_right",
-              "key": "float-c-bottom-right"
+              "key": "9a1b8d71-8c4f-4e97-a7e4-4bc58c5f0f11"
             },
             {
               "label": "أسفل يسار",
               "value": "bottom_left",
-              "key": "float-c-bottom-left"
+              "key": "7c4e913a-4e60-4c60-a6ed-8fcf5d6a9c31"
             },
             {
               "label": "أعلى يمين",
               "value": "top_right",
-              "key": "float-c-top-right"
+              "key": "3530d1f7-2f74-4c67-8c31-7c02e5f53b12"
             },
             {
               "label": "أعلى يسار",
               "value": "top_left",
-              "key": "float-c-top-left"
+              "key": "e7f1ec51-2d54-46f8-b73e-d6df506b81b6"
             }
           ],
           "source": "Manual",

@@ -543,3 +543,161 @@ body.zod-sticky-search-ready .store-header.zod-header.zod-full-fixed-header #mai
     max-height: min(210px, 48vh) !important;
   }
 }
+
+
+/* ZOD v2.6 search dropdown dark theme fix */
+body.theme-zod .zod-header .s-search-results,
+body.theme-raed .zod-header .s-search-results,
+body.theme-zod .header-search .s-search-results,
+body.theme-raed .header-search .s-search-results {
+  background: linear-gradient(180deg, rgba(14,14,18,.98), rgba(8,8,10,.99)) !important;
+  color: var(--zod-text-primary) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 20px 48px rgba(0,0,0,.42) !important;
+  overflow: hidden !important;
+}
+
+body.theme-zod .zod-header .s-search-results *,
+body.theme-raed .zod-header .s-search-results *,
+body.theme-zod .header-search .s-search-results *,
+body.theme-raed .header-search .s-search-results * {
+  color: inherit;
+}
+
+body.theme-zod .zod-header .s-search-results > *,
+body.theme-raed .zod-header .s-search-results > *,
+body.theme-zod .header-search .s-search-results > *,
+body.theme-raed .header-search .s-search-results > * {
+  background: transparent !important;
+}
+
+body.theme-zod .zod-header .s-search-results a,
+body.theme-raed .zod-header .s-search-results a,
+body.theme-zod .header-search .s-search-results a,
+body.theme-raed .header-search .s-search-results a,
+body.theme-zod .zod-header .s-search-results li,
+body.theme-raed .zod-header .s-search-results li,
+body.theme-zod .header-search .s-search-results li,
+body.theme-raed .header-search .s-search-results li,
+body.theme-zod .zod-header .s-search-results .row,
+body.theme-raed .zod-header .s-search-results .row,
+body.theme-zod .header-search .s-search-results .row,
+body.theme-raed .header-search .s-search-results .row,
+body.theme-zod .zod-header .s-search-results .item,
+body.theme-raed .zod-header .s-search-results .item,
+body.theme-zod .header-search .s-search-results .item,
+body.theme-raed .header-search .s-search-results .item {
+  background: transparent !important;
+  color: var(--zod-text-primary) !important;
+  border-color: rgba(255,255,255,.06) !important;
+}
+
+body.theme-zod .zod-header .s-search-results a:hover,
+body.theme-raed .zod-header .s-search-results a:hover,
+body.theme-zod .header-search .s-search-results a:hover,
+body.theme-raed .header-search .s-search-results a:hover,
+body.theme-zod .zod-header .s-search-results li:hover,
+body.theme-raed .zod-header .s-search-results li:hover,
+body.theme-zod .header-search .s-search-results li:hover,
+body.theme-raed .header-search .s-search-results li:hover,
+body.theme-zod .zod-header .s-search-results .item:hover,
+body.theme-raed .zod-header .s-search-results .item:hover,
+body.theme-zod .header-search .s-search-results .item:hover,
+body.theme-raed .header-search .s-search-results .item:hover {
+  background: rgba(239,68,68,.08) !important;
+}
+
+body.theme-zod .zod-header .s-search-results img,
+body.theme-raed .zod-header .s-search-results img,
+body.theme-zod .header-search .s-search-results img,
+body.theme-raed .header-search .s-search-results img {
+  border-radius: 12px !important;
+  background: rgba(255,255,255,.04) !important;
+}
+
+body.theme-zod .zod-header .s-search-results .price,
+body.theme-raed .zod-header .s-search-results .price,
+body.theme-zod .header-search .s-search-results .price,
+body.theme-raed .header-search .s-search-results .price,
+body.theme-zod .zod-header .s-search-results .total-price,
+body.theme-raed .zod-header .s-search-results .total-price,
+body.theme-zod .header-search .s-search-results .total-price,
+body.theme-raed .header-search .s-search-results .total-price {
+  color: var(--zod-red) !important;
+}
+
+body.theme-zod .zod-header .s-search-results .before-price,
+body.theme-raed .zod-header .s-search-results .before-price,
+body.theme-zod .header-search .s-search-results .before-price,
+body.theme-raed .header-search .s-search-results .before-price {
+  color: var(--zod-text-secondary) !important;
+}
+
+body.theme-zod .zod-header .s-search-results::-webkit-scrollbar,
+body.theme-raed .zod-header .s-search-results::-webkit-scrollbar,
+body.theme-zod .header-search .s-search-results::-webkit-scrollbar,
+body.theme-raed .header-search .s-search-results::-webkit-scrollbar {
+  width: 10px;
+}
+body.theme-zod .zod-header .s-search-results::-webkit-scrollbar-thumb,
+body.theme-raed .zod-header .s-search-results::-webkit-scrollbar-thumb,
+body.theme-zod .header-search .s-search-results::-webkit-scrollbar-thumb,
+body.theme-raed .header-search .s-search-results::-webkit-scrollbar-thumb {
+  background: rgba(239,68,68,.35);
+  border-radius: 999px;
+}
+
+
+/* ZOD v2.7 search layering fix: search results must appear above category row */
+body.theme-zod .store-header.zod-header,
+body.theme-raed .store-header.zod-header,
+body.theme-zod #mainnav,
+body.theme-raed #mainnav,
+body.theme-zod #mainnav .inner,
+body.theme-raed #mainnav .inner,
+body.theme-zod .zod-header__main-inner,
+body.theme-raed .zod-header__main-inner,
+body.theme-zod .zod-header__search-zone,
+body.theme-raed .zod-header__search-zone,
+body.theme-zod .header-search,
+body.theme-raed .header-search {
+  overflow: visible !important;
+}
+
+body.theme-zod .zod-header__search-zone,
+body.theme-raed .zod-header__search-zone,
+body.theme-zod .header-search,
+body.theme-raed .header-search {
+  position: relative !important;
+  z-index: 2147483200 !important;
+}
+
+body.theme-zod .zod-header__category-row,
+body.theme-raed .zod-header__category-row {
+  position: relative !important;
+  z-index: 2147483000 !important;
+}
+
+body.theme-zod .zod-header .s-search-results,
+body.theme-raed .zod-header .s-search-results,
+body.theme-zod .header-search .s-search-results,
+body.theme-raed .header-search .s-search-results {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  right: 0 !important;
+  left: 0 !important;
+  z-index: 2147483646 !important;
+}
+
+body.theme-zod .store-header.zod-header.zod-full-fixed-header .zod-header__search-zone,
+body.theme-raed .store-header.zod-header.zod-full-fixed-header .zod-header__search-zone,
+body.theme-zod .store-header.zod-header.zod-full-fixed-header .header-search,
+body.theme-raed .store-header.zod-header.zod-full-fixed-header .header-search {
+  z-index: 2147483300 !important;
+}
+
+body.theme-zod .store-header.zod-header.zod-full-fixed-header .s-search-results,
+body.theme-raed .store-header.zod-header.zod-full-fixed-header .s-search-results {
+  z-index: 2147483647 !important;
+}

@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import Anime from './partials/anime';
 import initTootTip from './partials/tooltip';
 import initZodInteractions from './partials/zod-interactions';
+import initZodStickySearch from './partials/zod-sticky-search';
 import ZodMovingProductsShowcase from './partials/moving-products-showcase';
 import AppHelpers from "./app-helpers";
 
@@ -34,6 +35,7 @@ class App extends AppHelpers {
 
     initTootTip();
     initZodInteractions();
+    initZodStickySearch();
     new ZodMovingProductsShowcase().init();
     this.loadModalImgOnclick();
 

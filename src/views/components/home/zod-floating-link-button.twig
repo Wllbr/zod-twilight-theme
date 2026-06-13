@@ -1,0 +1,34 @@
+{#
+| Variable                  | Type    | Description
+|---------------------------|---------|--------------------------------------------
+| component.enabled         | bool    | Show floating button
+| component.label           | string  | Button text
+| component.link            | string  | Destination URL
+| component.icon            | string  | Salla icon class
+| component.image           | string  | Optional uploaded image/icon
+| component.position        | string  | bottom_right, bottom_left, top_right, top_left
+| component.offset_x        | number  | Side offset in px
+| component.offset_y        | number  | Top/bottom offset in px
+| component.show_label      | bool    | Show text label
+| component.open_new_tab    | bool    | Open link in new tab
+#}
+{% set zod_float_link = component.link ?: (store.contacts.whatsapp ? 'https://wa.me/' ~ store.contacts.whatsapp|replace({' ': '', '+': '', '-': ''}) : '') %}
+{% set zod_float_position = component.position ?: 'bottom_right' %}
+{% if component.enabled and zod_float_link %}
+  <a class="zod-floating-link zod-floating-link--component zod-floating-link--{{ zod_float_position }}"
+     href="{{ zod_float_link }}"
+     {% if component.open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+     aria-label="{{ component.label ?: 'Contact us' }}"
+     style="--zod-floating-offset-x: {{ component.offset_x ?: 18 }}px; --zod-floating-offset-y: {{ component.offset_y ?: 22 }}px;">
+    <span class="zod-floating-link__icon" aria-hidden="true">
+      {% if component.image %}
+        <img src="{{ component.image }}" alt="" loading="lazy">
+      {% else %}
+        <i class="{{ component.icon ?: 'sicon-whatsapp' }}"></i>
+      {% endif %}
+    </span>
+    {% if component.show_label %}
+      <span class="zod-floating-link__label">{{ component.label ?: 'تواصل معنا' }}</span>
+    {% endif %}
+  </a>
+{% endif %}

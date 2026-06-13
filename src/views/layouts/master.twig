@@ -75,6 +75,7 @@
         window.enable_add_product_toast = {{ theme.settings.get('enable_add_product_toast', true) | json_encode }};
         window.zod_scroll_reveal = {{ theme.settings.get('zod_scroll_reveal', true) | json_encode }};
         window.zod_neon_glow = {{ theme.settings.get('zod_neon_glow', true) | json_encode }};
+        window.zod_sticky_search_enabled = {{ theme.settings.get('zod_sticky_search_enabled', true) | json_encode }};
     </script>
     
     {% hook 'head:start' %}
@@ -108,6 +109,7 @@
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
   {{ theme.settings.get('zod_scroll_reveal', true) ? ' zod-scroll-reveal-enabled' : ' zod-scroll-reveal-disabled' }}
   {{ theme.settings.get('zod_neon_glow', true) ? ' zod-neon-glow-enabled' : ' zod-neon-glow-disabled' }}
+  {{ theme.settings.get('zod_sticky_search_enabled', true) ? ' zod-sticky-search-enabled' : ' zod-sticky-search-disabled' }}
   ">
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how
@@ -122,6 +124,26 @@
     </main>
     {% component 'footer.footer' %}
 </div>
+{% set zod_global_float_link = theme.settings.get('zod_floating_button_link', '') ?: (store.contacts.whatsapp ? 'https://wa.me/' ~ store.contacts.whatsapp|replace({' ': '', '+': '', '-': ''}) : '') %}
+{% if theme.settings.get('zod_floating_button_enabled', false) and zod_global_float_link %}
+    <a class="zod-floating-link zod-floating-link--global zod-floating-link--{{ theme.settings.get('zod_floating_button_position', 'bottom_right') }}"
+       href="{{ zod_global_float_link }}"
+       {% if theme.settings.get('zod_floating_button_new_tab', true) %}target="_blank" rel="noopener noreferrer"{% endif %}
+       aria-label="{{ theme.settings.get('zod_floating_button_label', 'تواصل معنا') }}"
+       style="--zod-floating-offset-x: {{ theme.settings.get('zod_floating_button_offset_x', 18) }}px; --zod-floating-offset-y: {{ theme.settings.get('zod_floating_button_offset_y', 22) }}px;">
+        <span class="zod-floating-link__icon" aria-hidden="true">
+            {% if theme.settings.get('zod_floating_button_image') %}
+                <img src="{{ theme.settings.get('zod_floating_button_image') }}" alt="" loading="lazy">
+            {% else %}
+                <i class="{{ theme.settings.get('zod_floating_button_icon', 'sicon-whatsapp') }}"></i>
+            {% endif %}
+        </span>
+        {% if theme.settings.get('zod_floating_button_show_label', true) %}
+            <span class="zod-floating-link__label">{{ theme.settings.get('zod_floating_button_label', 'تواصل معنا') }}</span>
+        {% endif %}
+    </a>
+{% endif %}
+
 {% hook 'body:end' %}
 {% if theme.settings.get('enable_add_product_toast', true) %}
     <salla-add-product-toast></salla-add-product-toast>

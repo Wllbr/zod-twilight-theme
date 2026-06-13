@@ -1,58 +1,41 @@
 ;(() => {
   function initZodForceStickyHeader() {
     const enabled = window.zod_sticky_search_enabled !== false && window.zod_sticky_search_enabled !== 'false';
-    const header = document.querySelector('#mainnav');
+    const header = document.querySelector('.store-header.zod-header');
+    const mainnav = document.querySelector('#mainnav');
     const inner = document.querySelector('#mainnav .inner');
-    if (!enabled || !header || !inner || header.dataset.zodForceStickyReady === '1') return;
-    header.dataset.zodForceStickyReady = '1';
+    if (!enabled || !header || !mainnav || !inner || header.dataset.zodFixedHeaderReady === '1') return;
+    header.dataset.zodFixedHeaderReady = '1';
 
-    let originalTop = 0;
-    let ticking = false;
-
-    const setFixedState = () => {
-      const shouldFix = window.scrollY > originalTop;
-      header.classList.toggle('zod-force-fixed-header', shouldFix);
-      document.body.classList.toggle('zod-header-is-fixed', shouldFix);
-    };
-
-    const measure = () => {
-      const wasFixed = header.classList.contains('zod-force-fixed-header');
-      if (wasFixed) header.classList.remove('zod-force-fixed-header');
-      const headerHeight = Math.ceil(inner.getBoundingClientRect().height || inner.offsetHeight || 0);
-      originalTop = header.getBoundingClientRect().top + window.scrollY;
+    const setHeaderHeight = () => {
+      header.classList.add('zod-full-fixed-header');
+      mainnav.classList.add('zod-force-fixed-header');
+      const headerHeight = Math.ceil(header.getBoundingClientRect().height || header.offsetHeight || inner.offsetHeight || 0);
       if (headerHeight) {
-        header.style.height = `${headerHeight}px`;
-        header.style.setProperty('--zod-sticky-header-height', `${headerHeight}px`);
+        document.documentElement.style.setProperty('--zod-fixed-full-header-height', `${headerHeight}px`);
         document.documentElement.style.setProperty('--zod-sticky-header-height', `${headerHeight}px`);
+        document.body.style.setProperty('--zod-fixed-full-header-height', `${headerHeight}px`);
+        document.body.classList.add('zod-header-is-fixed');
+        document.body.classList.add('zod-sticky-search-ready');
       }
-      if (wasFixed) header.classList.add('zod-force-fixed-header');
-      setFixedState();
     };
 
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        setFixedState();
-        ticking = false;
-      });
-    };
-
-    document.body.classList.add('zod-sticky-search-ready');
-    measure();
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('load', () => setTimeout(measure, 250), { passive: true });
-    window.addEventListener('resize', measure, { passive: true });
-    window.addEventListener('orientationchange', () => setTimeout(measure, 250), { passive: true });
+    const run = () => window.requestAnimationFrame(setHeaderHeight);
+    setHeaderHeight();
+    window.addEventListener('load', () => setTimeout(setHeaderHeight, 250), { passive: true });
+    window.addEventListener('resize', run, { passive: true });
+    window.addEventListener('orientationchange', () => setTimeout(setHeaderHeight, 250), { passive: true });
+    window.addEventListener('scroll', run, { passive: true });
+    document.addEventListener('theme::ready', setHeaderHeight, { once: true });
     if ('ResizeObserver' in window) {
-      new ResizeObserver(measure).observe(inner);
+      const observer = new ResizeObserver(setHeaderHeight);
+      observer.observe(header);
+      observer.observe(inner);
     } else if ('MutationObserver' in window) {
-      new MutationObserver(measure).observe(inner, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style'] });
+      new MutationObserver(setHeaderHeight).observe(header, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style'] });
     }
-    document.addEventListener('theme::ready', measure, { once: true });
-    setTimeout(measure, 700);
-    setTimeout(measure, 1800);
+    setTimeout(setHeaderHeight, 700);
+    setTimeout(setHeaderHeight, 1800);
   }
 
   if (document.readyState === 'loading') {

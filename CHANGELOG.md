@@ -561,3 +561,11 @@ Handle PreOrder Label As Promotion label
 - Removed the lower red category hamburger button.
 - Kept the upper hamburger button for opening the drawer.
 - Centered the category links in the category row.
+
+
+## ZOD Twilight v5.7
+- Removed the top "ZOD Integrated Solutions" badge from the header.
+- Hid the drawer hamburger button on desktop/PC view.
+- Kept the drawer hamburger available on mobile/tablet.
+- Moved category links back to normal side alignment instead of centered alignment.
+- Kept the lower category hamburger button hidden.

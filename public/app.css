@@ -4944,3 +4944,110 @@ body.theme-raed .zod-header__category-nav .main-menu {
     justify-content: center !important;
   }
 }
+
+
+/* ZOD v5.7 desktop header cleanup
+   - No drawer hamburger on PC
+   - Remove top ZOD Integrated Solutions badge
+   - Move categories back to normal side alignment, not centered
+   - Keep mobile drawer hamburger available on mobile
+*/
+
+/* Hide any remaining top badge if cached markup appears */
+body.theme-zod .zod-header__badge,
+body.theme-raed .zod-header__badge {
+  display: none !important;
+}
+
+/* Do not show drawer/burger trigger on desktop */
+@media (min-width: 1024px) {
+  body.theme-zod .zod-header__mobile-menu,
+  body.theme-raed .zod-header__mobile-menu,
+  body.theme-zod a[href="#mobile-menu"].zod-header__mobile-menu,
+  body.theme-raed a[href="#mobile-menu"].zod-header__mobile-menu {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Keep mobile burger visible only on mobile/tablet */
+@media (max-width: 1023px) {
+  body.theme-zod .zod-header__mobile-menu,
+  body.theme-raed .zod-header__mobile-menu,
+  body.theme-zod a[href="#mobile-menu"].zod-header__mobile-menu,
+  body.theme-raed a[href="#mobile-menu"].zod-header__mobile-menu {
+    display: inline-flex !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* Undo v5.6 centering: return categories to the normal RTL/start side alignment */
+body.theme-zod .zod-header__category-shell,
+body.theme-raed .zod-header__category-shell {
+  justify-content: flex-start !important;
+}
+
+body.theme-zod .zod-header__category-nav,
+body.theme-raed .zod-header__category-nav {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+}
+
+body.theme-zod .zod-header__category-nav .main-menu,
+body.theme-raed .zod-header__category-nav .main-menu {
+  justify-content: flex-start !important;
+  margin-inline: 0 !important;
+}
+
+/* RTL should visually start from the right */
+[dir="rtl"] body.theme-zod .zod-header__category-nav .main-menu,
+[dir="rtl"] body.theme-raed .zod-header__category-nav .main-menu {
+  justify-content: flex-start !important;
+}
+
+/* LTR starts from left */
+[dir="ltr"] body.theme-zod .zod-header__category-nav .main-menu,
+[dir="ltr"] body.theme-raed .zod-header__category-nav .main-menu {
+  justify-content: flex-start !important;
+}
+
+/* Keep the removed lower category button hidden */
+body.theme-zod .zod-header__category-label,
+body.theme-raed .zod-header__category-label {
+  display: none !important;
+}
+
+/* Desktop header layout can breathe more after burger removal */
+@media (min-width: 1024px) {
+  body.theme-zod .zod-header__brand-card,
+  body.theme-raed .zod-header__brand-card {
+    justify-content: flex-start !important;
+  }
+
+  body.theme-zod .zod-header__brand,
+  body.theme-raed .zod-header__brand {
+    margin-inline-start: 0 !important;
+  }
+
+  body.theme-zod .zod-header__utility-left,
+  body.theme-raed .zod-header__utility-left {
+    gap: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body.theme-zod .zod-header__category-shell,
+  body.theme-raed .zod-header__category-shell {
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+  }
+
+  body.theme-zod .zod-header__category-nav .main-menu,
+  body.theme-raed .zod-header__category-nav .main-menu {
+    justify-content: flex-start !important;
+  }
+}

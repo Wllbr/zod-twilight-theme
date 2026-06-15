@@ -7123,3 +7123,48 @@ body.zod-category-animation-disabled .zod-category-shortcuts a::after {
     animation: none !important;
   }
 }
+
+
+/* ZOD v5.6 header category cleanup
+   Remove the second/lower hamburger category button and center category links. */
+body.theme-zod .zod-header__category-label,
+body.theme-raed .zod-header__category-label {
+  display: none !important;
+}
+
+body.theme-zod .zod-header__category-shell,
+body.theme-raed .zod-header__category-shell {
+  justify-content: center !important;
+}
+
+body.theme-zod .zod-header__category-nav,
+body.theme-raed .zod-header__category-nav {
+  flex: 0 1 auto !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin-inline: auto !important;
+}
+
+body.theme-zod .zod-header__category-nav .main-menu,
+body.theme-raed .zod-header__category-nav .main-menu {
+  justify-content: center !important;
+  margin-inline: auto !important;
+}
+
+@media (max-width: 768px) {
+  body.theme-zod .zod-header__category-shell,
+  body.theme-raed .zod-header__category-shell {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  body.theme-zod .zod-header__category-nav,
+  body.theme-raed .zod-header__category-nav {
+    width: 100% !important;
+  }
+
+  body.theme-zod .zod-header__category-nav .main-menu,
+  body.theme-raed .zod-header__category-nav .main-menu {
+    justify-content: center !important;
+  }
+}

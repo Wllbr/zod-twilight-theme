@@ -555,3 +555,9 @@ Handle PreOrder Label As Promotion label
 - Added disabled button states for incomplete component setup.
 - Reduced heavy hover/motion effects on mobile.
 - Re-validated component registrations, UUID keys, preview files, and Twig/component file availability.
+
+
+## ZOD Twilight v5.6
+- Removed the lower red category hamburger button.
+- Kept the upper hamburger button for opening the drawer.
+- Centered the category links in the category row.

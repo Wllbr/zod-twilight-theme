@@ -537,3 +537,21 @@ Handle PreOrder Label As Promotion label
 - Fixed broken product page description layout on desktop.
 - Removed product-page Why/Need Help/trust boxes.
 - Moved the add-to-cart form directly below the product description.
+
+
+## ZOD Twilight v5.4
+- Added ZOD Comparison Table component.
+- Added ZOD Brand Showcase 2.0 component.
+- Added ZOD WhatsApp Support Block component.
+- Added ZOD Bundle Offer component.
+- Added editable options, preview SVGs, Twig templates, and responsive dark/red styling for all four components.
+
+
+## ZOD Twilight v5.5 Optimized
+- Optimized all new v5.4 components for mobile and overflow safety.
+- Added safer Twig fallbacks for missing brand logos, missing bundle images, and missing links.
+- Improved mobile layouts for comparison tables, brand cards, WhatsApp support, bundle cards, category cards, and product tabs.
+- Added horizontal scrolling safety for wide comparison tables.
+- Added disabled button states for incomplete component setup.
+- Reduced heavy hover/motion effects on mobile.
+- Re-validated component registrations, UUID keys, preview files, and Twig/component file availability.

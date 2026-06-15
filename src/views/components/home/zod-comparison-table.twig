@@ -1,0 +1,73 @@
+{#
+ZOD Comparison Table
+Manual comparison table for models/products such as KDK, Commax, fans, cameras.
+#}
+{% set component_id = 'zod-comparison-table-' ~ position %}
+{% set rows = component.rows|default([]) %}
+<section class="s-block zod-comparison-table zod-comparison-table--{{ component.style|default('premium') }}" id="{{ component_id }}">
+  <div class="container">
+    <div class="zod-comparison-table__head">
+      <div>
+        {% if component.eyebrow %}<span class="zod-comparison-table__eyebrow">{{ component.eyebrow }}</span>{% endif %}
+        <h2>{{ component.title ?: 'قارن بين الموديلات' }}</h2>
+        {% if component.description %}<p>{{ component.description }}</p>{% endif %}
+      </div>
+      {% if component.show_hint is not same as(false) %}
+        <div class="zod-comparison-table__hint">
+          <i class="sicon-info"></i>
+          <span>{{ language.code == 'ar' ? 'مرر الجدول يميناً ويساراً على الجوال' : 'Swipe the table on mobile' }}</span>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if rows|length %}
+      <div class="zod-comparison-table__wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ component.product_label ?: (language.code == 'ar' ? 'الموديل / المنتج' : 'Model / Product') }}</th>
+              <th>{{ component.spec_1_label ?: (language.code == 'ar' ? 'المقاس' : 'Size') }}</th>
+              <th>{{ component.spec_2_label ?: (language.code == 'ar' ? 'القوة / الأداء' : 'Power / Performance') }}</th>
+              <th>{{ component.spec_3_label ?: (language.code == 'ar' ? 'الاستخدام' : 'Use') }}</th>
+              <th>{{ component.spec_4_label ?: (language.code == 'ar' ? 'ملاحظات' : 'Notes') }}</th>
+              <th>{{ component.cta_label ?: (language.code == 'ar' ? 'الإجراء' : 'Action') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in rows %}
+              <tr class="{{ row.highlight ? 'is-highlighted' : '' }}">
+                <td>
+                  <div class="zod-comparison-table__product">
+                    {% if row.image %}
+                      <span><img src="{{ row.image }}" alt="{{ row.model ?: row.name }}" loading="lazy"></span>
+                    {% else %}
+                      <span class="zod-comparison-table__product-icon"><i class="{{ row.icon ?: 'sicon-bolt' }}"></i></span>
+                    {% endif %}
+                    <div>
+                      {% if row.badge %}<em>{{ row.badge }}</em>{% endif %}
+                      <strong>{{ row.model ?: 'Model' }}</strong>
+                      {% if row.name %}<small>{{ row.name }}</small>{% endif %}
+                    </div>
+                  </div>
+                </td>
+                <td>{{ row.spec_1 ?: '-' }}</td>
+                <td>{{ row.spec_2 ?: '-' }}</td>
+                <td>{{ row.spec_3 ?: '-' }}</td>
+                <td>{{ row.spec_4 ?: '-' }}</td>
+                <td>
+                  {% if row.url %}
+                    <a class="zod-comparison-table__btn" href="{{ row.url }}">{{ row.button_text ?: (language.code == 'ar' ? 'عرض المنتج' : 'View') }}</a>
+                  {% else %}
+                    <span class="zod-comparison-table__btn zod-comparison-table__btn--disabled">{{ language.code == 'ar' ? 'أضف رابط' : 'Add link' }}</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="zod-comparison-table__empty">أضف موديلات المقارنة من إعدادات المكون.</div>
+    {% endif %}
+  </div>
+</section>

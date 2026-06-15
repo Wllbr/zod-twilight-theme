@@ -1,0 +1,51 @@
+{#
+ZOD WhatsApp Support Block
+Professional support/contact block for homepage.
+#}
+{% set component_id = 'zod-whatsapp-support-' ~ position %}
+{% set phone = component.whatsapp_number ?: store.contacts.whatsapp %}
+{% set clean_phone = phone|replace({'+':'', ' ':'', '-':'', '(':'', ')':''}) %}
+{% set message = component.message ?: (language.code == 'ar' ? 'السلام عليكم، أحتاج مساعدة في اختيار المنتج المناسب' : 'Hello, I need help choosing the right product') %}
+{% set whatsapp_url = clean_phone ? 'https://wa.me/' ~ clean_phone ~ '?text=' ~ message|url_encode : (component.fallback_url ?: '#footer-contact') %}
+<section class="s-block zod-whatsapp-support zod-whatsapp-support--{{ component.style|default('split') }}" id="{{ component_id }}">
+  <div class="container">
+    <div class="zod-whatsapp-support__box">
+      <div class="zod-whatsapp-support__icon">
+        {% if component.image %}
+          <img src="{{ component.image }}" alt="" loading="lazy">
+        {% else %}
+          <i class="{{ component.icon ?: 'sicon-whatsapp' }}"></i>
+        {% endif %}
+      </div>
+
+      <div class="zod-whatsapp-support__copy">
+        {% if component.eyebrow %}<span>{{ component.eyebrow }}</span>{% endif %}
+        <h2>{{ component.title ?: (language.code == 'ar' ? 'تحتاج مساعدة في اختيار المنتج؟' : 'Need help choosing?') }}</h2>
+        {% if component.description %}
+          <p>{{ component.description }}</p>
+        {% else %}
+          <p>{{ language.code == 'ar' ? 'تواصل معنا وسنساعدك في اختيار المنتج المناسب حسب احتياجك.' : 'Contact us and we will help you choose the right product for your needs.' }}</p>
+        {% endif %}
+      </div>
+
+      <div class="zod-whatsapp-support__actions">
+        <a class="zod-whatsapp-support__btn zod-whatsapp-support__btn--primary" href="{{ whatsapp_url }}" target="_blank" rel="noopener">
+          <i class="sicon-whatsapp"></i>
+          <span>{{ component.whatsapp_text ?: (language.code == 'ar' ? 'واتساب' : 'WhatsApp') }}</span>
+        </a>
+        {% if component.show_call and component.call_number %}
+          <a class="zod-whatsapp-support__btn" href="tel:{{ component.call_number|replace({' ':'', '-':''}) }}">
+            <i class="sicon-phone"></i>
+            <span>{{ component.call_text ?: (language.code == 'ar' ? 'اتصال' : 'Call') }}</span>
+          </a>
+        {% endif %}
+        {% if component.location_url %}
+          <a class="zod-whatsapp-support__btn" href="{{ component.location_url }}" target="_blank" rel="noopener">
+            <i class="sicon-location"></i>
+            <span>{{ component.location_text ?: (language.code == 'ar' ? 'الموقع' : 'Location') }}</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

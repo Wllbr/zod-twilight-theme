@@ -1,0 +1,43 @@
+{#
+ZOD Brand Showcase 2.0
+Premium brand cards for KDK, COMMAX, GEEPAS, HTM, Khind, etc.
+#}
+{% set component_id = 'zod-brand-showcase-v2-' ~ position %}
+{% set brands = component.brands|default([]) %}
+<section class="s-block zod-brand-showcase-v2 zod-brand-showcase-v2--{{ component.layout|default('cards') }}" id="{{ component_id }}">
+  <div class="container">
+    <div class="zod-brand-showcase-v2__head">
+      <div>
+        {% if component.eyebrow %}<span>{{ component.eyebrow }}</span>{% endif %}
+        <h2>{{ component.title ?: 'تسوق حسب العلامة التجارية' }}</h2>
+        {% if component.description %}<p>{{ component.description }}</p>{% endif %}
+      </div>
+      {% if component.show_all %}
+        <a href="{{ link('brands') }}" class="zod-brand-showcase-v2__all">{{ trans('blocks.home.display_all') }} <i class="sicon-arrow-left"></i></a>
+      {% endif %}
+    </div>
+
+    {% if brands|length %}
+      <div class="zod-brand-showcase-v2__grid" style="--zod-brand-columns: {{ component.columns|default(5) }};">
+        {% for brand in brands %}
+          <a class="zod-brand-card-v2" href="{{ brand.url }}" aria-label="{{ brand.name }}">
+            <span class="zod-brand-card-v2__glow"></span>
+            <span class="zod-brand-card-v2__logo">
+              {% if brand.logo %}
+                <img src="{{ brand.logo }}" alt="{{ brand.name }}" loading="lazy">
+              {% else %}
+                <i class="sicon-award-ribbon"></i>
+              {% endif %}
+            </span>
+            <strong>{{ brand.name }}</strong>
+            {% if component.show_shop_text is not same as(false) %}
+              <small>{{ language.code == 'ar' ? 'تصفح المنتجات' : 'Shop products' }} <i class="sicon-arrow-left"></i></small>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="zod-brand-showcase-v2__empty">اختر الماركات التجارية من إعدادات المكون.</div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,82 @@
+{#
+ZOD Bundle Offer Component
+Marketing bundle cards for sets such as screen + camera, fan + switch, intercom kits.
+#}
+{% set component_id = 'zod-bundle-offer-' ~ position %}
+{% set bundles = component.bundles|default([]) %}
+<section class="s-block zod-bundle-offer zod-bundle-offer--{{ component.style|default('premium') }}" id="{{ component_id }}">
+  <div class="container">
+    <div class="zod-bundle-offer__head">
+      <div>
+        {% if component.eyebrow %}<span>{{ component.eyebrow }}</span>{% endif %}
+        <h2>{{ component.title ?: 'عروض الباقات' }}</h2>
+        {% if component.description %}<p>{{ component.description }}</p>{% endif %}
+      </div>
+    </div>
+
+    {% if bundles|length %}
+      <div class="zod-bundle-offer__grid" style="--zod-bundle-columns: {{ component.columns|default(3) }};">
+        {% for bundle in bundles %}
+          <article class="zod-bundle-card {{ bundle.highlight ? 'is-highlighted' : '' }}">
+            {% if bundle.badge %}<span class="zod-bundle-card__badge">{{ bundle.badge }}</span>{% endif %}
+            <div class="zod-bundle-card__media">
+              {% if bundle.image %}
+                <img src="{{ bundle.image }}" alt="{{ bundle.title }}" loading="lazy">
+              {% elseif bundle.products|length %}
+                <div class="zod-bundle-card__product-images">
+                  {% for product in bundle.products|slice(0, 3) %}
+                    {% set product_image = product.image.url|default(product.thumbnail|default('')) %}
+                    <span>
+                      {% if product_image %}
+                        <img src="{{ product_image }}" alt="{{ product.name }}" loading="lazy">
+                      {% else %}
+                        <i class="sicon-box-bankers"></i>
+                      {% endif %}
+                    </span>
+                  {% endfor %}
+                </div>
+              {% else %}
+                <i class="{{ bundle.icon ?: 'sicon-gift-sharing' }}"></i>
+              {% endif %}
+            </div>
+
+            <div class="zod-bundle-card__body">
+              <h3>{{ bundle.title ?: 'باقة منتجات' }}</h3>
+              {% if bundle.description %}<p>{{ bundle.description }}</p>{% endif %}
+
+              {% if bundle.products|length %}
+                <ul class="zod-bundle-card__items">
+                  {% for product in bundle.products|slice(0, 4) %}
+                    <li><i class="sicon-check-circle"></i><span>{{ product.name }}</span></li>
+                  {% endfor %}
+                </ul>
+              {% elseif bundle.items_text %}
+                <ul class="zod-bundle-card__items">
+                  {% for item in bundle.items_text|split('\n') %}
+                    {% if item|trim %}
+                      <li><i class="sicon-check-circle"></i><span>{{ item }}</span></li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+
+              <div class="zod-bundle-card__footer">
+                <div class="zod-bundle-card__price">
+                  {% if bundle.old_price %}<small>{{ bundle.old_price }}</small>{% endif %}
+                  {% if bundle.price %}<strong>{{ bundle.price }}</strong>{% endif %}
+                </div>
+                {% if bundle.url %}
+                  <a href="{{ bundle.url }}" class="zod-bundle-card__btn">{{ bundle.button_text ?: (language.code == 'ar' ? 'عرض الباقة' : 'View bundle') }}</a>
+                {% else %}
+                  <span class="zod-bundle-card__btn zod-bundle-card__btn--disabled">{{ language.code == 'ar' ? 'أضف رابط الباقة' : 'Add bundle link' }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="zod-bundle-offer__empty">أضف الباقات من إعدادات المكون.</div>
+    {% endif %}
+  </div>
+</section>

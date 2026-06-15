@@ -3184,6 +3184,1093 @@
           "selected": true
         }
       ]
+    },
+    {
+      "title": {
+        "ar": "جدول مقارنة زد",
+        "en": "ZOD Comparison Table"
+      },
+      "path": "home.zod-comparison-table",
+      "key": "5132dce1-25b3-4a9b-a87b-b291086aec14",
+      "icon": "sicon-swap-stroke",
+      "image": "images/zod-previews/comparison-table.svg",
+      "fields": [
+        {
+          "type": "static",
+          "format": "description",
+          "id": "zod-preview",
+          "value": "<div><img class='w-full' src='images/zod-previews/comparison-table.svg'></div>"
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "النص العلوي الصغير",
+          "multilanguage": true,
+          "id": "eyebrow",
+          "value": {
+            "ar": "قارن قبل الشراء",
+            "en": "Compare before buying"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 120
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "عنوان القسم",
+          "multilanguage": true,
+          "id": "title",
+          "value": {
+            "ar": "قارن بين الموديلات",
+            "en": "Compare Models"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 140
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "وصف القسم",
+          "multilanguage": true,
+          "id": "description",
+          "value": {
+            "ar": "جدول واضح لمقارنة أهم المواصفات قبل اختيار المنتج المناسب.",
+            "en": "A clear table to compare the key specs before choosing."
+          },
+          "required": false,
+          "format": "textarea",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 500
+        },
+        {
+          "id": "style",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "نمط التصميم",
+          "labelHTML": null,
+          "icon": "sicon-keyboard_arrow_down",
+          "selected": [
+            {
+              "label": "Premium Dark",
+              "value": "premium",
+              "key": "6db7516b-edbe-49c8-ac52-736c5b2c11eb"
+            }
+          ],
+          "options": [
+            {
+              "label": "Premium Dark",
+              "value": "premium",
+              "key": "6db7516b-edbe-49c8-ac52-736c5b2c11eb"
+            },
+            {
+              "label": "Compact",
+              "value": "compact",
+              "key": "8f78cf62-7363-4ea7-8c98-21fa2ba913d4"
+            },
+            {
+              "label": "Glass",
+              "value": "glass",
+              "key": "5f028cce-fbf3-444f-9698-a3761a799868"
+            }
+          ],
+          "source": "Manual",
+          "required": false,
+          "description": null
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "عنوان عمود المنتج",
+          "multilanguage": true,
+          "id": "product_label",
+          "value": {
+            "ar": "الموديل / المنتج",
+            "en": "Model / Product"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 80
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "عنوان المواصفة 1",
+          "multilanguage": true,
+          "id": "spec_1_label",
+          "value": {
+            "ar": "المقاس",
+            "en": "Size"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 80
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "عنوان المواصفة 2",
+          "multilanguage": true,
+          "id": "spec_2_label",
+          "value": {
+            "ar": "القوة / الأداء",
+            "en": "Power / Performance"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 80
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "عنوان المواصفة 3",
+          "multilanguage": true,
+          "id": "spec_3_label",
+          "value": {
+            "ar": "الاستخدام",
+            "en": "Use"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 80
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "عنوان المواصفة 4",
+          "multilanguage": true,
+          "id": "spec_4_label",
+          "value": {
+            "ar": "ملاحظات",
+            "en": "Notes"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 80
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "عنوان عمود الإجراء",
+          "multilanguage": true,
+          "id": "cta_label",
+          "value": {
+            "ar": "الإجراء",
+            "en": "Action"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 80
+        },
+        {
+          "type": "boolean",
+          "icon": "sicon-toggle-off",
+          "label": "إظهار ملاحظة التمرير على الجوال",
+          "description": null,
+          "id": "show_hint",
+          "format": "switch",
+          "required": false,
+          "value": true,
+          "selected": true
+        },
+        {
+          "id": "rows",
+          "type": "collection",
+          "format": "collection",
+          "required": false,
+          "minLength": 1,
+          "maxLength": 12,
+          "item_label": "موديل / منتج",
+          "value": [
+            {
+              "rows.model": "KDK 25GSE",
+              "rows.name": "مروحة شفط معدنية",
+              "rows.spec_1": "25 سم",
+              "rows.spec_2": "أداء عالي",
+              "rows.spec_3": "مطابخ / مستودعات",
+              "rows.spec_4": "هيكل معدني",
+              "rows.badge": "مقترح",
+              "rows.highlight": true,
+              "rows.url": "/",
+              "rows.button_text": "عرض المنتج"
+            },
+            {
+              "rows.model": "COMMAX 43K2",
+              "rows.name": "شاشة إنتركوم",
+              "rows.spec_1": "شاشة 4.3 بوصة",
+              "rows.spec_2": "صورة واضحة",
+              "rows.spec_3": "منازل / مكاتب",
+              "rows.spec_4": "مع كاميرا مناسبة",
+              "rows.badge": "",
+              "rows.highlight": false,
+              "rows.url": "/",
+              "rows.button_text": "عرض المنتج"
+            }
+          ],
+          "fields": [
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "الموديل",
+              "id": "rows.model",
+              "value": "",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 100
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "اسم المنتج",
+              "id": "rows.name",
+              "value": "",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 160
+            },
+            {
+              "type": "string",
+              "format": "image",
+              "icon": "sicon-image",
+              "label": "صورة المنتج / الموديل",
+              "id": "rows.image",
+              "value": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "type": "string",
+              "format": "icon",
+              "icon": "sicon-icons",
+              "label": "أيقونة بديلة",
+              "id": "rows.icon",
+              "value": "sicon-bolt",
+              "required": false,
+              "placeholder": "sicon-bolt"
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "شارة صغيرة",
+              "id": "rows.badge",
+              "value": "",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 60
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "المواصفة 1",
+              "id": "rows.spec_1",
+              "value": "",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 140
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "المواصفة 2",
+              "id": "rows.spec_2",
+              "value": "",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 140
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "المواصفة 3",
+              "id": "rows.spec_3",
+              "value": "",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 140
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "المواصفة 4",
+              "id": "rows.spec_4",
+              "value": "",
+              "required": false,
+              "format": "textarea",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 250
+            },
+            {
+              "type": "string",
+              "format": "url",
+              "inputType": "url",
+              "icon": "sicon-link",
+              "label": "رابط المنتج",
+              "id": "rows.url",
+              "value": "",
+              "required": false,
+              "placeholder": "https://"
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "نص الزر",
+              "id": "rows.button_text",
+              "value": "عرض المنتج",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 80
+            },
+            {
+              "type": "boolean",
+              "icon": "sicon-toggle-off",
+              "label": "تمييز هذا الصف",
+              "description": null,
+              "id": "rows.highlight",
+              "format": "switch",
+              "required": false,
+              "value": false,
+              "selected": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "ar": "عارض ماركات زد 2.0",
+        "en": "ZOD Brand Showcase 2.0"
+      },
+      "path": "home.zod-brand-showcase-v2",
+      "key": "393dd825-fc05-4130-8a90-280da58225fb",
+      "icon": "sicon-award-ribbon",
+      "image": "images/zod-previews/brand-showcase-v2.svg",
+      "fields": [
+        {
+          "type": "static",
+          "format": "description",
+          "id": "zod-preview",
+          "value": "<div><img class='w-full' src='images/zod-previews/brand-showcase-v2.svg'></div>"
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "النص العلوي الصغير",
+          "multilanguage": true,
+          "id": "eyebrow",
+          "value": {
+            "ar": "ماركات موثوقة",
+            "en": "Trusted Brands"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 120
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "عنوان القسم",
+          "multilanguage": true,
+          "id": "title",
+          "value": {
+            "ar": "تسوق حسب العلامة التجارية",
+            "en": "Shop by Brand"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 140
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "وصف القسم",
+          "multilanguage": true,
+          "id": "description",
+          "value": {
+            "ar": "اختر من أهم الماركات المتوفرة لدينا في الإلكترونيات والتهوية.",
+            "en": "Choose from our key electronics and ventilation brands."
+          },
+          "required": false,
+          "format": "textarea",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 500
+        },
+        {
+          "id": "layout",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "طريقة العرض",
+          "labelHTML": null,
+          "icon": "sicon-keyboard_arrow_down",
+          "selected": [
+            {
+              "label": "بطاقات فاخرة",
+              "value": "cards",
+              "key": "da1df137-8e60-48d6-a1d8-7cd406d19dec"
+            }
+          ],
+          "options": [
+            {
+              "label": "بطاقات فاخرة",
+              "value": "cards",
+              "key": "da1df137-8e60-48d6-a1d8-7cd406d19dec"
+            },
+            {
+              "label": "شريط شعارات",
+              "value": "strip",
+              "key": "c85ca361-6479-4505-b9e4-a9c104a89264"
+            },
+            {
+              "label": "شبكة مكثفة",
+              "value": "compact",
+              "key": "fcd1b227-9364-41de-8345-8f61c5f3ccf5"
+            }
+          ],
+          "source": "Manual",
+          "required": false,
+          "description": null
+        },
+        {
+          "type": "number",
+          "icon": "sicon-list",
+          "label": "عدد الأعمدة للكمبيوتر",
+          "id": "columns",
+          "value": 5,
+          "required": false,
+          "format": "number",
+          "minimum": 3,
+          "maximum": 7
+        },
+        {
+          "type": "boolean",
+          "icon": "sicon-toggle-off",
+          "label": "إظهار زر عرض كل الماركات",
+          "description": null,
+          "id": "show_all",
+          "format": "switch",
+          "required": false,
+          "value": true,
+          "selected": true
+        },
+        {
+          "type": "boolean",
+          "icon": "sicon-toggle-off",
+          "label": "إظهار نص تصفح المنتجات داخل البطاقة",
+          "description": null,
+          "id": "show_shop_text",
+          "format": "switch",
+          "required": false,
+          "value": true,
+          "selected": true
+        },
+        {
+          "type": "items",
+          "icon": "sicon-keyboard_arrow_down",
+          "label": "اختر الماركات التجارية",
+          "id": "brands",
+          "format": "dropdown-list",
+          "description": null,
+          "selected": [],
+          "options": [],
+          "required": false,
+          "multichoice": true,
+          "source": "brands",
+          "searchable": true,
+          "value": [],
+          "maxLength": 24,
+          "minLength": 0
+        }
+      ]
+    },
+    {
+      "title": {
+        "ar": "بلوك دعم واتساب زد",
+        "en": "ZOD WhatsApp Support Block"
+      },
+      "path": "home.zod-whatsapp-support-block",
+      "key": "b6248d5d-284f-4a6b-b129-b1dd0da16e61",
+      "icon": "sicon-whatsapp",
+      "image": "images/zod-previews/whatsapp-support.svg",
+      "fields": [
+        {
+          "type": "static",
+          "format": "description",
+          "id": "zod-preview",
+          "value": "<div><img class='w-full' src='images/zod-previews/whatsapp-support.svg'></div>"
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "النص العلوي الصغير",
+          "multilanguage": true,
+          "id": "eyebrow",
+          "value": {
+            "ar": "دعم سريع",
+            "en": "Quick Support"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 120
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "العنوان",
+          "multilanguage": true,
+          "id": "title",
+          "value": {
+            "ar": "تحتاج مساعدة في اختيار المنتج؟",
+            "en": "Need help choosing?"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 140
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "الوصف",
+          "multilanguage": true,
+          "id": "description",
+          "value": {
+            "ar": "تواصل معنا وسنساعدك في اختيار المنتج المناسب حسب احتياجك.",
+            "en": "Contact us and we will help you choose the right product for your needs."
+          },
+          "required": false,
+          "format": "textarea",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 500
+        },
+        {
+          "id": "style",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "نمط التصميم",
+          "labelHTML": null,
+          "icon": "sicon-keyboard_arrow_down",
+          "selected": [
+            {
+              "label": "Split Premium",
+              "value": "split",
+              "key": "f2a2d3fb-f8d0-43f2-9da8-9036cacb9175"
+            }
+          ],
+          "options": [
+            {
+              "label": "Split Premium",
+              "value": "split",
+              "key": "f2a2d3fb-f8d0-43f2-9da8-9036cacb9175"
+            },
+            {
+              "label": "Compact Bar",
+              "value": "bar",
+              "key": "cd74c0d5-0a23-46d4-a230-32bac384c445"
+            },
+            {
+              "label": "Centered CTA",
+              "value": "centered",
+              "key": "ea31ff69-e820-4e03-8c9c-a7365c516ad6"
+            }
+          ],
+          "source": "Manual",
+          "required": false,
+          "description": null
+        },
+        {
+          "type": "string",
+          "format": "icon",
+          "icon": "sicon-icons",
+          "label": "الأيقونة",
+          "id": "icon",
+          "value": "sicon-whatsapp",
+          "required": false,
+          "placeholder": "sicon-whatsapp"
+        },
+        {
+          "type": "string",
+          "format": "image",
+          "icon": "sicon-image",
+          "label": "صورة / أيقونة مخصصة",
+          "id": "image",
+          "value": null,
+          "required": false,
+          "placeholder": null
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "رقم واتساب",
+          "id": "whatsapp_number",
+          "value": "",
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 40
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "رسالة واتساب الافتراضية",
+          "id": "message",
+          "value": "السلام عليكم، أحتاج مساعدة في اختيار المنتج المناسب",
+          "required": false,
+          "format": "textarea",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 300
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "نص زر واتساب",
+          "id": "whatsapp_text",
+          "value": "واتساب",
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 80
+        },
+        {
+          "type": "boolean",
+          "icon": "sicon-toggle-off",
+          "label": "إظهار زر اتصال",
+          "description": null,
+          "id": "show_call",
+          "format": "switch",
+          "required": false,
+          "value": false,
+          "selected": false
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "رقم الاتصال",
+          "id": "call_number",
+          "value": "",
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 40
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "نص زر الاتصال",
+          "id": "call_text",
+          "value": "اتصال",
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 80
+        },
+        {
+          "type": "string",
+          "format": "url",
+          "inputType": "url",
+          "icon": "sicon-link",
+          "label": "رابط الموقع / الخريطة",
+          "id": "location_url",
+          "value": "",
+          "required": false,
+          "placeholder": "https://"
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "نص زر الموقع",
+          "id": "location_text",
+          "value": "الموقع",
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 80
+        },
+        {
+          "type": "string",
+          "format": "url",
+          "inputType": "url",
+          "icon": "sicon-link",
+          "label": "رابط بديل إذا لم يوجد واتساب",
+          "id": "fallback_url",
+          "value": "#footer-contact",
+          "required": false,
+          "placeholder": "https://"
+        }
+      ]
+    },
+    {
+      "title": {
+        "ar": "عروض باقات زد",
+        "en": "ZOD Bundle Offer"
+      },
+      "path": "home.zod-bundle-offer",
+      "key": "d711497b-bc85-4901-ab31-7887c2e4654a",
+      "icon": "sicon-gift-sharing",
+      "image": "images/zod-previews/bundle-offer.svg",
+      "fields": [
+        {
+          "type": "static",
+          "format": "description",
+          "id": "zod-preview",
+          "value": "<div><img class='w-full' src='images/zod-previews/bundle-offer.svg'></div>"
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "النص العلوي الصغير",
+          "multilanguage": true,
+          "id": "eyebrow",
+          "value": {
+            "ar": "وفر أكثر مع الباقات",
+            "en": "Save more with bundles"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 120
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "عنوان القسم",
+          "multilanguage": true,
+          "id": "title",
+          "value": {
+            "ar": "باقات مختارة",
+            "en": "Selected Bundles"
+          },
+          "required": false,
+          "format": "text",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 140
+        },
+        {
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "وصف القسم",
+          "multilanguage": true,
+          "id": "description",
+          "value": {
+            "ar": "اعرض باقات مثل شاشة + كاميرا، مروحة + مفتاح، أو أطقم إنتركوم.",
+            "en": "Show bundles like screen + camera, fan + switch, or intercom kits."
+          },
+          "required": false,
+          "format": "textarea",
+          "description": null,
+          "placeholder": null,
+          "minLength": 0,
+          "maxLength": 500
+        },
+        {
+          "id": "style",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "نمط التصميم",
+          "labelHTML": null,
+          "icon": "sicon-keyboard_arrow_down",
+          "selected": [
+            {
+              "label": "Premium Cards",
+              "value": "premium",
+              "key": "06166bb2-0222-41ce-a77f-9b5666f8e528"
+            }
+          ],
+          "options": [
+            {
+              "label": "Premium Cards",
+              "value": "premium",
+              "key": "06166bb2-0222-41ce-a77f-9b5666f8e528"
+            },
+            {
+              "label": "Compact",
+              "value": "compact",
+              "key": "8f476725-cd20-4bbb-9312-ad4c836d7156"
+            },
+            {
+              "label": "Showcase",
+              "value": "showcase",
+              "key": "b4d8ae29-6015-4120-a409-4ec020503b09"
+            }
+          ],
+          "source": "Manual",
+          "required": false,
+          "description": null
+        },
+        {
+          "type": "number",
+          "icon": "sicon-list",
+          "label": "عدد الأعمدة للكمبيوتر",
+          "id": "columns",
+          "value": 3,
+          "required": false,
+          "format": "number",
+          "minimum": 2,
+          "maximum": 4
+        },
+        {
+          "id": "bundles",
+          "type": "collection",
+          "format": "collection",
+          "required": false,
+          "minLength": 1,
+          "maxLength": 8,
+          "item_label": "باقة",
+          "value": [
+            {
+              "bundles.title": "باقة شاشة + كاميرا",
+              "bundles.description": "حل مناسب لتركيب نظام إنتركوم متكامل.",
+              "bundles.badge": "الأكثر طلباً",
+              "bundles.price": "حسب الاختيار",
+              "bundles.old_price": "",
+              "bundles.url": "/",
+              "bundles.button_text": "عرض الباقة",
+              "bundles.highlight": true
+            },
+            {
+              "bundles.title": "باقة تهوية",
+              "bundles.description": "مروحة مناسبة مع مفتاح أو ملحقات التثبيت.",
+              "bundles.badge": "توفير",
+              "bundles.price": "عرض خاص",
+              "bundles.old_price": "",
+              "bundles.url": "/",
+              "bundles.button_text": "تصفح",
+              "bundles.highlight": false
+            }
+          ],
+          "fields": [
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "عنوان الباقة",
+              "id": "bundles.title",
+              "value": "",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 140
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "وصف الباقة",
+              "id": "bundles.description",
+              "value": "",
+              "required": false,
+              "format": "textarea",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 320
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "شارة الباقة",
+              "id": "bundles.badge",
+              "value": "",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 80
+            },
+            {
+              "type": "string",
+              "format": "image",
+              "icon": "sicon-image",
+              "label": "صورة الباقة",
+              "id": "bundles.image",
+              "value": null,
+              "required": false,
+              "placeholder": null
+            },
+            {
+              "type": "string",
+              "format": "icon",
+              "icon": "sicon-icons",
+              "label": "أيقونة بديلة",
+              "id": "bundles.icon",
+              "value": "sicon-gift-sharing",
+              "required": false,
+              "placeholder": "sicon-gift-sharing"
+            },
+            {
+              "type": "items",
+              "icon": "sicon-keyboard_arrow_down",
+              "label": "منتجات داخل الباقة",
+              "id": "bundles.products",
+              "format": "dropdown-list",
+              "description": "اختياري: يظهر أسماء وصور المنتجات المختارة.",
+              "selected": [],
+              "options": [],
+              "required": false,
+              "multichoice": true,
+              "source": "products",
+              "searchable": true,
+              "value": [],
+              "maxLength": 6,
+              "minLength": 0
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "عناصر الباقة النصية",
+              "id": "bundles.items_text",
+              "value": "",
+              "required": false,
+              "format": "textarea",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 500
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "سعر / نص السعر",
+              "id": "bundles.price",
+              "value": "",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 80
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "سعر سابق / نص صغير",
+              "id": "bundles.old_price",
+              "value": "",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 80
+            },
+            {
+              "type": "string",
+              "format": "url",
+              "inputType": "url",
+              "icon": "sicon-link",
+              "label": "رابط الباقة / التصنيف / المنتج",
+              "id": "bundles.url",
+              "value": "",
+              "required": false,
+              "placeholder": "https://"
+            },
+            {
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "نص الزر",
+              "id": "bundles.button_text",
+              "value": "عرض الباقة",
+              "required": false,
+              "format": "text",
+              "description": null,
+              "placeholder": null,
+              "minLength": 0,
+              "maxLength": 80
+            },
+            {
+              "type": "boolean",
+              "icon": "sicon-toggle-off",
+              "label": "تمييز الباقة",
+              "description": null,
+              "id": "bundles.highlight",
+              "format": "switch",
+              "required": false,
+              "value": false,
+              "selected": false
+            }
+          ]
+        }
+      ]
     }
   ],
   "support_url": "https://salla.com/",

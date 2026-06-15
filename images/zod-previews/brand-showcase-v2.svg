@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#050506"/>
+      <stop offset="1" stop-color="#16090b"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" x2="1">
+      <stop offset="0" stop-color="#ef4444"/>
+      <stop offset="1" stop-color="#991b1b"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="900" height="520" rx="36" fill="url(#bg)"/>
+  <circle cx="760" cy="70" r="160" fill="#ef4444" opacity=".10"/>
+  <rect x="52" y="58" width="220" height="34" rx="17" fill="#ef4444" opacity=".18" stroke="#ef4444" stroke-opacity=".35"/>
+  <text x="72" y="81" fill="#fecaca" font-family="Arial" font-size="14" font-weight="700">ZOD COMPONENT</text>
+  <text x="52" y="150" fill="#fff" font-family="Arial" font-size="46" font-weight="900">Brand Showcase 2.0</text>
+  <text x="52" y="190" fill="#a1a1aa" font-family="Arial" font-size="22">KDK • COMMAX • HTM</text>
+  <g transform="translate(52 250)">
+    <rect width="790" height="150" rx="24" fill="#111114" stroke="#27272a"/>
+    <rect x="24" y="28" width="170" height="94" rx="18" fill="#18181b" stroke="#ef4444" stroke-opacity=".25"/>
+    <rect x="218" y="28" width="170" height="94" rx="18" fill="#18181b" stroke="#ffffff" stroke-opacity=".08"/>
+    <rect x="412" y="28" width="170" height="94" rx="18" fill="#18181b" stroke="#ffffff" stroke-opacity=".08"/>
+    <rect x="606" y="28" width="150" height="94" rx="18" fill="url(#red)" opacity=".9" filter="url(#glow)"/>
+  </g>
+</svg>

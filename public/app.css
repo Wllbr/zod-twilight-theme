@@ -5051,3 +5051,63 @@ body.theme-raed .zod-header__category-label {
     justify-content: flex-start !important;
   }
 }
+
+
+/* ZOD v5.8 remove black rectangle behind categories */
+body.theme-zod .zod-header__category-row,
+body.theme-zod .zod-header__category-shell,
+body.theme-zod .zod-header__category-nav,
+body.theme-zod .zod-header__category-nav custom-main-menu,
+body.theme-zod .zod-header__category-nav .main-menu,
+body.theme-raed .zod-header__category-row,
+body.theme-raed .zod-header__category-shell,
+body.theme-raed .zod-header__category-nav,
+body.theme-raed .zod-header__category-nav custom-main-menu,
+body.theme-raed .zod-header__category-nav .main-menu {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* keep only the outer category row card visible */
+body.theme-zod .zod-header__category-shell,
+body.theme-raed .zod-header__category-shell {
+  border: 1px solid rgba(255,255,255,.08) !important;
+  box-shadow: 0 20px 44px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.02) !important;
+}
+
+/* make the web component wrapper not render as a block card */
+body.theme-zod .zod-header__category-nav custom-main-menu,
+body.theme-raed .zod-header__category-nav custom-main-menu {
+  display: block !important;
+  width: auto !important;
+  min-width: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+}
+
+/* force the menu list itself to look clean */
+body.theme-zod .zod-header__category-nav .main-menu,
+body.theme-raed .zod-header__category-nav .main-menu {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+}
+
+/* keep category pills as the only visible UI */
+body.theme-zod .zod-header__category-nav .main-menu > li > a,
+body.theme-raed .zod-header__category-nav .main-menu > li > a {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  body.theme-zod .zod-header__category-row,
+  body.theme-zod .zod-header__category-shell,
+  body.theme-raed .zod-header__category-row,
+  body.theme-raed .zod-header__category-shell {
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+}

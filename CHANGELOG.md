@@ -569,3 +569,9 @@ Handle PreOrder Label As Promotion label
 - Kept the drawer hamburger available on mobile/tablet.
 - Moved category links back to normal side alignment instead of centered alignment.
 - Kept the lower category hamburger button hidden.
+
+
+## ZOD Twilight v5.8
+- Removed the black rectangle/background layer behind the category links.
+- Kept only the outer category row shell and the category pills visible.
+- Cleared background, border, and shadow from the inner category nav/menu wrappers.

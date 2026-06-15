@@ -5111,3 +5111,84 @@ body.theme-raed .zod-header__category-nav .main-menu > li > a {
     background-image: none !important;
   }
 }
+
+
+/* ZOD v5.9 floating search/category rows
+   Remove the solid rectangle behind the search row and the category row.
+   Keep only the individual controls/cards visible. */
+
+body.theme-zod .zod-header__main-shell,
+body.theme-raed .zod-header__main-shell,
+body.theme-zod .zod-header__category-shell,
+body.theme-raed .zod-header__category-shell,
+body.theme-zod .zod-header__mainnav > .inner,
+body.theme-raed .zod-header__mainnav > .inner {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* Remove decorative overlay layers on these wrappers */
+body.theme-zod .zod-header__main-shell::before,
+body.theme-zod .zod-header__main-shell::after,
+body.theme-zod .zod-header__category-shell::before,
+body.theme-zod .zod-header__category-shell::after,
+body.theme-raed .zod-header__main-shell::before,
+body.theme-raed .zod-header__main-shell::after,
+body.theme-raed .zod-header__category-shell::before,
+body.theme-raed .zod-header__category-shell::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Let the content float with spacing instead of being boxed */
+body.theme-zod .zod-header__main-shell,
+body.theme-raed .zod-header__main-shell {
+  padding: 0 !important;
+  gap: 14px !important;
+}
+
+body.theme-zod .zod-header__category-shell,
+body.theme-raed .zod-header__category-shell {
+  padding: 0 !important;
+  margin-top: 10px !important;
+  min-height: auto !important;
+}
+
+/* Keep the actual search control as a floating card */
+body.theme-zod .zod-header__search-card,
+body.theme-raed .zod-header__search-card {
+  background: linear-gradient(180deg, rgba(18,18,21,.94), rgba(8,8,10,.98)) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.03) !important;
+}
+
+/* Keep category pills floating with no big wrapper */
+body.theme-zod .zod-header__category-nav,
+body.theme-raed .zod-header__category-nav,
+body.theme-zod .zod-header__category-nav custom-main-menu,
+body.theme-raed .zod-header__category-nav custom-main-menu,
+body.theme-zod .zod-header__category-nav .main-menu,
+body.theme-raed .zod-header__category-nav .main-menu {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body.theme-zod .zod-header__category-nav .main-menu,
+body.theme-raed .zod-header__category-nav .main-menu {
+  gap: 8px !important;
+}
+
+@media (max-width: 1023px) {
+  body.theme-zod .zod-header__main-shell,
+  body.theme-raed .zod-header__main-shell {
+    gap: 10px !important;
+  }
+
+  body.theme-zod .zod-header__category-shell,
+  body.theme-raed .zod-header__category-shell {
+    margin-top: 8px !important;
+  }
+}

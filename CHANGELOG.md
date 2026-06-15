@@ -575,3 +575,9 @@ Handle PreOrder Label As Promotion label
 - Removed the black rectangle/background layer behind the category links.
 - Kept only the outer category row shell and the category pills visible.
 - Cleared background, border, and shadow from the inner category nav/menu wrappers.
+
+
+## ZOD Twilight v5.9
+- Removed the solid black background blocks behind the search row and category row.
+- Made the search bar and category pills appear as floating elements.
+- Cleared wrapper overlays, borders, and shadows while preserving the search control styling.
